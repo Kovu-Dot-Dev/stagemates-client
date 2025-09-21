@@ -7,8 +7,7 @@ export const Profile: React.FC = () => {
   console.log({ profile })
 
   return (
-    <div className="">
-      
+    <div>
     </div>
   )
 }
