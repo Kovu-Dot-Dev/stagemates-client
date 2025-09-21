@@ -6,5 +6,9 @@ export const Profile: React.FC = () => {
   const { data: profile } = useProfileQuery(id)
   console.log({ profile })
 
-  return 'Profile'
+  return (
+    <div className="">
+      
+    </div>
+  )
 }
