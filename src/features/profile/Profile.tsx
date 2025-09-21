@@ -95,10 +95,6 @@ export const Profile: React.FC = () => {
           <Text size="h6" className="mb-1">Behind the Music</Text>
           <div className="grid lg:grid-cols-3 md:grid-cols-2 grid-cols-1 gap-4 mb-4">
             {profile.vibes.map((vibe) => (
-              // <Card className="gap-2">
-              //   <CardHeader><Text>{vibe.question}</Text></CardHeader>
-              //   <CardContent>{vibe.answer}</CardContent>
-              // </Card>
               <VibeCard key={vibe.question} question={vibe.question} answer={vibe.answer} />
             ))}
           </div>
