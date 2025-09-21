@@ -1,13 +1,124 @@
 import { useProfileQuery } from "@/api/profiles/hooks/use-profile-query"
+import { Badge } from "@/components/ui/Badge"
+import { Text } from "@/components/ui/Text"
 import { useParams } from "react-router"
+import { SongListItem } from "./components/SongListItem"
+import { Button } from "@/components/ui/Button"
+import { VibeCard } from "./components/VibeCard"
+
 
 export const Profile: React.FC = () => {
   const { id } = useParams<{ id: string }>()
-  const { data: profile } = useProfileQuery(id)
-  console.log({ profile })
+  const { data: profile, isLoading } = useProfileQuery(id)
+
+  if (isLoading) {
+    return null
+  }
+
+  if (!profile) {
+    return 'No profile found'
+  }
 
   return (
-    <div>
+    <div className="flex min-h-screen md:flex-row flex-col">
+      <div className="md:w-3xs w-full p-8 gap-6 flex flex-col">
+        <div className="flex flex-col gap-2">
+          <Text size="h4" align="center">{profile.name}</Text>
+          <img className="rounded-md" src="https://cdn.discordapp.com/attachments/702862051957145653/1419255646792192030/image_720.png?ex=68d11852&is=68cfc6d2&hm=1be8d6aca1ff67b0298d0318b3c176f692d041ddd9ea57b2a9bb02339cea0670&" />
+        </div>
+
+        <div className="flex justify-center">
+          <Button className="w-full">Let's Jam! &#127928;</Button>
+        </div>
+
+        <div className="flex flex-col gap-4">
+          <div>
+            <Text size="h6">Genres</Text>
+            <div className="flex flex-wrap gap-2 mt-1">
+              {profile.genres.map((genre) => (
+                <Badge key={genre}>{genre}</Badge>
+              ))}
+            </div>
+          </div>
+
+          <div>
+            <Text size="h6">Instruments</Text>
+            <div className="flex flex-wrap gap-2 mt-1">
+              {profile.instruments.map((instrument) =>
+                <Badge key={instrument} variant="default">{instrument}</Badge>
+              )}
+            </div>
+          </div>
+
+          <div>
+            <Text size="h6">Preferred days</Text>
+            <div className="flex flex-wrap gap-2 mt-1">
+              {profile.availability.days.map((day) =>
+                <Badge key={day} variant="default">{day}</Badge>
+              )}
+            </div>
+          </div>
+
+          <div>
+            <Text size="h6">Preferred times</Text>
+            <div className="flex flex-wrap gap-2 mt-1">
+              {profile.availability.times.map((time) =>
+                <Badge key={time} variant="default">{time}</Badge>
+              )}
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div className="flex flex-col flex-1 p-4 pt-8 gap-8">
+        <div className="pb-4">
+          <Text size="h6">My Songs</Text>
+          <div className="grid grid-cols-1">
+            {profile.songs.map((song, idx) =>
+              <>
+                <SongListItem
+                  enjoy={song.enjoy}
+                  wantToPlay={song.wantToPlay}
+                  key={song.title}
+                  title={song.title}
+                  artist={song.artist}
+                  albumImage={""}
+                  skill={song.skill} />
+                {idx !== profile.songs.length - 1 && <hr />}
+              </>
+            )}
+          </div>
+
+        </div>
+
+        <div>
+          <Text size="h6" className="mb-1">Behind the Music</Text>
+          <div className="grid lg:grid-cols-3 md:grid-cols-2 grid-cols-1 gap-4 mb-4">
+            {profile.vibes.map((vibe) => (
+              // <Card className="gap-2">
+              //   <CardHeader><Text>{vibe.question}</Text></CardHeader>
+              //   <CardContent>{vibe.answer}</CardContent>
+              // </Card>
+              <VibeCard key={vibe.question} question={vibe.question} answer={vibe.answer} />
+            ))}
+          </div>
+        </div>
+
+        <div>
+          <Text size="h6" className="mb-1">Musical Background</Text>
+          <Text className="whitespace-pre-line">{profile.background}</Text>
+        </div>
+
+        <div>
+          <Text size="h6">
+            Event History
+          </Text>
+
+          <Text size="small" >
+            To be added...
+          </Text>
+        </div>
+      </div>
     </div>
   )
 }

@@ -1,7 +1,8 @@
+// TODO: Type properly
 export type Profile = {
   id: string;
   name: string;
-  songs: string[];
+  songs: Song[];
   instruments: Instrument[];
   genres: Genre[];
   background: string;
@@ -9,6 +10,21 @@ export type Profile = {
     days: string[];
     times: string[];
   };
+  vibes: Vibe[];
+};
+
+export type Vibe = {
+  question: string;
+  answer: string;
+};
+
+
+export type Song = {
+  title: string;
+  artist: string;
+  wantToPlay: boolean;
+  enjoy: boolean;
+  skill: 1 | 2 | 3 | 4 | 5;
 }
 
 export const INSTRUMENTS = {

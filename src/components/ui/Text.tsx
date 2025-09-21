@@ -2,16 +2,18 @@ import { cva, type VariantProps } from "class-variance-authority";
 
 import { cn } from "@/lib/utils";
 
-const textVariants = cva("scroll-m-20 tracking-tight text-balance", {
+const textVariants = cva("scroll-m-20 text-balance", {
   variants: {
     size: {
       h1: "text-4xl font-extrabold",
       h2: "text-3xl font-semibold",
       h3: "text-2xl font-semibold",
       h4: "text-xl font-semibold",
-      p: "leading-7",
-      small: "text-sm leading-6",
-      extraSmall: "text-xs leading-5",
+      h5: "text-lg font-medium",
+      h6: "text-base font-medium",
+      p: "leading-7 font-light",
+      small: "text-sm leading-6 font-light",
+      extraSmall: "text-xs leading-5 font-light",
     },
     align: {
       left: "text-left",
@@ -36,7 +38,7 @@ const Text: React.FC<TextProps> = ({
   children,
 }) => {
   const Component =
-    size && ["h1", "h2", "h3", "h4"].includes(size) ? (size as any) : "p";
+    size && ["h1", "h2", "h3", "h4", "h5", "h6"].includes(size) ? (size as any) : "p";
 
   return (
     <Component className={cn(textVariants({ size, align }), className)}>
