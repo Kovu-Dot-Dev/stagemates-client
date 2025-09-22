@@ -1,27 +1,27 @@
-import { createBrowserRouter } from "react-router";
-import App from "./App.tsx";
+import { createBrowserRouter } from 'react-router';
+import App from './App.tsx';
 
 const router = createBrowserRouter([
   {
-    path: "/",
+    path: '/',
     Component: App,
     children: [
       { index: true, Component: App },
-      { path: "about", Component: App },
+      { path: 'about', Component: App },
       {
-        path: "auth",
+        path: 'auth',
         Component: App,
         children: [
-          { path: "login", Component: App },
-          { path: "register", Component: App },
+          { path: 'login', Component: App },
+          { path: 'register', Component: App },
         ],
       },
       {
-        path: "concerts",
+        path: 'concerts',
         children: [
           { index: true, Component: App },
-          { path: ":city", Component: App },
-          { path: "trending", Component: App },
+          { path: ':city', Component: App },
+          { path: 'trending', Component: App },
         ],
       },
     ],
