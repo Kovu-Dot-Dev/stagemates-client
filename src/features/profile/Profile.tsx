@@ -24,7 +24,7 @@ export const Profile: React.FC = () => {
       <div className="md:w-3xs w-full p-8 gap-6 flex flex-col">
         <div className="flex flex-col gap-2">
           <Text size="h4" align="center">{profile.name}</Text>
-          <img className="rounded-md" src="https://cdn.discordapp.com/attachments/702862051957145653/1419255646792192030/image_720.png?ex=68d11852&is=68cfc6d2&hm=1be8d6aca1ff67b0298d0318b3c176f692d041ddd9ea57b2a9bb02339cea0670&" />
+          <img className="rounded-md" src="https://media.discordapp.net/attachments/702862051957145653/1419255646792192030/image_720.png?ex=68d269d2&is=68d11852&hm=ed303074e7248c1d0f2d8e9ab55508d2cb21bd45eb162f0d86d47e91e6291989&=&format=webp&quality=lossless&width=806&height=806" />
         </div>
 
         <div className="flex justify-center">
