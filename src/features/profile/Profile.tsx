@@ -1,9 +1,11 @@
+import { useParams } from 'react-router';
+
 import { useProfileQuery } from '@/api/profiles/hooks/useProfileQuery';
 import { Badge } from '@/components/ui/Badge';
-import { Text } from '@/components/ui/Text';
-import { useParams } from 'react-router';
-import { SongListItem } from '../../components/block/SongListItem';
 import { Button } from '@/components/ui/Button';
+import { Text } from '@/components/ui/Text';
+
+import { SongListItem } from '../../components/block/SongListItem';
 import { VibeCard } from './components/VibeCard';
 
 export const Profile: React.FC = () => {
