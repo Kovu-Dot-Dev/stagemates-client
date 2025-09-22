@@ -1,4 +1,4 @@
-import { getProfile, type GetProfileResponse } from "../services/get-profile"
+import { getProfile, type GetProfileResponse } from "../services/getProfile"
 import {
   useQuery,
   type UseQueryResult,

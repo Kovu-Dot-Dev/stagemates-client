@@ -1,1 +1,1 @@
-export { getProfile } from './get-profile'
+export { getProfile } from './getProfile'

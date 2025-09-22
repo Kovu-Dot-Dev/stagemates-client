@@ -1,4 +1,4 @@
-import { useProfileQuery } from "@/api/profiles/hooks/use-profile-query"
+import { useProfileQuery } from "@/api/profiles/hooks/useProfileQuery"
 import { Badge } from "@/components/ui/Badge"
 import { Text } from "@/components/ui/Text"
 import { useParams } from "react-router"
