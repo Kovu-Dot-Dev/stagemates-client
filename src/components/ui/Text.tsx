@@ -11,9 +11,9 @@ const textVariants = cva("scroll-m-20 text-balance", {
       h4: "text-xl font-semibold",
       h5: "text-lg font-medium",
       h6: "text-base font-medium",
-      p: "leading-7 font-light",
-      small: "text-sm leading-6 font-light",
-      extraSmall: "text-xs leading-5 font-light",
+      p: "leading-7",
+      small: "text-sm leading-6",
+      extraSmall: "text-xs leading-5",
     },
     align: {
       left: "text-left",
