@@ -1,32 +1,32 @@
-import React from "react";
-import { cva, type VariantProps } from "class-variance-authority";
+import React from 'react';
+import { cva, type VariantProps } from 'class-variance-authority';
 
-import { cn } from "@/lib/utils";
+import { cn } from '@/lib/utils';
 
-const imageVariants = cva("overflow-hidden inline-block", {
+const imageVariants = cva('overflow-hidden inline-block', {
   variants: {
     variant: {
-      default: "rounded-md",
-      rounded: "rounded-md",
-      circle: "rounded-full",
+      default: 'rounded-md',
+      rounded: 'rounded-md',
+      circle: 'rounded-full',
     },
     fit: {
-      cover: "object-cover",
-      contain: "object-contain",
-      fill: "object-fill",
-      scaleDown: "object-scale-down",
+      cover: 'object-cover',
+      contain: 'object-contain',
+      fill: 'object-fill',
+      scaleDown: 'object-scale-down',
     },
     shadow: {
-      none: "",
-      sm: "shadow-sm",
-      md: "shadow-md",
-      lg: "shadow-lg",
+      none: '',
+      sm: 'shadow-sm',
+      md: 'shadow-md',
+      lg: 'shadow-lg',
     },
   },
   defaultVariants: {
-    variant: "default",
-    fit: "cover",
-    shadow: "none",
+    variant: 'default',
+    fit: 'cover',
+    shadow: 'none',
   },
 });
 
@@ -36,7 +36,7 @@ type ImageProps = React.PropsWithChildren<
     alt: string;
     width?: number | string;
     height?: number | string;
-    loading?: "lazy" | "eager";
+    loading?: 'lazy' | 'eager';
     placeholder?: React.ReactNode;
     className?: string;
     [key: string]: any;
@@ -50,7 +50,7 @@ const Image = React.forwardRef<HTMLImageElement, ImageProps>(
       alt,
       width,
       height,
-      loading = "lazy",
+      loading = 'lazy',
       priority = false,
       placeholder,
       variant,
@@ -63,12 +63,8 @@ const Image = React.forwardRef<HTMLImageElement, ImageProps>(
   ) => {
     return (
       <div
-        className={cn(
-          imageVariants({ variant, fit, shadow }),
-          className
-        )}
-        style={{ width: width ?? undefined, height: height ?? undefined }}
-      >
+        className={cn(imageVariants({ variant, fit, shadow }), className)}
+        style={{ width: width ?? undefined, height: height ?? undefined }}>
         {placeholder ? (
           <div aria-hidden className="w-full h-full">
             {placeholder}
@@ -79,10 +75,10 @@ const Image = React.forwardRef<HTMLImageElement, ImageProps>(
           ref={ref}
           src={src}
           alt={alt}
-          width={typeof width === "number" ? width : undefined}
-          height={typeof height === "number" ? height : undefined}
-          loading={priority ? "eager" : loading}
-          className={cn("w-full h-full block", fit === "cover" ? "" : "")}
+          width={typeof width === 'number' ? width : undefined}
+          height={typeof height === 'number' ? height : undefined}
+          loading={priority ? 'eager' : loading}
+          className={cn('w-full h-full block', fit === 'cover' ? '' : '')}
           {...rest}
         />
       </div>

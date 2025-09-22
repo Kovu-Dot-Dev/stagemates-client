@@ -1,5 +1,5 @@
-import { Badge } from "@/components/ui/Badge";
-import { Text } from "@/components/ui/Text"
+import { Badge } from '@/components/ui/Badge';
+import { Text } from '@/components/ui/Text';
 
 interface SongListItemProps {
   title: string;
@@ -27,34 +27,21 @@ export const SongListItem: React.FC<SongListItemProps> = ({
         />
       </div>
 
-
       <div className="flex-1 p-3">
         <Text size="h6">{title}</Text>
         <Text size="extraSmall">{artist}</Text>
 
         <div className="flex gap-2 mt-1 p=">
-          {wantToPlay && (
-            <Badge>
-              Want to Play
-            </Badge>
-          )}
-          {enjoy && (
-            <Badge>
-              Enjoy
-            </Badge>
-          )}
+          {wantToPlay && <Badge>Want to Play</Badge>}
+          {enjoy && <Badge>Enjoy</Badge>}
         </div>
       </div>
 
       <div className="flex items-center gap-1 pr-2">
         {Array.from({ length: 5 }).map((_, i) => (
-          <div
-            key={i}
-            className={`w-3 h-3 ${i < skill ? "bg-black" : "bg-gray-300"}`}
-          />
+          <div key={i} className={`w-3 h-3 ${i < skill ? 'bg-black' : 'bg-gray-300'}`} />
         ))}
-
       </div>
     </div>
   );
-}
+};
