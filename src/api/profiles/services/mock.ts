@@ -4,6 +4,8 @@ export const mockMusicianProfiles: MusicianProfile[] = [
   {
     id: 'u1',
     name: 'Alice Johnson',
+    image:
+      'https://media.discordapp.net/attachments/702862051957145653/1419255646792192030/image_720.png?ex=68d269d2&is=68d11852&hm=ed303074e7248c1d0f2d8e9ab55508d2cb21bd45eb162f0d86d47e91e6291989&=&format=webp&quality=lossless&width=806&height=806',
     songs: [
       {
         title: 'Wonderwall',
@@ -54,6 +56,7 @@ I started with simple campfire songs and grew into fingerstyle arrangements over
   {
     id: 'u2',
     name: 'Marcus Lee',
+    image: 'https://i.pinimg.com/1200x/12/8c/ac/128cacd89a9c41e3c4e2d1c8fc18d055.jpg',
     songs: [
       {
         title: 'Take Five',
@@ -104,6 +107,7 @@ I’m especially interested in modal improvisation and complex chord progression
   {
     id: 'u3',
     name: 'Sofia Ramirez',
+    image: 'https://i.pinimg.com/736x/c8/82/dd/c882dd4f6141cebb6627c0f8db860952.jpg',
     songs: [
       {
         title: 'Despacito',
