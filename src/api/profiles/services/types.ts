@@ -1,16 +1,21 @@
 // TODO: Type properly
-export type Profile = {
+export type MusicianProfile = {
   id: string;
   name: string;
-  songs: Song[];
-  instruments: Instrument[];
-  genres: Genre[];
-  background: string;
-  availability: {
-    days: string[];
-    times: string[];
+  profileImage?: string;
+  bio?: string;
+  lookingFor?: string[];
+  location?: string;
+  skillLevel?: 'Beginner' | 'Intermediate' | 'Advanced' | 'Expert';
+  songs?: Song[];
+  instruments?: Instrument[];
+  genres?: Genre[];
+  background?: string;
+  availability?: {
+    days?: string[];
+    times?: string[];
   };
-  vibes: Vibe[];
+  vibes?: Vibe[];
 };
 
 export type Vibe = {

@@ -2,7 +2,7 @@ import { useProfileQuery } from '@/api/profiles/hooks/useProfileQuery';
 import { Badge } from '@/components/ui/Badge';
 import { Text } from '@/components/ui/Text';
 import { useParams } from 'react-router';
-import { SongListItem } from './components/SongListItem';
+import { SongListItem } from '../../components/block/SongListItem';
 import { Button } from '@/components/ui/Button';
 import { VibeCard } from './components/VibeCard';
 
@@ -39,7 +39,7 @@ export const Profile: React.FC = () => {
           <div>
             <Text size="h6">Genres</Text>
             <div className="flex flex-wrap gap-2 mt-1">
-              {profile.genres.map((genre) => (
+              {profile.genres?.map((genre) => (
                 <Badge key={genre}>{genre}</Badge>
               ))}
             </div>
@@ -48,7 +48,7 @@ export const Profile: React.FC = () => {
           <div>
             <Text size="h6">Instruments</Text>
             <div className="flex flex-wrap gap-2 mt-1">
-              {profile.instruments.map((instrument) => (
+              {profile.instruments?.map((instrument) => (
                 <Badge key={instrument} variant="default">
                   {instrument}
                 </Badge>
@@ -59,7 +59,7 @@ export const Profile: React.FC = () => {
           <div>
             <Text size="h6">Preferred days</Text>
             <div className="flex flex-wrap gap-2 mt-1">
-              {profile.availability.days.map((day) => (
+              {profile.availability?.days?.map((day) => (
                 <Badge key={day} variant="default">
                   {day}
                 </Badge>
@@ -69,8 +69,8 @@ export const Profile: React.FC = () => {
 
           <div>
             <Text size="h6">Preferred times</Text>
-            <div className="flex flex-wrap gap-2 mt-1">
-              {profile.availability.times.map((time) => (
+            <div className="flex flex-wra?p gap-2 mt-1">
+              {profile.availability?.times?.map((time) => (
                 <Badge key={time} variant="default">
                   {time}
                 </Badge>
@@ -84,7 +84,7 @@ export const Profile: React.FC = () => {
         <div className="pb-4">
           <Text size="h6">My Songs</Text>
           <div className="grid grid-cols-1">
-            {profile.songs.map((song, idx) => (
+            {profile.songs?.map((song, idx) => (
               <>
                 <SongListItem
                   enjoy={song.enjoy}
@@ -95,7 +95,7 @@ export const Profile: React.FC = () => {
                   albumImage={''}
                   skill={song.skill}
                 />
-                {idx !== profile.songs.length - 1 && <hr />}
+                {idx !== (profile.songs?.length && profile.songs?.length - 1) && <hr />}
               </>
             ))}
           </div>
@@ -106,7 +106,7 @@ export const Profile: React.FC = () => {
             Behind the Music
           </Text>
           <div className="grid lg:grid-cols-3 md:grid-cols-2 grid-cols-1 gap-4 mb-4">
-            {profile.vibes.map((vibe) => (
+            {profile.vibes?.map((vibe) => (
               <VibeCard key={vibe.question} question={vibe.question} answer={vibe.answer} />
             ))}
           </div>
