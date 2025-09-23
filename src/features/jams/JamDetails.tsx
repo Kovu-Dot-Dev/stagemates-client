@@ -11,7 +11,7 @@ import {
   Users,
 } from 'lucide-react';
 import { useState } from 'react';
-import { useParams } from 'react-router';
+import { Link, useParams } from 'react-router';
 
 import { useJamQuery } from '@/api/jams/hooks/useJamQuery';
 import type { JamSession, SetListSong } from '@/api/jams/services/types';
@@ -122,10 +122,12 @@ export function JamDetails({
     <div className="max-w-4xl mx-auto p-4 space-y-6">
       {/* Header */}
       <div className="flex items-center space-x-4">
-        <Button variant="outline" size="sm" onClick={onBack}>
-          <ArrowLeft className="w-4 h-4 mr-2" />
-          Back to Jams
-        </Button>
+        <Link to="/jams">
+          <Button variant="outline" size="sm" onClick={onBack}>
+            <ArrowLeft className="w-4 h-4 mr-2" />
+            Back to Jams
+          </Button>
+        </Link>
         <div className="flex items-center space-x-2">
           <Badge variant={jam.type === 'open' ? 'default' : 'secondary'}>
             {jam.type === 'open' ? 'Open Session' : 'Private Session'}
