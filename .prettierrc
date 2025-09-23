@@ -8,5 +8,9 @@
   "bracketSameLine": true,
   "jsxSingleQuote": false,
   "trailingComma": "es5",
-  "singleQuote": true
+  "singleQuote": true,
+  "plugins": ["@trivago/prettier-plugin-sort-imports"],
+  "importOrder": ["^[@/]", "^[./]"],
+  "importOrderSeparation": true,
+  "importOrderSortSpecifiers": true
 }
