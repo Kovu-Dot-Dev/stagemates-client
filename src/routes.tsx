@@ -1,7 +1,13 @@
 import { createBrowserRouter } from 'react-router';
 import React from 'react';
 
-const Profile = React.lazy(() => import('./features/profile'));
+const Profile = React.lazy(() => import('@/features/profile'));
+const JamDetails = React.lazy(() =>
+  import('@/features/jams').then((mod) => ({ default: mod.JamDetails }))
+);
+const JamDiscovery = React.lazy(() =>
+  import('@/features/jams').then((mod) => ({ default: mod.JamDiscovery }))
+);
 
 const router = createBrowserRouter([
   {
@@ -13,6 +19,13 @@ const router = createBrowserRouter([
       {
         path: 'profiles',
         children: [{ path: ':id', element: <Profile /> }],
+      },
+      {
+        path: 'events',
+        children: [
+          { index: true, element: <JamDiscovery /> },
+          { path: ':id', element: <JamDetails /> },
+        ],
       },
     ],
   },
