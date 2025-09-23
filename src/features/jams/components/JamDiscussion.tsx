@@ -6,21 +6,7 @@ import { Avatar, AvatarFallback, AvatarImage } from '@/components/ui/Avatar';
 import { Badge } from '@/components/ui/Badge';
 import { MessageCircle, Reply, Send } from 'lucide-react';
 import type { MusicianProfile } from '@/api/profiles/services/types';
-
-export interface DiscussionThread {
-  id: string;
-  author: MusicianProfile;
-  content: string;
-  timestamp: string;
-  replies: DiscussionReply[];
-}
-
-export interface DiscussionReply {
-  id: string;
-  author: MusicianProfile;
-  content: string;
-  timestamp: string;
-}
+import type { DiscussionThread } from '@/api/events/services/types';
 
 interface JamDiscussionProps {
   jamId: string;

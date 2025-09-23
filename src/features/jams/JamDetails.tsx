@@ -25,45 +25,11 @@ import {
 } from 'lucide-react';
 import type { MusicianProfile } from '@/api/profiles/services/types';
 import { JamDiscussion } from './components/JamDiscussion';
-import type { DiscussionThread } from './components/JamDiscussion';
 import { ClickableAvatar } from '../../components/block/ClickableAvater';
 import { useParams } from 'react-router';
-import { mockJamSessions } from './JamDiscovery';
+import { mockJamSessions } from '@/api/events/services/mock';
 import { mockMusicianProfiles } from '@/api/profiles/services/mock';
-
-export interface JamSession {
-  id: string;
-  title: string;
-  description: string;
-  host: MusicianProfile;
-  date: string;
-  time: string;
-  location: string;
-  address?: string;
-  maxParticipants: number;
-  currentParticipants: number;
-  genres: string[];
-  skillLevel: string;
-  type: 'open' | 'private';
-  participants: MusicianProfile[];
-  setlist: Song[];
-  neededInstruments: string[];
-  equipment?: string[];
-  price?: number;
-  notes?: string;
-  discussion?: DiscussionThread[];
-}
-
-export interface Song {
-  id: string;
-  title: string;
-  artist: string;
-  genre: string;
-  difficulty: 'Easy' | 'Medium' | 'Hard';
-  duration?: number;
-  key?: string;
-  suggestedBy: string; // participant name
-}
+import type { JamSession, SetListSong } from '@/api/events/services/types';
 
 interface JamDetailsProps {
   jam?: JamSession;
@@ -71,7 +37,7 @@ interface JamDetailsProps {
   onBack?: () => void;
   onJoinJam?: (jam: JamSession) => void;
   onLeaveJam?: (jam: JamSession) => void;
-  onAddSong?: (jamId: string, song: Omit<Song, 'id' | 'suggestedBy'>) => void;
+  onAddSong?: (jamId: string, song: Omit<SetListSong, 'id' | 'suggestedBy'>) => void;
   onAddThread?: (jamId: string, content: string) => void;
   onAddReply?: (jamId: string, threadId: string, content: string) => void;
   onViewProfile?: (userId: string) => void;
@@ -91,7 +57,7 @@ export function JamDetails({
   const { id } = useParams<{ id: string }>();
   jam = mockJamSessions.find((j) => j.id === id) || jam;
   const [isAddSongDialogOpen, setIsAddSongDialogOpen] = useState(false);
-  const [newSong, setNewSong] = useState<Partial<Song>>({
+  const [newSong, setNewSong] = useState<Partial<SetListSong>>({
     difficulty: 'Medium',
   });
 
