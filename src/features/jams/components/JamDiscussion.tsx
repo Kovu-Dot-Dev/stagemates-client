@@ -1,12 +1,13 @@
+import { MessageCircle, Reply, Send } from 'lucide-react';
 import { useState } from 'react';
-import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/Card';
-import { Button } from '@/components/ui/Button';
-import { Textarea } from '@/components/ui/Textarea';
+
+import type { DiscussionThread } from '@/api/jams/services/types';
+import type { MusicianProfile } from '@/api/profiles/services/types';
 import { Avatar, AvatarFallback, AvatarImage } from '@/components/ui/Avatar';
 import { Badge } from '@/components/ui/Badge';
-import { MessageCircle, Reply, Send } from 'lucide-react';
-import type { MusicianProfile } from '@/api/profiles/services/types';
-import type { DiscussionThread } from '@/api/events/services/types';
+import { Button } from '@/components/ui/Button';
+import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/Card';
+import { Textarea } from '@/components/ui/Textarea';
 
 interface JamDiscussionProps {
   jamId: string;

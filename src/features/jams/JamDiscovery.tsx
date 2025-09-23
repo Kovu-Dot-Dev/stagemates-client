@@ -1,16 +1,15 @@
+import { Calendar, ChevronRight, Clock, Filter, MapPin, Plus, Search, Users } from 'lucide-react';
 import { useState } from 'react';
-import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/Card';
-import { Button } from '@/components/ui/Button';
-import { Badge } from '@/components/ui/Badge';
+import { Link } from 'react-router';
+
+import { mockJamSessions } from '@/api/jams/services/mock';
+import type { JamSession, SetListSong } from '@/api/jams/services/types';
+import { mockMusicianProfiles } from '@/api/profiles/services/mock';
+import type { MusicianProfile } from '@/api/profiles/services/types';
 import { Avatar, AvatarFallback, AvatarImage } from '@/components/ui/Avatar';
-import { Input } from '@/components/ui/Input';
-import {
-  Select,
-  SelectContent,
-  SelectItem,
-  SelectTrigger,
-  SelectValue,
-} from '@/components/ui/Select';
+import { Badge } from '@/components/ui/Badge';
+import { Button } from '@/components/ui/Button';
+import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/Card';
 import {
   Dialog,
   DialogContent,
@@ -18,14 +17,16 @@ import {
   DialogTitle,
   DialogTrigger,
 } from '@/components/ui/Dialog';
+import { Input } from '@/components/ui/Input';
 import { Label } from '@/components/ui/Label';
+import {
+  Select,
+  SelectContent,
+  SelectItem,
+  SelectTrigger,
+  SelectValue,
+} from '@/components/ui/Select';
 import { Textarea } from '@/components/ui/Textarea';
-import { Calendar, MapPin, Users, Clock, Plus, Filter, Search, ChevronRight } from 'lucide-react';
-import type { MusicianProfile } from '@/api/profiles/services/types';
-import type { JamSession, SetListSong } from '@/api/events/services/types';
-import { mockMusicianProfiles } from '@/api/profiles/services/mock';
-import { mockJamSessions } from '@/api/events/services/mock';
-import { Link } from 'react-router';
 
 interface JamDiscoveryProps {
   currentUser?: MusicianProfile;

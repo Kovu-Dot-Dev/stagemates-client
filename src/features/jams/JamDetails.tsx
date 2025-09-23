@@ -1,7 +1,26 @@
+import {
+  ArrowLeft,
+  Calendar,
+  Clock,
+  MapPin,
+  MessageCircle,
+  Music2,
+  Plus,
+  Share2,
+  UserPlus,
+  Users,
+} from 'lucide-react';
 import { useState } from 'react';
-import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/Card';
-import { Button } from '@/components/ui/Button';
+import { useParams } from 'react-router';
+
+import { useJamQuery } from '@/api/jams/hooks/useJamQuery';
+import type { JamSession, SetListSong } from '@/api/jams/services/types';
+import { mockMusicianProfiles } from '@/api/profiles/services/mock';
+import type { MusicianProfile } from '@/api/profiles/services/types';
+import { ClickableAvatar } from '@/components/block/ClickableAvater';
 import { Badge } from '@/components/ui/Badge';
+import { Button } from '@/components/ui/Button';
+import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/Card';
 import {
   Dialog,
   DialogContent,
@@ -11,28 +30,10 @@ import {
 } from '@/components/ui/Dialog';
 import { Input } from '@/components/ui/Input';
 import { Label } from '@/components/ui/Label';
-import {
-  Calendar,
-  MapPin,
-  Users,
-  Clock,
-  ArrowLeft,
-  Music2,
-  Plus,
-  UserPlus,
-  MessageCircle,
-  Share2,
-} from 'lucide-react';
-import type { MusicianProfile } from '@/api/profiles/services/types';
+
 import { JamDiscussion } from './components/JamDiscussion';
-import { ClickableAvatar } from '../../components/block/ClickableAvater';
-import { useParams } from 'react-router';
-import { mockJamSessions } from '@/api/events/services/mock';
-import { mockMusicianProfiles } from '@/api/profiles/services/mock';
-import type { JamSession, SetListSong } from '@/api/events/services/types';
 
 interface JamDetailsProps {
-  jam?: JamSession;
   currentUser?: MusicianProfile;
   onBack?: () => void;
   onJoinJam?: (jam: JamSession) => void;
@@ -44,7 +45,6 @@ interface JamDetailsProps {
 }
 
 export function JamDetails({
-  jam = mockJamSessions[0],
   currentUser = mockMusicianProfiles[0],
   onBack = () => {},
   onJoinJam = () => {},
@@ -55,11 +55,19 @@ export function JamDetails({
   onViewProfile = () => {},
 }: JamDetailsProps) {
   const { id } = useParams<{ id: string }>();
-  jam = mockJamSessions.find((j) => j.id === id) || jam;
+  const { data: jam, isLoading } = useJamQuery(id);
   const [isAddSongDialogOpen, setIsAddSongDialogOpen] = useState(false);
   const [newSong, setNewSong] = useState<Partial<SetListSong>>({
     difficulty: 'Medium',
   });
+
+  if (isLoading) {
+    return null;
+  }
+
+  if (!jam) {
+    return 'No Jam found';
+  }
 
   const isParticipant = jam.participants.some((p) => p.id === currentUser.id);
   const isHost = jam.host.id === currentUser.id;
