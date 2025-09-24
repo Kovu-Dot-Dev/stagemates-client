@@ -1,14 +1,14 @@
 import { type UseQueryOptions, type UseQueryResult, useQuery } from '@tanstack/react-query';
 
-import { type GetAllJamsQueryResponse, getAllJams } from '../services/getAllJams';
+import { type GetJamsQueryResponse, getAllJams } from '../services/getJams';
 
-type UseJamQueryResult = UseQueryResult<GetAllJamsQueryResponse, Error>;
+type UseJamQueryResult = UseQueryResult<GetJamsQueryResponse, Error>;
 
 export const useAllJamsQuery = (
-  options?: Omit<UseQueryOptions<GetAllJamsQueryResponse, Error>, 'queryKey' | 'queryFn'>
+  options?: Omit<UseQueryOptions<GetJamsQueryResponse, Error>, 'queryKey' | 'queryFn'>
 ): UseJamQueryResult => {
   // will be     <..., AxiosError> once integrated with real API
-  return useQuery<GetAllJamsQueryResponse, Error>({
+  return useQuery<GetJamsQueryResponse, Error>({
     queryKey: ['jams'],
     queryFn: () => getAllJams(),
     ...options,
