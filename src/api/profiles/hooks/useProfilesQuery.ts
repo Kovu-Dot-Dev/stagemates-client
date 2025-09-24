@@ -1,6 +1,6 @@
 import { type UseQueryOptions, type UseQueryResult, useQuery } from '@tanstack/react-query';
 
-import { type GetProfilesResponse, getProfiles } from '../services/getAllProfiles';
+import { type GetProfilesResponse, getProfiles } from '../services/getProfiles';
 
 /**
  * TODO: as part of schema refactor, decide on naming, make file name consistent with type name
