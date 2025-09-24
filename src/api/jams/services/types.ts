@@ -1,4 +1,5 @@
 import type { MusicianProfile } from '@/api/profiles/services/types';
+
 export type SetListSong = {
   id: string;
   title: string;

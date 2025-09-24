@@ -71,7 +71,7 @@ export const Profile: React.FC = () => {
 
           <div>
             <Text size="h6">Preferred times</Text>
-            <div className="flex flex-wra?p gap-2 mt-1">
+            <div className="flex flex-wrap gap-2 mt-1">
               {profile.availability?.times?.map((time) => (
                 <Badge key={time} variant="default">
                   {time}
