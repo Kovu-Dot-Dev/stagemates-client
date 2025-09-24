@@ -246,7 +246,7 @@ export function JamDiscovery({
                     </div>
                     <div className="flex items-center text-sm text-muted-foreground mt-1">
                       <Avatar className="w-6 h-6 mr-2">
-                        <AvatarImage src={jam.host.profileImage} />
+                        <AvatarImage src={jam.host.image} />
                         <AvatarFallback className="text-xs">
                           {jam.host.name.charAt(0)}
                         </AvatarFallback>

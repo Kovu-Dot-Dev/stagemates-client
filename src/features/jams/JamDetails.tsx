@@ -145,7 +145,7 @@ export function JamDetails({
               <div className="flex items-center space-x-2 text-muted-foreground">
                 <ClickableAvatar
                   route={`/profiles/u1`} // hardcoded for now
-                  src={jam.host.profileImage}
+                  src={jam.host.image}
                   fallback={jam.host.name.charAt(0)}
                   className="w-8 h-8"
                   onClick={() => onViewProfile(jam.host.id)}
@@ -252,7 +252,7 @@ export function JamDetails({
               onClick={() => onViewProfile(jam.host.id)}>
               <ClickableAvatar
                 route={`/profiles/u2`} // hardcoded for now
-                src={jam.host.profileImage}
+                src={jam.host.image}
                 fallback={jam.host.name.charAt(0)}
                 className="w-10 h-10"
                 onClick={() => onViewProfile(jam.host.id)}
@@ -278,7 +278,7 @@ export function JamDetails({
                 onClick={() => onViewProfile(participant.id)}>
                 <ClickableAvatar
                   route={`/profiles/u3`} // hardcoded for now
-                  src={participant.profileImage}
+                  src={participant.image}
                   fallback={participant.name.charAt(0)}
                   className="w-10 h-10"
                   onClick={() => onViewProfile(participant.id)}
