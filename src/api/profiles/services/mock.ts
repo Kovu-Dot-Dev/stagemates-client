@@ -29,7 +29,7 @@ export const mockMusicianProfiles: MusicianProfile[] = [
     ],
     instruments: ['Guitar', 'Ukulele'],
     genres: ['Indie', 'Folk', 'Rock'],
-    background: `I’m a self-taught guitarist with about 5 years of experience, and I love acoustic sessions and songwriting. 
+    bio: `I’m a self-taught guitarist with about 5 years of experience, and I love acoustic sessions and songwriting. 
       
 I started with simple campfire songs and grew into fingerstyle arrangements over time. I’m passionate about how music brings people together and I often experiment with open tunings. When I’m not jamming, I like writing my own songs and recording small demos with friends.`,
     availability: {
@@ -79,7 +79,7 @@ I started with simple campfire songs and grew into fingerstyle arrangements over
     ],
     instruments: ['Piano', 'Saxophone'],
     genres: ['Jazz', 'Blues'],
-    background: `I trained classically on piano for nearly a decade, but eventually fell in love with jazz and the freedom it gives me to improvise. These days I enjoy both structured playing and completely unplanned jam sessions. 
+    bio: `I trained classically on piano for nearly a decade, but eventually fell in love with jazz and the freedom it gives me to improvise. These days I enjoy both structured playing and completely unplanned jam sessions. 
     
 I’m especially interested in modal improvisation and complex chord progressions. Outside of performing, I spend time teaching, and I run a small jazz club where we listen, analyze, and play together.`,
     availability: {
@@ -129,7 +129,7 @@ I’m especially interested in modal improvisation and complex chord progression
     ],
     instruments: ['Vocals', 'Percussion'],
     genres: ['Latin', 'Pop', 'World'],
-    background: `I’m a singer with roots in Latin music. I love mixing traditional rhythms with modern pop and bringing that energy into every performance. Music has always been part of my family, and now I want to share that passion with others.`,
+    bio: `I’m a singer with roots in Latin music. I love mixing traditional rhythms with modern pop and bringing that energy into every performance. Music has always been part of my family, and now I want to share that passion with others.`,
     availability: {
       days: ['Tuesday', 'Thursday', 'Saturday'],
       times: ['Mornings', 'Evenings'],
