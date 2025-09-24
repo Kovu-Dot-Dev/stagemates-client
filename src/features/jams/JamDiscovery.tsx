@@ -2,7 +2,7 @@ import { Calendar, ChevronRight, Clock, Filter, MapPin, Plus, Search, Users } fr
 import { useState } from 'react';
 import { Link } from 'react-router';
 
-import { mockJamSessions } from '@/api/jams/services/mock';
+import { useAllJamsQuery } from '@/api/jams/hooks/useAllJamsQuery';
 import type { JamSession, SetListSong } from '@/api/jams/services/types';
 import { mockMusicianProfiles } from '@/api/profiles/services/mock';
 import type { MusicianProfile } from '@/api/profiles/services/types';
@@ -46,8 +46,14 @@ export function JamDiscovery({
     type: 'open',
     maxParticipants: 4,
   });
-
-  const filteredJams = mockJamSessions.filter((jam) => {
+  const { data: jamSessions, isLoading } = useAllJamsQuery();
+  if (isLoading) {
+    return null;
+  }
+  if (!jamSessions) {
+    return 'No jam sessions found';
+  }
+  const filteredJams = jamSessions.filter((jam) => {
     const matchesSearch =
       jam.title.toLowerCase().includes(searchTerm.toLowerCase()) ||
       jam.description.toLowerCase().includes(searchTerm.toLowerCase());
