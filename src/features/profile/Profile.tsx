@@ -118,7 +118,7 @@ export const Profile: React.FC = () => {
           <Text size="h6" className="mb-1">
             Musical Background
           </Text>
-          <Text className="whitespace-pre-line">{profile.background}</Text>
+          <Text className="whitespace-pre-line">{profile.bio}</Text>
         </div>
 
         <div>
