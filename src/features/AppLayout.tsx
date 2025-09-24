@@ -1,13 +1,20 @@
 import { Music } from 'lucide-react';
 import React from 'react';
-import { Outlet } from 'react-router';
+import { Outlet, useLocation } from 'react-router';
 
 import { Navbar01 } from '@/components/ui/shadcn-io/navbar-01';
 
-export const NavBar: React.FC = () => {
+export const AppLayout: React.FC = () => {
+  const currentPath = useLocation().pathname;
+  console.log('Current path:', currentPath);
+  const navigationLinks = [
+    { label: 'Jammers', href: '/profiles', active: currentPath.startsWith('/profiles') },
+    { label: 'Jams', href: '/jams', active: currentPath.startsWith('/jams') },
+  ];
   return (
     <div className="min-h-screen bg-background">
       <Navbar01
+        brandName="Jammy"
         className="mb-4"
         logo={
           <div className="w-8 h-8 bg-primary rounded-lg flex items-center justify-center">
@@ -15,11 +22,7 @@ export const NavBar: React.FC = () => {
           </div>
         }
         logoHref="/"
-        navigationLinks={[
-          { label: 'Home', href: '/', active: false },
-          { label: 'Profiles', href: '/profiles', active: true },
-          { label: 'Jams', href: '/jams', active: false },
-        ]}
+        navigationLinks={navigationLinks}
       />
       <Outlet />
     </div>
