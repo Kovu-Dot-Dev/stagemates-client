@@ -1,8 +1,8 @@
-import { mockProfiles } from './mock';
-import type { Profile } from './types';
+import { mockMusicianProfiles } from './mock';
+import type { MusicianProfile } from './types';
 
-export type GetAllProfilesResponse = Profile[] | undefined;
+export type GetAllProfilesResponse = MusicianProfile[] | undefined;
 
 export const getAllProfiles = (): GetAllProfilesResponse => {
-  return mockProfiles;
+  return mockMusicianProfiles;
 };
