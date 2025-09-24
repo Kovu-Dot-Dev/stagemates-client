@@ -5,7 +5,7 @@ import { Outlet, useLocation } from 'react-router';
 import { Navbar01 } from '@/components/ui/shadcn-io/navbar-01';
 
 export const AppLayout: React.FC = () => {
-  const currentPath = useLocation().pathname;
+  const { pathname: currentPath } = useLocation();
   console.log('Current path:', currentPath);
   const navigationLinks = [
     { label: 'Jammers', href: '/profiles', active: currentPath.startsWith('/profiles') },
