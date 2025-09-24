@@ -13,7 +13,6 @@ export type MusicianProfile = {
   location?: string;
   skillLevel?: 'Beginner' | 'Intermediate' | 'Advanced' | 'Expert';
   songs?: Song[];
-  image?: string;
   instruments?: Instrument[];
   genres?: Genre[];
   availability?: {
