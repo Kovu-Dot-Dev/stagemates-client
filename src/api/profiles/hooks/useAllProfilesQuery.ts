@@ -2,6 +2,10 @@ import { type UseQueryOptions, type UseQueryResult, useQuery } from '@tanstack/r
 
 import { type GetAllProfilesResponse, getAllProfiles } from '../services/getAllProfiles';
 
+/**
+ * TODO: as part of schema refactor, decide on naming, make file name consistent with type name
+ */
+
 type UseAllProfilesQueryResult = UseQueryResult<GetAllProfilesResponse, Error>;
 
 export const useAllProfilesQuery = (

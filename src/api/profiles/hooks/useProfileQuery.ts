@@ -1,5 +1,10 @@
-import { getProfile, type GetProfileResponse } from '../services/getProfile';
-import { useQuery, type UseQueryResult, type UseQueryOptions } from '@tanstack/react-query';
+import { type UseQueryOptions, type UseQueryResult, useQuery } from '@tanstack/react-query';
+
+import { type GetProfileResponse, getProfile } from '../services/getProfile';
+
+/**
+ * TODO: as part of schema refactor, decide on naming, make file name consistent with type name
+ */
 
 type UseProfileQueryResult = UseQueryResult<GetProfileResponse, Error>;
 
