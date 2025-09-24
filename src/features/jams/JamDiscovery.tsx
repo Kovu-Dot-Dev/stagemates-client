@@ -2,7 +2,7 @@ import { Calendar, ChevronRight, Clock, Filter, MapPin, Plus, Search, Users } fr
 import { useState } from 'react';
 import { Link } from 'react-router';
 
-import { useAllJamsQuery } from '@/api/jams/hooks/useAllJamsQuery';
+import { useJamsQuery } from '@/api/jams/hooks/useJamsQuery';
 import type { JamSession, SetListSong } from '@/api/jams/services/types';
 import { mockMusicianProfiles } from '@/api/profiles/services/mock';
 import type { MusicianProfile } from '@/api/profiles/services/types';
@@ -46,7 +46,7 @@ export function JamDiscovery({
     type: 'open',
     maxParticipants: 4,
   });
-  const { data: jamSessions, isLoading } = useAllJamsQuery();
+  const { data: jamSessions, isLoading } = useJamsQuery();
   if (isLoading) {
     return null;
   }

@@ -11,7 +11,7 @@ import {
   NavigationMenuLink,
   NavigationMenuList,
 } from '@/components/ui/NavigationMenu';
-import { Popover, PopoverContent, PopoverTrigger } from '@/components/ui/popover';
+import { Popover, PopoverContent, PopoverTrigger } from '@/components/ui/Popover';
 import { cn } from '@/lib/utils';
 
 // Simple logo component for the navbar
