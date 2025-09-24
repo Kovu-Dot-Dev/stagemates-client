@@ -1,4 +1,9 @@
-// TODO: Type properly
+/**
+ * TODO: Proper typing. Note all types are in flux.
+ * fields now mostly optional until we figure out what goes where
+ * so components can render without crashing
+ * TODO: remove `.?` from components when fields are required
+ */
 export type MusicianProfile = {
   id: string;
   name: string;
@@ -11,7 +16,6 @@ export type MusicianProfile = {
   image?: string;
   instruments?: Instrument[];
   genres?: Genre[];
-  background?: string;
   availability?: {
     days?: string[];
     times?: string[];

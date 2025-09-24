@@ -30,18 +30,12 @@ import { Textarea } from '@/components/ui/Textarea';
 
 interface JamDiscoveryProps {
   currentUser?: MusicianProfile;
-  onJoinJam?: (jam: JamSession) => void;
   onCreateJam?: (jam: Omit<JamSession, 'id' | 'host' | 'participants'>) => void;
-  onViewJam?: (jam: JamSession) => void;
-  onViewProfile?: (userId: string) => void;
 }
 
 export function JamDiscovery({
   currentUser = mockMusicianProfiles[0],
-  onJoinJam = () => {},
   onCreateJam = () => {},
-  onViewJam = () => {},
-  onViewProfile = () => {},
 }: JamDiscoveryProps) {
   const [searchTerm, setSearchTerm] = useState('');
   const [filterGenre, setFilterGenre] = useState<string>('');
@@ -241,10 +235,8 @@ export function JamDiscovery({
       {/* Jam Sessions List */}
       <div className="grid gap-4">
         {filteredJams.map((jam) => (
-          <Link to={`/events/${jam.id}`} key={jam.id} className="block">
-            <Card
-              className="hover:shadow-md transition-shadow cursor-pointer"
-              onClick={() => onViewJam(jam)}>
+          <Link to={`/jams/${jam.id}`} key={jam.id} className="block">
+            <Card className="hover:shadow-md transition-shadow cursor-pointer">
               <CardHeader className="pb-3">
                 <div className="flex items-start justify-between">
                   <div className="flex-1">
@@ -304,7 +296,6 @@ export function JamDiscovery({
                   <Button
                     onClick={(e) => {
                       e.stopPropagation();
-                      onJoinJam(jam);
                     }}
                     disabled={jam.currentParticipants >= jam.maxParticipants}
                     size="sm">

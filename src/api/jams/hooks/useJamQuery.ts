@@ -8,6 +8,7 @@ export const useJamQuery = (
   id?: string,
   options?: Omit<UseQueryOptions<GetJamQueryResponse, Error>, 'queryKey' | 'queryFn'>
 ): UseJamQueryResult => {
+  // will be     <..., AxiosError> once integrated with real API
   return useQuery<GetJamQueryResponse, Error>({
     queryKey: ['jam', id],
     queryFn: () => getJam(id),

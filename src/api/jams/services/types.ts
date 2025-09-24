@@ -1,4 +1,12 @@
 import type { MusicianProfile } from '@/api/profiles/services/types';
+
+/**
+ * TODO: Proper typing. Note all types are in flux.
+ * fields now mostly optional until we figure out what goes where
+ * so components can render without crashing
+ * TODO: remove `.?` from components when fields are required
+ */
+
 export type SetListSong = {
   id: string;
   title: string;
