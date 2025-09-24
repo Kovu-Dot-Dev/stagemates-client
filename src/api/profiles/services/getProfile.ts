@@ -12,5 +12,5 @@ export const getProfile = (id?: string): GetProfileResponse => {
     throw new Error('id is required');
   }
 
-  return mockMusicianProfiles.find((profile) => profile.id === id) as MusicianProfile | undefined;
+  return mockMusicianProfiles.find((profile) => profile.id === id);
 };
