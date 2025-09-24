@@ -1,6 +1,8 @@
 import React from 'react';
 import { createBrowserRouter } from 'react-router';
 
+import { NavBar } from './features/NavBar';
+
 const Profile = React.lazy(() =>
   import('./features/profile').then((module) => ({ default: module.Profile }))
 );
@@ -17,6 +19,7 @@ const JamDiscovery = React.lazy(() =>
 const router = createBrowserRouter([
   {
     path: '/',
+    element: <NavBar />,
     children: [
       { index: true, element: 'root' },
       { path: 'login', element: 'login' },
