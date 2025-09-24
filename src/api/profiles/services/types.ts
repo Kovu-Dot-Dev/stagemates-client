@@ -7,7 +7,7 @@
 export type MusicianProfile = {
   id: string;
   name: string;
-  profileImage?: string;
+  image?: string;
   bio?: string;
   lookingFor?: string[];
   location?: string;
