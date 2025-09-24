@@ -3,6 +3,6 @@ import type { JamSession } from './types';
 
 export type GetJamsQueryResponse = JamSession[];
 
-export const getAllJams = (): GetJamsQueryResponse => {
+export const getJams = (): GetJamsQueryResponse => {
   return mockJamSessions;
 };
