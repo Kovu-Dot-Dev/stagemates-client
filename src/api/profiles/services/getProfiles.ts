@@ -5,8 +5,8 @@ import type { MusicianProfile } from './types';
  * TODO: as part of schema refactor, decide on naming, make file name consistent with type name
  */
 
-export type GetAllProfilesResponse = MusicianProfile[] | undefined;
+export type GetProfilesResponse = MusicianProfile[] | undefined;
 
-export const getAllProfiles = (): GetAllProfilesResponse => {
+export const getProfiles = (): GetProfilesResponse => {
   return mockMusicianProfiles;
 };
