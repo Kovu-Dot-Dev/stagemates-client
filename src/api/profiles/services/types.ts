@@ -1,16 +1,25 @@
-// TODO: Type properly
-export type Profile = {
+/**
+ * TODO: Proper typing. Note all types are in flux.
+ * fields now mostly optional until we figure out what goes where
+ * so components can render without crashing
+ * TODO: remove `.?` from components when fields are required
+ */
+export type MusicianProfile = {
   id: string;
   name: string;
-  songs: Song[];
-  instruments: Instrument[];
-  genres: Genre[];
-  background: string;
-  availability: {
-    days: string[];
-    times: string[];
+  profileImage?: string;
+  bio?: string;
+  lookingFor?: string[];
+  location?: string;
+  skillLevel?: 'Beginner' | 'Intermediate' | 'Advanced' | 'Expert';
+  songs?: Song[];
+  instruments?: Instrument[];
+  genres?: Genre[];
+  availability?: {
+    days?: string[];
+    times?: string[];
   };
-  vibes: Vibe[];
+  vibes?: Vibe[];
 };
 
 export type Vibe = {
