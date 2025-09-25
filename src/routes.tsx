@@ -2,6 +2,7 @@ import React from 'react';
 import { createBrowserRouter } from 'react-router';
 
 import { AppLayout } from './features/AppLayout';
+import { DiscoveryFeed } from './features/discover/DiscoveryFeed';
 
 const Profile = React.lazy(() =>
   import('./features/profile').then((module) => ({ default: module.Profile }))
@@ -22,7 +23,7 @@ const router = createBrowserRouter(
       path: '/',
       element: <AppLayout />,
       children: [
-        { index: true, element: 'root' },
+        { index: true, element: <DiscoveryFeed /> },
         { path: 'login', element: 'login' },
         { path: 'register', element: 'register' },
         {

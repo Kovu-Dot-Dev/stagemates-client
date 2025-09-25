@@ -7,17 +7,17 @@
 export type MusicianProfile = {
   id: string;
   name: string;
-  image?: string;
-  bio?: string;
-  lookingFor?: string[];
-  location?: string;
-  skillLevel?: 'Beginner' | 'Intermediate' | 'Advanced' | 'Expert';
-  songs?: Song[];
-  instruments?: Instrument[];
-  genres?: Genre[];
+  image: string;
+  bio: string;
+  lookingFor: string[];
+  location: string;
+  skillLevel: 'Beginner' | 'Intermediate' | 'Advanced' | 'Expert' | 'Professional';
+  songs: Song[];
+  instruments: Instrument[];
+  genres: Genre[];
   availability?: {
-    days?: string[];
-    times?: string[];
+    days: string[];
+    times: string[];
   };
   vibes?: Vibe[];
 };
@@ -69,6 +69,19 @@ export const GENRES = {
   LATIN: 'Latin',
   INDIE: 'Indie',
   WORLD: 'World',
+  CLASSICAL: 'Classical',
+  HIPHOP: 'Hip-Hop',
+  ELECTRONIC: 'Electronic',
+  COUNTRY: 'Country',
+  REGGAE: 'Reggae',
+  METAL: 'Metal',
+  PUNK: 'Punk',
+  FUNK: 'Funk',
+  SOUL: 'Soul',
+  RNB: 'R&B',
+  GOSPEL: 'Gospel',
+  FUSION: 'Fusion',
+  AMERICANA: 'Americana',
 } as const;
 
 export type Genre = (typeof GENRES)[keyof typeof GENRES];
