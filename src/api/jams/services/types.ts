@@ -22,7 +22,7 @@ export type JamSession = {
   id: string;
   title: string;
   description: string;
-  host: MusicianProfile;
+  host: Omit<MusicianProfile, 'songs'>;
   date: string;
   time: string;
   location: string;
