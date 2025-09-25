@@ -116,6 +116,9 @@
   }
 
   body {
-    @apply bg-background text-foreground max-w-7xl m-auto;
+    @apply bg-background text-foreground m-auto;
+  }
+  div {
+    @apply border-1 border-dashed;
   }
 }

@@ -27,10 +27,7 @@ export const Profile: React.FC = () => {
           <Text size="h4" align="center">
             {profile.name}
           </Text>
-          <img
-            className="rounded-md"
-            src="https://media.discordapp.net/attachments/702862051957145653/1419255646792192030/image_720.png?ex=68d269d2&is=68d11852&hm=ed303074e7248c1d0f2d8e9ab55508d2cb21bd45eb162f0d86d47e91e6291989&=&format=webp&quality=lossless&width=806&height=806"
-          />
+          <img className="rounded-md" src={profile.image || 'https://placehold.co/600x400'} />
         </div>
 
         <div className="flex justify-center">

@@ -4,7 +4,7 @@ import { type GetJamsQueryResponse, getJams } from '../services/getJams';
 
 type UseJamQueryResult = UseQueryResult<GetJamsQueryResponse, Error>;
 
-export const useAllJamsQuery = (
+export const useJamsQuery = (
   options?: Omit<UseQueryOptions<GetJamsQueryResponse, Error>, 'queryKey' | 'queryFn'>
 ): UseJamQueryResult => {
   // will be     <..., AxiosError> once integrated with real API

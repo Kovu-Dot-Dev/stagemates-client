@@ -15,7 +15,7 @@ export const mockJamSessions: JamSession[] = [
       genres: ['Jazz'],
       skillLevel: 'Advanced',
       lookingFor: [],
-      profileImage:
+      image:
         'https://images.unsplash.com/photo-1681070907979-33fb54f56c53?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHx5b3VuZyUyMG1hbiUyMG11c2ljaWFuJTIwcGlhbm98ZW58MXx8fHwxNzU4MDA3ODg1fDA&ixlib=rb-4.1.0&q=80&w=1080&utm_source=figma&utm_medium=referral',
     },
     date: '2025-01-19',
@@ -37,7 +37,7 @@ export const mockJamSessions: JamSession[] = [
         genres: ['Jazz'],
         skillLevel: 'Intermediate',
         lookingFor: [],
-        profileImage:
+        image:
           'https://images.unsplash.com/photo-1755389176283-3cd924205df0?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHx5b3VuZyUyMHZpb2xpbmlzdCUyMG11c2ljaWFufGVufDF8fHx8MTc1ODAwODMyM3ww&ixlib=rb-4.1.0&q=80&w=1080&utm_source=figma&utm_medium=referral',
       },
       {
@@ -49,7 +49,7 @@ export const mockJamSessions: JamSession[] = [
         genres: ['Jazz'],
         skillLevel: 'Advanced',
         lookingFor: [],
-        profileImage:
+        image:
           'https://images.unsplash.com/photo-1719043108436-2ec4f31f1d3e?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHx5b3VuZyUyMGRydW1tZXIlMjBwZXJjdXNzaW9ufGVufDF8fHx8MTc1ODAwODIxMXww&ixlib=rb-4.1.0&q=80&w=1080&utm_source=figma&utm_medium=referral',
       },
     ],
@@ -90,7 +90,7 @@ export const mockJamSessions: JamSession[] = [
           genres: ['Jazz'],
           skillLevel: 'Advanced',
           lookingFor: [],
-          profileImage:
+          image:
             'https://images.unsplash.com/photo-1681070907979-33fb54f56c53?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHx5b3VuZyUyMG1hbiUyMG11c2ljaWFuJTIwcGlhbm98ZW58MXx8fHwxNzU4MDA3ODg1fDA&ixlib=rb-4.1.0&q=80&w=1080&utm_source=figma&utm_medium=referral',
         },
         content:
@@ -108,7 +108,7 @@ export const mockJamSessions: JamSession[] = [
               genres: ['Jazz'],
               skillLevel: 'Intermediate',
               lookingFor: [],
-              profileImage:
+              image:
                 'https://images.unsplash.com/photo-1755389176283-3cd924205df0?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHx5b3VuZyUyMHZpb2xpbmlzdCUyMG11c2ljaWFufGVufDF8fHx8MTc1ODAwODMyM3ww&ixlib=rb-4.1.0&q=80&w=1080&utm_source=figma&utm_medium=referral',
             },
             content:
@@ -128,7 +128,7 @@ export const mockJamSessions: JamSession[] = [
           genres: ['Jazz'],
           skillLevel: 'Advanced',
           lookingFor: [],
-          profileImage:
+          image:
             'https://images.unsplash.com/photo-1719043108436-2ec4f31f1d3e?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHx5b3VuZyUyMGRydW1tZXIlMjBwZXJjdXNzaW9ufGVufDF8fHx8MTc1ODAwODIxMXww&ixlib=rb-4.1.0&q=80&w=1080&utm_source=figma&utm_medium=referral',
         },
         content:
@@ -152,7 +152,7 @@ export const mockJamSessions: JamSession[] = [
       genres: ['Rock'],
       skillLevel: 'Intermediate',
       lookingFor: [],
-      profileImage:
+      image:
         'https://images.unsplash.com/photo-1588374481268-6cf95436cde2?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHx5b3VuZSUyMHdvbWFuJTIwc2luZ2VyJTIwc29uZ3dyaXRlcnxlbnwxfHx8fDE3NTgwMDgyMDd8MA&ixlib=rb-4.1.0&q=80&w=1080&utm_source=figma&utm_medium=referral',
     },
     date: '2025-01-20',
@@ -174,7 +174,7 @@ export const mockJamSessions: JamSession[] = [
         genres: ['Rock'],
         skillLevel: 'Intermediate',
         lookingFor: [],
-        profileImage:
+        image:
           'https://images.unsplash.com/photo-1594116558587-a9a952fe609a?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHx5b3VuZyUyMG11c2ljaWFuJTIwZ3VpdGFyaXN0fGVufDF8fHx8MTc1ODAwODIwNHww&ixlib=rb-4.1.0&q=80&w=1080&utm_source=figma&utm_medium=referral',
       },
     ],
@@ -206,7 +206,7 @@ export const mockJamSessions: JamSession[] = [
           genres: ['Rock'],
           skillLevel: 'Intermediate',
           lookingFor: [],
-          profileImage:
+          image:
             'https://images.unsplash.com/photo-1588374481268-6cf95436cde2?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHx5b3VuZSUyMHdvbWFuJTIwc2luZ2VyJTIwc29uZ3dyaXRlcnxlbnwxfHx8fDE3NTgwMDgyMDd8MA&ixlib=rb-4.1.0&q=80&w=1080&utm_source=figma&utm_medium=referral',
         },
         content:
@@ -230,7 +230,7 @@ export const mockJamSessions: JamSession[] = [
       genres: ['Folk'],
       skillLevel: 'Intermediate',
       lookingFor: [],
-      profileImage:
+      image:
         'https://images.unsplash.com/photo-1645162711239-f4a4925d3cdd?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHx5b3VuZyUyMG11c2ljaWFuJTIwa2V5Ym9hcmQlMjBwcm9kdWNlcnxlbnwxfHx8fDE3NTgwMDgyMTR8MA&ixlib=rb-4.1.0&q=80&w=1080&utm_source=figma&utm_medium=referral',
     },
     date: '2025-01-21',
