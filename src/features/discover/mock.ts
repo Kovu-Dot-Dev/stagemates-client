@@ -167,7 +167,7 @@ const mockJamSessions: JamSession[] = [
   },
 ];
 
-const mockMusicians: MusicianProfile[] = [
+const mockMusicians: Omit<MusicianProfile, 'song'>[] = [
   {
     id: 'musician1',
     name: 'Elena Rodriguez',

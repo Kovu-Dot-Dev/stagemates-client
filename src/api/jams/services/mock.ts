@@ -251,6 +251,7 @@ export const mockJamSessions: JamSession[] = [
         instruments: ['Mandolin'],
         genres: ['Folk'],
         skillLevel: 'Intermediate',
+        image: '',
         lookingFor: [],
       },
       {
@@ -261,6 +262,7 @@ export const mockJamSessions: JamSession[] = [
         instruments: ['Violin'],
         genres: ['Folk'],
         skillLevel: 'Advanced',
+        image: '',
         lookingFor: [],
       },
       {
@@ -271,6 +273,7 @@ export const mockJamSessions: JamSession[] = [
         instruments: ['Harmonica'],
         genres: ['Folk'],
         skillLevel: 'Beginner',
+        image: '',
         lookingFor: [],
       },
       {
@@ -281,6 +284,7 @@ export const mockJamSessions: JamSession[] = [
         instruments: ['Bass'],
         genres: ['Folk'],
         skillLevel: 'Intermediate',
+        image: '',
         lookingFor: [],
       },
     ],

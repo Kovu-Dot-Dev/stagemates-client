@@ -9,9 +9,9 @@ export type MusicianProfile = {
   name: string;
   image: string;
   bio: string;
-  lookingFor: string[];
-  location: string;
-  skillLevel: 'Beginner' | 'Intermediate' | 'Advanced' | 'Expert' | 'Professional';
+  lookingFor?: string[];
+  location?: string;
+  skillLevel?: 'Beginner' | 'Intermediate' | 'Advanced' | 'Expert' | 'Professional';
   songs: Song[];
   instruments: Instrument[];
   genres: Genre[];

@@ -32,7 +32,7 @@ export type JamSession = {
   genres: string[];
   skillLevel: string;
   type: 'open' | 'private';
-  participants: MusicianProfile[];
+  participants: Omit<MusicianProfile, 'songs'>[];
   setlist: SetListSong[];
   neededInstruments: string[];
   equipment?: string[];
@@ -43,7 +43,7 @@ export type JamSession = {
 
 export type DiscussionThread = {
   id: string;
-  author: MusicianProfile;
+  author: Omit<MusicianProfile, 'songs'>;
   content: string;
   timestamp: string;
   replies: DiscussionReply[];
@@ -51,7 +51,7 @@ export type DiscussionThread = {
 
 export type DiscussionReply = {
   id: string;
-  author: MusicianProfile;
+  author: Omit<MusicianProfile, 'songs'>;
   content: string;
   timestamp: string;
 };
