@@ -6,7 +6,7 @@
   "homepage": "https://kovu-dot-dev.github.io/stagemates-client/",
   "scripts": {
     "dev": "vite",
-    "build": "tsc -b && vite build",
+    "build": "tsc -b && vite build --base=./",
     "lint": "eslint .",
     "preview": "vite preview",
     "predeploy": "pnpm run build",

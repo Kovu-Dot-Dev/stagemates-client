@@ -16,30 +16,33 @@ const JamDiscovery = React.lazy(() =>
   import('@/features/jams').then((mod) => ({ default: mod.JamDiscovery }))
 );
 
-const router = createBrowserRouter([
-  {
-    path: '/',
-    element: <AppLayout />,
-    children: [
-      { index: true, element: 'root' },
-      { path: 'login', element: 'login' },
-      { path: 'register', element: 'register' },
-      {
-        path: 'profiles',
-        children: [
-          { index: true, element: <AllProfiles /> },
-          { path: ':id', element: <Profile /> },
-        ],
-      },
-      {
-        path: 'jams',
-        children: [
-          { index: true, element: <JamDiscovery /> },
-          { path: ':id', element: <JamDetails /> },
-        ],
-      },
-    ],
-  },
-]);
+const router = createBrowserRouter(
+  [
+    {
+      path: '/',
+      element: <AppLayout />,
+      children: [
+        { index: true, element: 'root' },
+        { path: 'login', element: 'login' },
+        { path: 'register', element: 'register' },
+        {
+          path: 'profiles',
+          children: [
+            { index: true, element: <AllProfiles /> },
+            { path: ':id', element: <Profile /> },
+          ],
+        },
+        {
+          path: 'jams',
+          children: [
+            { index: true, element: <JamDiscovery /> },
+            { path: ':id', element: <JamDetails /> },
+          ],
+        },
+      ],
+    },
+  ],
+  { basename: '/stagemates-client' }
+);
 
 export default router;
