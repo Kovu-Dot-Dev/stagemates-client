@@ -1,12 +1,14 @@
-import js from '@eslint/js';
-import globals from 'globals';
+import prettierRecommended from 'eslint-config-prettier/flat';
+import pluginReact from 'eslint-plugin-react';
 import reactHooks from 'eslint-plugin-react-hooks';
 import reactRefresh from 'eslint-plugin-react-refresh';
-import { plugin } from '@tanstack/eslint-plugin-query';
-import pluginReact from 'eslint-plugin-react';
-import tseslint from 'typescript-eslint';
+import pluginUnusedImports from 'eslint-plugin-unused-imports';
 import { defineConfig, globalIgnores } from 'eslint/config';
-import prettierRecommended from 'eslint-plugin-prettier/recommended';
+import globals from 'globals';
+import tseslint from 'typescript-eslint';
+
+import js from '@eslint/js';
+import { plugin } from '@tanstack/eslint-plugin-query';
 
 export default defineConfig([
   globalIgnores(['dist']),
@@ -17,12 +19,14 @@ export default defineConfig([
       tseslint.configs.recommended,
       reactHooks.configs['recommended-latest'],
       reactRefresh.configs.vite,
-      plugin.configs.recommended,
-      pluginReact.configs.recommended,
+      plugin.configs['flat/recommended'],
     ],
     languageOptions: {
       ecmaVersion: 2020,
       globals: globals.browser,
+    },
+    plugins: {
+      'unused-imports': pluginUnusedImports,
     },
   },
   prettierRecommended,
