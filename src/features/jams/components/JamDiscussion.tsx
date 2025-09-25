@@ -91,7 +91,7 @@ export function JamDiscussion({
           <div className="space-y-3 p-4 bg-muted/30 rounded-lg">
             <div className="flex items-center space-x-2">
               <Avatar className="w-8 h-8">
-                <AvatarImage src={currentUser.profileImage} />
+                <AvatarImage src={currentUser.image} />
                 <AvatarFallback>{currentUser.name.charAt(0)}</AvatarFallback>
               </Avatar>
               <span className="font-medium">{currentUser.name}</span>
@@ -138,7 +138,7 @@ export function JamDiscussion({
                 {/* Main Thread */}
                 <div className="flex space-x-3">
                   <Avatar className="w-10 h-10">
-                    <AvatarImage src={thread.author.profileImage} />
+                    <AvatarImage src={thread.author.image} />
                     <AvatarFallback>{thread.author.name.charAt(0)}</AvatarFallback>
                   </Avatar>
                   <div className="flex-1 space-y-2">
@@ -184,7 +184,7 @@ export function JamDiscussion({
                     {thread.replies.map((reply) => (
                       <div key={reply.id} className="flex space-x-3">
                         <Avatar className="w-8 h-8">
-                          <AvatarImage src={reply.author.profileImage} />
+                          <AvatarImage src={reply.author.image} />
                           <AvatarFallback>{reply.author.name.charAt(0)}</AvatarFallback>
                         </Avatar>
                         <div className="flex-1 space-y-2">
@@ -213,7 +213,7 @@ export function JamDiscussion({
                   <div className="ml-13 space-y-3 border-l-2 border-muted pl-4">
                     <div className="flex space-x-3">
                       <Avatar className="w-8 h-8">
-                        <AvatarImage src={currentUser.profileImage} />
+                        <AvatarImage src={currentUser.image} />
                         <AvatarFallback>{currentUser.name.charAt(0)}</AvatarFallback>
                       </Avatar>
                       <div className="flex-1 space-y-2">
