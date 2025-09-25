@@ -3,7 +3,7 @@
   "private": true,
   "version": "0.0.0",
   "type": "module",
-  "homepage": "https://kovu-dot-dev.github.io/stagemates-client/",
+  "homepage": "https://stagemates.kovu.dev",
   "scripts": {
     "dev": "vite",
     "build": "tsc -b && vite build --base=./",
