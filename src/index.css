@@ -121,4 +121,7 @@
   div {
     @apply border-1 border-dashed;
   }
+  main {
+    @apply border-1 border-solid;
+  }
 }

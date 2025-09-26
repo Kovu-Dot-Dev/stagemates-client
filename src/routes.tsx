@@ -16,6 +16,9 @@ const JamDetails = React.lazy(() =>
 const JamDiscovery = React.lazy(() =>
   import('@/features/jams').then((mod) => ({ default: mod.JamDiscovery }))
 );
+const ProfileSetup = React.lazy(() =>
+  import('@/features/profile').then((module) => ({ default: module.ProfileSetup }))
+);
 
 const router = createBrowserRouter([
   {
@@ -29,6 +32,7 @@ const router = createBrowserRouter([
         path: 'profiles',
         children: [
           { index: true, element: <AllProfiles /> },
+          { path: 'setup', element: <ProfileSetup /> },
           { path: ':id', element: <Profile /> },
         ],
       },

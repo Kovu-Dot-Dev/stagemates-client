@@ -1,3 +1,4 @@
+import React from 'react';
 import { useParams } from 'react-router';
 
 import { useProfileQuery } from '@/api/profiles/hooks/useProfileQuery';
