@@ -24,7 +24,9 @@ export const AppLayout: React.FC = () => {
         logoHref="/"
         navigationLinks={navigationLinks}
       />
-      <Outlet />
+      <main className="max-w-6xl mx-auto">
+        <Outlet />
+      </main>
     </div>
   );
 };

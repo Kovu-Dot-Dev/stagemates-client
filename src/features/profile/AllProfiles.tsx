@@ -18,29 +18,27 @@ export const AllProfiles: React.FC = () => {
     return 'No profiles found';
   }
   return (
-    <main className="max-w-6xl mx-auto">
-      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
-        {profiles.map((profile) => (
-          <Link to={`/profiles/${profile.id}`} key={profile.id} className="no-underline">
-            <div className="border p-4 rounded">
-              <Text size="h4">{profile.name}</Text>
-              <img
-                src={profile.image || 'https://placehold.co/300x300'}
-                alt={profile.name}
-                className="rounded-md"
-              />
-              <div className="flex flex-col gap-2">
-                <Text size="h6">Genres</Text>
-                <div className="flex flex-wrap gap-2">
-                  {profile.genres?.map((genre) => (
-                    <Badge key={genre}>{genre}</Badge>
-                  ))}
-                </div>
+    <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
+      {profiles.map((profile) => (
+        <Link to={`/profiles/${profile.id}`} key={profile.id} className="no-underline">
+          <div className="border p-4 rounded">
+            <Text size="h4">{profile.name}</Text>
+            <img
+              src={profile.image || 'https://placehold.co/300x300'}
+              alt={profile.name}
+              className="rounded-md"
+            />
+            <div className="flex flex-col gap-2">
+              <Text size="h6">Genres</Text>
+              <div className="flex flex-wrap gap-2">
+                {profile.genres?.map((genre) => (
+                  <Badge key={genre}>{genre}</Badge>
+                ))}
               </div>
             </div>
-          </Link>
-        ))}
-      </div>
-    </main>
+          </div>
+        </Link>
+      ))}
+    </div>
   );
 };

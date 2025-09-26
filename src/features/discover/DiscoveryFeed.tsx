@@ -107,18 +107,21 @@ export function DiscoveryFeed({
     // Genre filter
     if (filterGenre) {
       switch (item.type) {
-        case 'musician':
+        case 'musician': {
           const musician = item.data as MusicianProfile;
           if (!musician.genres.find((g) => g.includes(filterGenre))) return false;
           break;
-        case 'jam':
+        }
+        case 'jam': {
           const jam = item.data as JamSession;
           if (!jam.genres.find((g) => g.includes(filterGenre))) return false;
           break;
-        case 'band':
+        }
+        case 'band': {
           const band = item.data as Band;
           if (!band.genre.find((g) => g.includes(filterGenre))) return false;
           break;
+        }
       }
     }
 

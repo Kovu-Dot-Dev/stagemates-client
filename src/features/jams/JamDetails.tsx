@@ -11,6 +11,7 @@ import {
   Users,
 } from 'lucide-react';
 import { useState } from 'react';
+import React from 'react';
 import { Link, useParams } from 'react-router';
 
 import { useJamQuery } from '@/api/jams/hooks/useJamQuery';
