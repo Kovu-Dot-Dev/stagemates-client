@@ -1,5 +1,5 @@
 import prettierRecommended from 'eslint-config-prettier/flat';
-import pluginReact from 'eslint-plugin-react';
+// import pluginReact from 'eslint-plugin-react';
 import reactHooks from 'eslint-plugin-react-hooks';
 import reactRefresh from 'eslint-plugin-react-refresh';
 import pluginUnusedImports from 'eslint-plugin-unused-imports';
