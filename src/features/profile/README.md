@@ -2,17 +2,21 @@
 
 ## Goals
 
-- Allow musicians to showcase musical identity, skills, and interests through rich, editable, searchable profiles.
-- Surface social and media links and enable easy browsing/filtering.
+- Empower musicians to present their musical identity, skills, and interests through comprehensive, customizable profiles.
+- Highlight key information such as social links, media samples, and affiliations to facilitate discovery and networking.
+- Ensure profiles are easily searchable and filterable by relevant criteria (instrument, genre, location), supporting both grid and list views for efficient browsing.
+- Provide a user-friendly interface for profile creation and editing, encouraging regular updates and engagement.
 
 ## MVP Requirements
 
-- **Signup/profile creation:** name, bio, main instrument, genre, location.
-- **Profile edit:** avatar upload, media links (SoundCloud, YouTube).
-- **Grid/list view:** profile cards and instrument/genre filters.
-- **Profile detail page:** displays all fields and linked media.
-- **Search/filter UI:** for public profiles.
-- Only public fields are visible to others.
+- **Signup/Profile Creation:** Collect essential details including name, bio, primary instrument, genre, and location. Guide users through a step-by-step onboarding flow to ensure completeness.
+- **Profile Editing:** Enable users to upload avatars, add or update media links (SoundCloud, YouTube), and manage social links. Provide clear feedback on successful uploads and validations.
+- **Profile Display:**
+  - **Grid/List View:** Show concise profile cards featuring avatar, name, instrument, genre, and location. Include quick-access filters for instrument and genre.
+  - **Profile Detail Page:** Present all profile fields, including bio, media links, social links, and any endorsements or badges. Embed media players for audio/video samples directly in the profile.
+- **Search/Filter UI:** Implement robust search and filter options for public profiles, allowing users to find musicians by instrument, genre, location, and other tags.
+- **Privacy Controls:** Clearly indicate which fields are public and ensure only public information is displayed to other users. Provide toggles for users to manage visibility of specific fields.
+- **Responsive Design:** Ensure all profile views and editing interfaces are optimized for both desktop and mobile devices for seamless user experience.
 
 ## Roadmap (Post-MVP)
 
