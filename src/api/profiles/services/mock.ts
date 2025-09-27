@@ -4,8 +4,7 @@ export const mockMusicianProfiles: MusicianProfile[] = [
   {
     id: 'u1',
     name: 'Alice Johnson',
-    image:
-      'https://media.discordapp.net/attachments/702862051957145653/1419255646792192030/image_720.png?ex=68d269d2&is=68d11852&hm=ed303074e7248c1d0f2d8e9ab55508d2cb21bd45eb162f0d86d47e91e6291989&=&format=webp&quality=lossless&width=806&height=806',
+    image: 'https://i.pinimg.com/736x/81/3b/c6/813bc608cc27d213fe98d6ecf0fd17e8.jpg',
     songs: [
       { title: 'Wonderwall', artist: 'Oasis', wantToPlay: true, enjoy: true, skill: 3 },
       { title: 'Blackbird', artist: 'The Beatles', wantToPlay: false, enjoy: true, skill: 4 },
