@@ -118,10 +118,11 @@
   body {
     @apply bg-background text-foreground m-auto;
   }
-  div {
+  /* Temp debug borders */
+  /* div {
     @apply border-1 border-dashed;
   }
   main {
     @apply border-1 border-solid;
-  }
+  } */
 }

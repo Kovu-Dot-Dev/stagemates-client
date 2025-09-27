@@ -29,14 +29,10 @@ import {
 import { Textarea } from '@/components/ui/Textarea';
 
 interface JamDiscoveryProps {
-  currentUser?: MusicianProfile;
   onCreateJam?: (jam: Omit<JamSession, 'id' | 'host' | 'participants'>) => void;
 }
 
-export function JamDiscovery({
-  currentUser = mockMusicianProfiles[0],
-  onCreateJam = () => {},
-}: JamDiscoveryProps) {
+export function JamDiscovery({ onCreateJam = () => {} }: JamDiscoveryProps) {
   const [searchTerm, setSearchTerm] = useState('');
   const [filterGenre, setFilterGenre] = useState<string>('');
   const [filterDate, setFilterDate] = useState<string>('');
@@ -85,7 +81,7 @@ export function JamDiscovery({
   };
 
   return (
-    <div className="max-w-4xl mx-auto p-4 space-y-6">
+    <div className="max-w-4xl mx-auto space-y-6">
       {/* Header with Search and Create */}
       <div className="flex flex-col space-y-4">
         <div className="flex items-center justify-between">

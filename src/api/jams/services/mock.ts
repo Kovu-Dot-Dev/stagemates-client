@@ -1,3 +1,5 @@
+import { mockMusicianProfiles } from '@/api/profiles/services/mock';
+
 import type { JamSession } from './types';
 
 export const mockJamSessions: JamSession[] = [
@@ -6,18 +8,7 @@ export const mockJamSessions: JamSession[] = [
     title: 'Sunday Jazz Jam',
     description:
       "Relaxed jazz session in downtown. All skill levels welcome! We'll have a piano and drum kit available.",
-    host: {
-      id: 'host1',
-      name: 'Marcus Williams',
-      bio: '',
-      location: 'Seattle, WA',
-      instruments: ['Piano', 'Keyboard'],
-      genres: ['Jazz'],
-      skillLevel: 'Advanced',
-      lookingFor: [],
-      image:
-        'https://images.unsplash.com/photo-1681070907979-33fb54f56c53?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHx5b3VuZyUyMG1hbiUyMG11c2ljaWFuJTIwcGlhbm98ZW58MXx8fHwxNzU4MDA3ODg1fDA&ixlib=rb-4.1.0&q=80&w=1080&utm_source=figma&utm_medium=referral',
-    },
+    host: mockMusicianProfiles[0],
     date: '2025-01-19',
     time: '14:00',
     location: 'Blue Note Cafe',
@@ -27,32 +18,7 @@ export const mockJamSessions: JamSession[] = [
     genres: ['Jazz', 'Blues'],
     skillLevel: 'All Levels',
     type: 'open',
-    participants: [
-      {
-        id: 'p1',
-        name: 'Emma Thompson',
-        bio: '',
-        location: 'Seattle, WA',
-        instruments: ['Saxophone'],
-        genres: ['Jazz'],
-        skillLevel: 'Intermediate',
-        lookingFor: [],
-        image:
-          'https://images.unsplash.com/photo-1755389176283-3cd924205df0?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHx5b3VuZyUyMHZpb2xpbmlzdCUyMG11c2ljaWFufGVufDF8fHx8MTc1ODAwODMyM3ww&ixlib=rb-4.1.0&q=80&w=1080&utm_source=figma&utm_medium=referral',
-      },
-      {
-        id: 'p2',
-        name: 'David Lee',
-        bio: '',
-        location: 'Seattle, WA',
-        instruments: ['Drums'],
-        genres: ['Jazz'],
-        skillLevel: 'Advanced',
-        lookingFor: [],
-        image:
-          'https://images.unsplash.com/photo-1719043108436-2ec4f31f1d3e?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHx5b3VuZyUyMGRydW1tZXIlMjBwZXJjdXNzaW9ufGVufDF8fHx8MTc1ODAwODIxMXww&ixlib=rb-4.1.0&q=80&w=1080&utm_source=figma&utm_medium=referral',
-      },
-    ],
+    participants: [mockMusicianProfiles[1], mockMusicianProfiles[2]],
     setlist: [
       {
         id: 's1',
@@ -72,7 +38,7 @@ export const mockJamSessions: JamSession[] = [
         difficulty: 'Medium',
         duration: 6,
         key: 'Cm',
-        suggestedBy: 'Emma Thompson',
+        suggestedBy: 'Alice Johnson',
       },
     ],
     neededInstruments: ['Bass', 'Trumpet'],
@@ -81,58 +47,25 @@ export const mockJamSessions: JamSession[] = [
     discussion: [
       {
         id: 't1',
-        author: {
-          id: 'host1',
-          name: 'Marcus Williams',
-          bio: '',
-          location: 'Seattle, WA',
-          instruments: ['Piano', 'Keyboard'],
-          genres: ['Jazz'],
-          skillLevel: 'Advanced',
-          lookingFor: [],
-          image:
-            'https://images.unsplash.com/photo-1681070907979-33fb54f56c53?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHx5b3VuZyUyMG1hbiUyMG11c2ljaWFuJTIwcGlhbm98ZW58MXx8fHwxNzU4MDA3ODg1fDA&ixlib=rb-4.1.0&q=80&w=1080&utm_source=figma&utm_medium=referral',
-        },
+        author: mockMusicianProfiles[0],
         content:
-          'Hey everyone! Really excited for this session. The venue has a beautiful Steinway grand piano, so we should be able to get some amazing sounds. Looking forward to seeing what everyone brings to the table!',
+          'Hey everyone! Excited for this jam — the venue has a Steinway grand piano. Looking forward to hearing everyone’s contributions!',
         timestamp: '2025-01-18T10:30:00Z',
         replies: [
           {
             id: 'r1',
-            author: {
-              id: 'p1',
-              name: 'Emma Thompson',
-              bio: '',
-              location: 'Seattle, WA',
-              instruments: ['Saxophone'],
-              genres: ['Jazz'],
-              skillLevel: 'Intermediate',
-              lookingFor: [],
-              image:
-                'https://images.unsplash.com/photo-1755389176283-3cd924205df0?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHx5b3VuZyUyMHZpb2xpbmlzdCUyMG11c2ljaWFufGVufDF8fHx8MTc1ODAwODMyM3ww&ixlib=rb-4.1.0&q=80&w=1080&utm_source=figma&utm_medium=referral',
-            },
+            author: mockMusicianProfiles[1],
             content:
-              "That sounds fantastic! I'll bring my tenor sax. Should I prepare anything specific for Autumn Leaves?",
+              "Amazing! I'll bring my sax — should I focus on Autumn Leaves or just improvise?",
             timestamp: '2025-01-18T11:15:00Z',
           },
         ],
       },
       {
         id: 't2',
-        author: {
-          id: 'p2',
-          name: 'David Lee',
-          bio: '',
-          location: 'Seattle, WA',
-          instruments: ['Drums'],
-          genres: ['Jazz'],
-          skillLevel: 'Advanced',
-          lookingFor: [],
-          image:
-            'https://images.unsplash.com/photo-1719043108436-2ec4f31f1d3e?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHx5b3VuZyUyMGRydW1tZXIlMjBwZXJjdXNzaW9ufGVufDF8fHx8MTc1ODAwODIxMXww&ixlib=rb-4.1.0&q=80&w=1080&utm_source=figma&utm_medium=referral',
-        },
+        author: mockMusicianProfiles[2],
         content:
-          'Quick question about parking - is there street parking available or should I look for a garage nearby?',
+          'Quick question: is there good parking around Blue Note Cafe?',
         timestamp: '2025-01-18T14:20:00Z',
         replies: [],
       },
@@ -143,18 +76,7 @@ export const mockJamSessions: JamSession[] = [
     title: 'Rock Band Practice',
     description:
       'Looking for a bassist and drummer to complete our indie rock band. We have original songs ready to jam!',
-    host: {
-      id: 'host2',
-      name: 'Sarah Miller',
-      bio: '',
-      location: 'Austin, TX',
-      instruments: ['Guitar', 'Vocals'],
-      genres: ['Rock'],
-      skillLevel: 'Intermediate',
-      lookingFor: [],
-      image:
-        'https://images.unsplash.com/photo-1588374481268-6cf95436cde2?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHx5b3VuZSUyMHdvbWFuJTIwc2luZ2VyJTIwc29uZ3dyaXRlcnxlbnwxfHx8fDE3NTgwMDgyMDd8MA&ixlib=rb-4.1.0&q=80&w=1080&utm_source=figma&utm_medium=referral',
-    },
+    host: mockMusicianProfiles[1],
     date: '2025-01-20',
     time: '19:00',
     location: 'Rehearsal Space',
@@ -164,20 +86,7 @@ export const mockJamSessions: JamSession[] = [
     genres: ['Rock', 'Indie', 'Alternative'],
     skillLevel: 'Intermediate',
     type: 'open',
-    participants: [
-      {
-        id: 'p3',
-        name: 'Mike Johnson',
-        bio: '',
-        location: 'Austin, TX',
-        instruments: ['Guitar'],
-        genres: ['Rock'],
-        skillLevel: 'Intermediate',
-        lookingFor: [],
-        image:
-          'https://images.unsplash.com/photo-1594116558587-a9a952fe609a?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHx5b3VuZyUyMG11c2ljaWFuJTIwZ3VpdGFyaXN0fGVufDF8fHx8MTc1ODAwODIwNHww&ixlib=rb-4.1.0&q=80&w=1080&utm_source=figma&utm_medium=referral',
-      },
-    ],
+    participants: [mockMusicianProfiles[0], mockMusicianProfiles[2]],
     setlist: [
       {
         id: 's3',
@@ -197,21 +106,26 @@ export const mockJamSessions: JamSession[] = [
     discussion: [
       {
         id: 't3',
-        author: {
-          id: 'host2',
-          name: 'Sarah Miller',
-          bio: '',
-          location: 'Austin, TX',
-          instruments: ['Guitar', 'Vocals'],
-          genres: ['Rock'],
-          skillLevel: 'Intermediate',
-          lookingFor: [],
-          image:
-            'https://images.unsplash.com/photo-1588374481268-6cf95436cde2?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHx5b3VuZSUyMHdvbWFuJTIwc2luZ2VyJTIwc29uZ3dyaXRlcnxlbnwxfHx8fDE3NTgwMDgyMDd8MA&ixlib=rb-4.1.0&q=80&w=1080&utm_source=figma&utm_medium=referral',
-        },
+        author: mockMusicianProfiles[1],
         content:
-          "I can send chord charts and lyric sheets before the session if anyone's interested! Also, we're hoping to record a demo after a few practice sessions if the chemistry is right.",
-        timestamp: '2025-01-19T09:45:00Z',
+          'Hey all, for this session let’s focus on tightening up the chorus of our second song.',
+        timestamp: '2025-01-19T16:00:00Z',
+        replies: [
+          {
+            id: 'r2',
+            author: mockMusicianProfiles[2],
+            content:
+              "Got it! I’ll bring my guitar pedalboard so we can experiment with some new tones.",
+            timestamp: '2025-01-19T17:00:00Z',
+          },
+        ],
+      },
+      {
+        id: 't4',
+        author: mockMusicianProfiles[0],
+        content:
+          'Do we need to bring our own mics, or will the rehearsal space provide them?',
+        timestamp: '2025-01-19T18:45:00Z',
         replies: [],
       },
     ],
@@ -221,18 +135,7 @@ export const mockJamSessions: JamSession[] = [
     title: 'Acoustic Songwriting Circle',
     description:
       "Bring your original songs or covers! We'll share, collaborate, and maybe create something new together.",
-    host: {
-      id: 'host3',
-      name: 'Jamie Foster',
-      bio: '',
-      location: 'Nashville, TN',
-      instruments: ['Guitar', 'Vocals'],
-      genres: ['Folk'],
-      skillLevel: 'Intermediate',
-      lookingFor: [],
-      image:
-        'https://images.unsplash.com/photo-1645162711239-f4a4925d3cdd?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHx5b3VuZyUyMG11c2ljaWFuJTIwa2V5Ym9hcmQlMjBwcm9kdWNlcnxlbnwxfHx8fDE3NTgwMDgyMTR8MA&ixlib=rb-4.1.0&q=80&w=1080&utm_source=figma&utm_medium=referral',
-    },
+    host: mockMusicianProfiles[2],
     date: '2025-01-21',
     time: '18:30',
     location: 'Community Center',
@@ -242,56 +145,37 @@ export const mockJamSessions: JamSession[] = [
     genres: ['Folk', 'Indie', 'Country'],
     skillLevel: 'All Levels',
     type: 'open',
-    participants: [
-      {
-        id: 'p4',
-        name: 'Alex Rivera',
-        bio: '',
-        location: 'Nashville, TN',
-        instruments: ['Mandolin'],
-        genres: ['Folk'],
-        skillLevel: 'Intermediate',
-        image: '',
-        lookingFor: [],
-      },
-      {
-        id: 'p5',
-        name: 'Kelly Smith',
-        bio: '',
-        location: 'Nashville, TN',
-        instruments: ['Violin'],
-        genres: ['Folk'],
-        skillLevel: 'Advanced',
-        image: '',
-        lookingFor: [],
-      },
-      {
-        id: 'p6',
-        name: 'Ryan Davis',
-        bio: '',
-        location: 'Nashville, TN',
-        instruments: ['Harmonica'],
-        genres: ['Folk'],
-        skillLevel: 'Beginner',
-        image: '',
-        lookingFor: [],
-      },
-      {
-        id: 'p7',
-        name: 'Taylor Wilson',
-        bio: '',
-        location: 'Nashville, TN',
-        instruments: ['Bass'],
-        genres: ['Folk'],
-        skillLevel: 'Intermediate',
-        image: '',
-        lookingFor: [],
-      },
-    ],
+    participants: [mockMusicianProfiles[0], mockMusicianProfiles[1]],
     setlist: [],
     neededInstruments: ['Banjo', 'Cajon'],
     equipment: ['Acoustic Amplifier', 'Microphones'],
-    notes: "Bring your own acoustic instruments. We'll have coffee and snacks available.",
-    discussion: [],
+    notes:
+      "Bring your own acoustic instruments. We'll have coffee and snacks available.",
+    discussion: [
+      {
+        id: 't5',
+        author: mockMusicianProfiles[2],
+        content:
+          'Can’t wait to hear what original songs people are bringing! I’ll start with one of my folk ballads.',
+        timestamp: '2025-01-20T12:30:00Z',
+        replies: [
+          {
+            id: 'r3',
+            author: mockMusicianProfiles[0],
+            content:
+              'Sounds great! I’ll bring a couple of indie-inspired chord progressions we could jam on.',
+            timestamp: '2025-01-20T13:15:00Z',
+          },
+        ],
+      },
+      {
+        id: 't6',
+        author: mockMusicianProfiles[1],
+        content:
+          'Will there be a PA available for vocals, or should we stick to unplugged?',
+        timestamp: '2025-01-20T14:45:00Z',
+        replies: [],
+      },
+    ],
   },
 ];
