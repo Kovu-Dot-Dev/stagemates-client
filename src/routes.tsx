@@ -5,7 +5,7 @@ import { AppLayout } from './features/AppLayout';
 import { DiscoveryFeed } from './features/discover/DiscoveryFeed';
 
 const Profile = React.lazy(() =>
-  import('./features/profile').then((module) => ({ default: module.Profile }))
+  import('@/features/profile').then((module) => ({ default: module.Profile }))
 );
 const AllProfiles = React.lazy(() =>
   import('@/features/profile').then((module) => ({ default: module.AllProfiles }))

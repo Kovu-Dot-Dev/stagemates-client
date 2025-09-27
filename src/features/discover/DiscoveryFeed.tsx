@@ -147,7 +147,7 @@ export function DiscoveryFeed({
             <CardContent className="p-6">
               <div className="flex items-start space-x-4">
                 <ClickableAvatar
-                  route={`/profile/${musician.id}`}
+                  route={`/profiles/${musician.id}`}
                   src={musician.image}
                   fallback={musician.name.charAt(0)}
                   className="w-16 h-16"
@@ -165,7 +165,7 @@ export function DiscoveryFeed({
                       <p className="text-sm mb-3 line-clamp-2">{musician.bio}</p>
 
                       <div className="flex flex-wrap gap-2 mb-3">
-                        {musician.instruments.slice(0, 3).map((instrument) => (
+                        {musician?.instruments?.slice(0, 3).map((instrument) => (
                           <Badge key={instrument} variant="secondary" className="text-xs">
                             {instrument}
                           </Badge>
@@ -178,7 +178,7 @@ export function DiscoveryFeed({
                       </div>
 
                       <div className="flex flex-wrap gap-1 mb-3">
-                        {musician.genres.slice(0, 4).map((genre) => (
+                        {musician?.genres?.slice(0, 4).map((genre) => (
                           <Badge key={genre} variant="outline" className="text-xs">
                             {genre}
                           </Badge>
@@ -197,7 +197,7 @@ export function DiscoveryFeed({
 
                   <div className="flex justify-between items-center mt-4">
                     <div className="text-sm text-muted-foreground">
-                      Looking for: {musician.lookingFor.slice(0, 2).join(', ')}
+                      Looking for: {musician?.lookingFor?.slice(0, 2).join(', ')}
                       {musician.lookingFor.length > 2 && '...'}
                     </div>
                     <Button size="sm" onClick={() => onConnect(musician.id)}>
@@ -227,7 +227,7 @@ export function DiscoveryFeed({
                   </div>
                   <div className="flex items-center text-sm text-muted-foreground mt-1">
                     <ClickableAvatar
-                      route={`/profile/${jam.host.id}`}
+                      route={`/profiles/${jam.host.id}`}
                       src={jam.host.image}
                       fallback={jam.host.name.charAt(0)}
                       className="w-6 h-6 mr-2"
@@ -324,9 +324,9 @@ export function DiscoveryFeed({
                       </div>
 
                       <div className="flex -space-x-2 mb-3">
-                        {band.members.slice(0, 4).map((member, index) => (
+                        {band?.members?.slice(0, 4).map((member, index) => (
                           <ClickableAvatar
-                            route={`/profile/${member.id}`}
+                            route={`/profiles/${member.id}`}
                             key={member.id}
                             src={member.image}
                             fallback={member.name.charAt(0)}
@@ -369,7 +369,7 @@ export function DiscoveryFeed({
             <CardContent className="p-6">
               <div className="flex items-start space-x-4">
                 <ClickableAvatar
-                  route={`/profile/${post.author.id}`}
+                  route={`/profiles/${post.author.id}`}
                   src={post.author.image}
                   fallback={post.author.name.charAt(0)}
                   className="w-12 h-12"

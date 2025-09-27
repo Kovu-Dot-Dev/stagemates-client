@@ -203,12 +203,12 @@ export const Navbar01 = React.forwardRef<HTMLElement, Navbar01Props>(
             )}
             {/* Main nav */}
             <div className="flex items-center gap-6">
-              <button
-                onClick={(e) => e.preventDefault()}
+              <Link
+                to={logoHref}
                 className="flex items-center space-x-2 text-primary hover:text-primary/90 transition-colors cursor-pointer">
                 <div className="text-2xl">{logo}</div>
                 <span className="hidden font-bold text-xl sm:inline-block">{brandName}</span>
-              </button>
+              </Link>
               {/* Navigation menu */}
               {!isMobile && (
                 <NavigationMenu className="flex">
