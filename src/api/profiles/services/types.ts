@@ -13,13 +13,18 @@ export type MusicianProfile = {
   location?: string;
   skillLevel?: 'Beginner' | 'Intermediate' | 'Advanced' | 'Expert' | 'Professional';
   songs: Song[];
-  instruments: Instrument[];
-  genres: Genre[];
-  availability?: {
+  instruments: string[];
+  genres: string[];
+  availability: {
     days: string[];
-    times: string[];
+    timeOfDay: string[];
+    frequency: string;
   };
   vibes?: Vibe[];
+
+    soundCloudUrl?: string;
+  youtubeUrl?: string;
+  spotifyUrl?: string;
 };
 
 export type Vibe = {
@@ -35,53 +40,40 @@ export type Song = {
   skill: 1 | 2 | 3 | 4 | 5;
 };
 
-export const INSTRUMENTS = {
-  GUITAR: 'Guitar',
-  BASS: 'Bass',
-  DRUMS: 'Drums',
-  PIANO: 'Piano',
-  KEYBOARD: 'Keyboard',
-  VIOLIN: 'Violin',
-  CELLO: 'Cello',
-  FLUTE: 'Flute',
-  CLARINET: 'Clarinet',
-  SAXOPHONE: 'Saxophone',
-  TRUMPET: 'Trumpet',
-  TROMBONE: 'Trombone',
-  HARMONICA: 'Harmonica',
-  BANJO: 'Banjo',
-  MANDOLIN: 'Mandolin',
-  UKULELE: 'Ukulele',
-  HARP: 'Harp',
-  ACCORDION: 'Accordion',
-  PERCUSSION: 'Percussion',
-  VOCALS: 'Vocals',
-} as const;
+export interface UserProfileData extends MusicianProfile {
+  primaryInstruments: string[];
+  secondaryInstruments: string[];
+  preferredGenres: string[];
+  collaborationInterests: string[];
+  availability: {
+    days: string[];
+    timeOfDay: string[];
+    frequency: string;
+  };
+  preferredJamSettings: string[];
+  preferredDateTime: string[];
+  musicLinks: {
+    type: 'spotify' | 'youtube' | 'soundcloud' | 'bandcamp' | 'website';
+    url: string;
+    title?: string;
+  }[];
+  socialLinks: {
+    type: 'instagram' | 'twitter' | 'facebook' | 'website';
+    url: string;
+  }[];
+  jamHistory: JamHistoryItem[];
+  influences: string;
+  performanceStyle: string;
+  musicalGoals: string;
+  yearsExperience: number;
+  isAvailableForCollab: boolean;
+}
 
-export type Instrument = (typeof INSTRUMENTS)[keyof typeof INSTRUMENTS];
-
-export const GENRES = {
-  ROCK: 'Rock',
-  JAZZ: 'Jazz',
-  POP: 'Pop',
-  FOLK: 'Folk',
-  BLUES: 'Blues',
-  LATIN: 'Latin',
-  INDIE: 'Indie',
-  WORLD: 'World',
-  CLASSICAL: 'Classical',
-  HIPHOP: 'Hip-Hop',
-  ELECTRONIC: 'Electronic',
-  COUNTRY: 'Country',
-  REGGAE: 'Reggae',
-  METAL: 'Metal',
-  PUNK: 'Punk',
-  FUNK: 'Funk',
-  SOUL: 'Soul',
-  RNB: 'R&B',
-  GOSPEL: 'Gospel',
-  FUSION: 'Fusion',
-  AMERICANA: 'Americana',
-} as const;
-
-export type Genre = (typeof GENRES)[keyof typeof GENRES];
+export interface JamHistoryItem {
+  id: string;
+  title: string;
+  date: string;
+  type: 'past' | 'upcoming';
+  role: 'host' | 'participant';
+  genre: string;
+}

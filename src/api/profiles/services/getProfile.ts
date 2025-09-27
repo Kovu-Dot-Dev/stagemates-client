@@ -1,11 +1,11 @@
 import { mockMusicianProfiles } from './mock';
-import type { MusicianProfile } from './types';
+import type { UserProfileData } from './types';
 
 /**
  * TODO: as part of schema refactor, decide on naming, make file name consistent with type name
  */
 
-export type GetProfileResponse = MusicianProfile | undefined;
+export type GetProfileResponse = UserProfileData | undefined;
 
 export const getProfile = (id?: string): GetProfileResponse => {
   if (!id) {

@@ -12,6 +12,9 @@ import {
   Youtube,
 } from 'lucide-react';
 import { useState } from 'react';
+import { Link, useParams } from 'react-router';
+
+import { useProfileQuery } from '@/api/profiles/hooks/useProfileQuery';
 
 import { Avatar, AvatarFallback, AvatarImage } from '../../components/ui/Avatar';
 import { Badge } from '../../components/ui/Badge';
@@ -34,146 +37,18 @@ export interface MusicianProfile {
   spotifyUrl?: string;
 }
 
-export interface UserProfileData extends MusicianProfile {
-  primaryInstruments: string[];
-  secondaryInstruments: string[];
-  preferredGenres: string[];
-  collaborationInterests: string[];
-  availability: {
-    days: string[];
-    timeOfDay: string[];
-    frequency: string;
-  };
-  preferredJamSettings: string[];
-  preferredDateTime: string[];
-  musicLinks: {
-    type: 'spotify' | 'youtube' | 'soundcloud' | 'bandcamp' | 'website';
-    url: string;
-    title?: string;
-  }[];
-  socialLinks: {
-    type: 'instagram' | 'twitter' | 'facebook' | 'website';
-    url: string;
-  }[];
-  jamHistory: JamHistoryItem[];
-  influences: string;
-  performanceStyle: string;
-  musicalGoals: string;
-  yearsExperience: number;
-  isAvailableForCollab: boolean;
-}
-
-export interface JamHistoryItem {
-  id: string;
-  title: string;
-  date: string;
-  type: 'past' | 'upcoming';
-  role: 'host' | 'participant';
-  genre: string;
-}
-
-const mockUser: UserProfileData = {
-  id: "user-123",
-  name: "Alex Rivera",
-  bio: "Passionate guitarist and songwriter looking to collaborate with like-minded musicians. I love creating original music and jamming across different genres.",
-  location: "San Francisco, CA",
-  instruments: ["Guitar", "Bass", "Vocals"],
-  genres: ["Rock", "Blues", "Jazz", "Indie"],
-  skillLevel: "Intermediate",
-  lookingFor: ["Band Formation", "Songwriting", "Live Performance"],
-  profileImage: "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=400&h=400&fit=crop&crop=face",
-  soundCloudUrl: "https://soundcloud.com/alexrivera",
-  youtubeUrl: "https://youtube.com/@alexrivera",
-  spotifyUrl: "https://open.spotify.com/artist/alexrivera",
-  primaryInstruments: ["Electric Guitar", "Acoustic Guitar"],
-  secondaryInstruments: ["Bass Guitar", "Vocals", "Piano"],
-  preferredGenres: ["Rock", "Blues", "Jazz", "Indie", "Alternative"],
-  collaborationInterests: ["Band Formation", "Songwriting", "Recording", "Live Performance"],
-  availability: {
-    days: ["Tuesday", "Thursday", "Saturday", "Sunday"],
-    timeOfDay: ["Evening", "Weekend"],
-    frequency: "2-3 times per week"
-  },
-  preferredJamSettings: ["Home Studio", "Rehearsal Space", "Outdoor"],
-  preferredDateTime: ["Weekday Evenings", "Weekend Afternoons", "Weekend Evenings"],
-  musicLinks: [
-    {
-      type: "spotify",
-      url: "https://open.spotify.com/artist/alexrivera",
-      title: "Original Songs & Covers"
-    },
-    {
-      type: "youtube",
-      url: "https://youtube.com/@alexrivera",
-      title: "Live Performances & Tutorials"
-    },
-    {
-      type: "soundcloud",
-      url: "https://soundcloud.com/alexrivera",
-      title: "Demo Recordings"
-    }
-  ],
-  socialLinks: [
-    {
-      type: "instagram",
-      url: "https://instagram.com/alexrivera_music"
-    },
-    {
-      type: "twitter",
-      url: "https://twitter.com/alexrivera_music"
-    }
-  ],
-  jamHistory: [
-    {
-      id: "jam-1",
-      title: "Blues Night Session",
-      date: "2024-12-15",
-      type: "upcoming",
-      role: "participant",
-      genre: "Blues"
-    },
-    {
-      id: "jam-2",
-      title: "Indie Rock Collaboration",
-      date: "2024-12-20",
-      type: "upcoming",
-      role: "host",
-      genre: "Indie Rock"
-    },
-    {
-      id: "jam-3",
-      title: "Jazz Fusion Experiment",
-      date: "2024-11-28",
-      type: "past",
-      role: "participant",
-      genre: "Jazz"
-    },
-    {
-      id: "jam-4",
-      title: "Acoustic Songwriting Circle",
-      date: "2024-11-15",
-      type: "past",
-      role: "host",
-      genre: "Folk"
-    },
-    {
-      id: "jam-5",
-      title: "Rock Cover Band Practice",
-      date: "2024-11-08",
-      type: "past",
-      role: "participant",
-      genre: "Rock"
-    }
-  ],
-  influences: "Influenced by classic rock legends like Hendrix and Page, modern blues masters like Joe Bonamassa, and indie artists like Tame Impala. Always exploring new sounds and techniques.",
-  performanceStyle: "Energetic and expressive, with a focus on melodic improvisation and dynamic stage presence. Comfortable both leading and supporting in group settings.",
-  musicalGoals: "Looking to form a serious band for original music creation and live performances. Interested in recording an EP and playing local venues.",
-  yearsExperience: 8,
-  isAvailableForCollab: true
-}
-
 export function Profile() {
+  const { id } = useParams<{ id: string }>();
   const [activeTab, setActiveTab] = useState<'overview' | 'media' | 'history'>('overview');
+  const { data: user, isLoading } = useProfileQuery(id);
+
+  if (isLoading) {
+    return null;
+  }
+
+  if (!user) {
+    return 'no user found';
+  }
 
   const getLinkIcon = (type: string) => {
     switch (type) {
@@ -191,21 +66,23 @@ export function Profile() {
   };
 
   const formatAvailability = () => {
-    const { days, timeOfDay, frequency } = mockUser.availability;
+    const { days, timeOfDay, frequency } = user.availability;
     return `${days.join(', ')} • ${timeOfDay.join('/')} • ${frequency}`;
   };
 
-  const upcomingJams = mockUser.jamHistory.filter((jam) => jam.type === 'upcoming');
-  const pastJams = mockUser.jamHistory.filter((jam) => jam.type === 'past');
+  const upcomingJams = user.jamHistory.filter((jam) => jam.type === 'upcoming');
+  const pastJams = user.jamHistory.filter((jam) => jam.type === 'past');
 
   return (
     <div className="max-w-4xl mx-auto p-4 space-y-6">
       {/* Header */}
       <div className="flex items-center justify-between">
-        <Button variant="outline" size="sm">
-          <ArrowLeft className="w-4 h-4 mr-2" />
-          Back
-        </Button>
+        <Link to="/profiles" className="flex items-center">
+          <Button variant="outline" size="sm">
+            <ArrowLeft className="w-4 h-4 mr-2" />
+            Back
+          </Button>
+        </Link>
       </div>
 
       {/* Profile Header */}
@@ -214,16 +91,16 @@ export function Profile() {
           <div className="flex flex-col md:flex-row md:items-start space-y-4 md:space-y-0 md:space-x-6">
             <div className="flex flex-col items-center md:items-start">
               <Avatar className="w-32 h-32">
-                <AvatarImage src={mockUser.profileImage} />
-                <AvatarFallback className="text-4xl">{mockUser.name.charAt(0)}</AvatarFallback>
+                <AvatarImage src={user.image} />
+                <AvatarFallback className="text-4xl">{user.name.charAt(0)}</AvatarFallback>
               </Avatar>
               <div className="flex items-center mt-3 space-x-2">
                 <Badge
-                  variant={mockUser.isAvailableForCollab ? 'default' : 'secondary'}
+                  variant={user.isAvailableForCollab ? 'default' : 'secondary'}
                   className="text-xs">
-                  {mockUser.isAvailableForCollab ? 'Available' : 'Not Available'}
+                  {user.isAvailableForCollab ? 'Available' : 'Not Available'}
                 </Badge>
-                {mockUser.yearsExperience >= 5 && (
+                {user.yearsExperience >= 5 && (
                   <Badge variant="outline" className="text-xs">
                     <Star className="w-3 h-3 mr-1" />
                     Experienced
@@ -234,19 +111,19 @@ export function Profile() {
 
             <div className="flex-1 space-y-4">
               <div>
-                <h1 className="text-3xl mb-1">{mockUser.name}</h1>
+                <h1 className="text-3xl mb-1">{user.name}</h1>
                 <div className="flex items-center text-muted-foreground mb-3">
                   <MapPin className="w-4 h-4 mr-1" />
-                  <span>{mockUser.location}</span>
+                  <span>{user.location}</span>
                 </div>
-                <p className="text-muted-foreground">{mockUser.bio}</p>
+                <p className="text-muted-foreground">{user.bio}</p>
               </div>
 
               <div className="grid md:grid-cols-2 gap-4">
                 <div>
                   <h4 className="mb-2">Primary Instruments</h4>
                   <div className="flex flex-wrap gap-1">
-                    {mockUser.primaryInstruments.map((instrument) => (
+                    {user.primaryInstruments.map((instrument) => (
                       <Badge key={instrument} className="text-xs">
                         {instrument}
                       </Badge>
@@ -256,7 +133,7 @@ export function Profile() {
                 <div>
                   <h4 className="mb-2">Secondary Instruments</h4>
                   <div className="flex flex-wrap gap-1">
-                    {mockUser.secondaryInstruments.map((instrument) => (
+                    {user.secondaryInstruments.map((instrument) => (
                       <Badge key={instrument} variant="outline" className="text-xs">
                         {instrument}
                       </Badge>
@@ -268,7 +145,7 @@ export function Profile() {
               <div>
                 <h4 className="mb-2">Preferred Genres</h4>
                 <div className="flex flex-wrap gap-1">
-                  {mockUser.preferredGenres.map((genre) => (
+                  {user.preferredGenres.map((genre) => (
                     <Badge key={genre} variant="secondary" className="text-xs">
                       {genre}
                     </Badge>
@@ -289,7 +166,7 @@ export function Profile() {
         ].map((tab) => (
           <button
             key={tab.id}
-            onClick={() => setActiveTab(tab.id as unknown)}
+            onClick={() => setActiveTab(tab.id as 'overview' | 'media' | 'history')}
             className={`px-4 py-2 border-b-2 transition-colors ${
               activeTab === tab.id
                 ? 'border-primary text-primary'
@@ -312,9 +189,9 @@ export function Profile() {
               <div>
                 <h4 className="mb-2">Experience Level</h4>
                 <div className="flex items-center space-x-2">
-                  <Badge variant="outline">{mockUser.skillLevel}</Badge>
+                  <Badge variant="outline">{user.skillLevel}</Badge>
                   <span className="text-sm text-muted-foreground">
-                    {mockUser.yearsExperience} years experience
+                    {user.yearsExperience} years experience
                   </span>
                 </div>
               </div>
@@ -322,7 +199,7 @@ export function Profile() {
               <div>
                 <h4 className="mb-2">Looking For</h4>
                 <div className="flex flex-wrap gap-1">
-                  {mockUser.collaborationInterests.map((interest) => (
+                  {user.collaborationInterests.map((interest) => (
                     <Badge key={interest} variant="outline" className="text-xs">
                       {interest}
                     </Badge>
@@ -333,7 +210,7 @@ export function Profile() {
               <div>
                 <h4 className="mb-2">Preferred Jam Settings</h4>
                 <div className="flex flex-wrap gap-1">
-                  {mockUser.preferredJamSettings.map((setting) => (
+                  {user.preferredJamSettings.map((setting) => (
                     <Badge key={setting} variant="secondary" className="text-xs">
                       {setting}
                     </Badge>
@@ -345,17 +222,17 @@ export function Profile() {
 
               <div>
                 <h4 className="mb-2">Musical Influences</h4>
-                <p className="text-sm text-muted-foreground">{mockUser.influences}</p>
+                <p className="text-sm text-muted-foreground">{user.influences}</p>
               </div>
 
               <div>
                 <h4 className="mb-2">Performance Style</h4>
-                <p className="text-sm text-muted-foreground">{mockUser.performanceStyle}</p>
+                <p className="text-sm text-muted-foreground">{user.performanceStyle}</p>
               </div>
 
               <div>
                 <h4 className="mb-2">Musical Goals</h4>
-                <p className="text-sm text-muted-foreground">{mockUser.musicalGoals}</p>
+                <p className="text-sm text-muted-foreground">{user.musicalGoals}</p>
               </div>
             </CardContent>
           </Card>
@@ -380,7 +257,7 @@ export function Profile() {
                   Preferred Times
                 </h4>
                 <div className="flex flex-wrap gap-1">
-                  {mockUser.preferredDateTime.map((time) => (
+                  {user.preferredDateTime.map((time) => (
                     <Badge key={time} variant="outline" className="text-xs">
                       {time}
                     </Badge>
@@ -413,7 +290,7 @@ export function Profile() {
                 </div>
               )}
 
-              {!mockUser.isAvailableForCollab && (
+              {!user.isAvailableForCollab && (
                 <div className="p-3 bg-muted/30 rounded">
                   <p className="text-sm text-muted-foreground">
                     Currently not actively looking for new collaborations
@@ -428,14 +305,14 @@ export function Profile() {
       {activeTab === 'media' && (
         <div className="space-y-6">
           {/* Music Links */}
-          {mockUser.musicLinks.length > 0 && (
+          {user.musicLinks.length > 0 && (
             <Card>
               <CardHeader>
                 <CardTitle>Music & Performances</CardTitle>
               </CardHeader>
               <CardContent>
                 <div className="grid md:grid-cols-2 gap-4">
-                  {mockUser.musicLinks.map((link, index) => (
+                  {user.musicLinks.map((link, index) => (
                     <a
                       key={index}
                       href={link.url}
@@ -458,14 +335,14 @@ export function Profile() {
           )}
 
           {/* Social Links */}
-          {mockUser.socialLinks.length > 0 && (
+          {user.socialLinks.length > 0 && (
             <Card>
               <CardHeader>
                 <CardTitle>Social & Online Presence</CardTitle>
               </CardHeader>
               <CardContent>
                 <div className="flex flex-wrap gap-3">
-                  {mockUser.socialLinks.map((link, index) => (
+                  {user.socialLinks.map((link, index) => (
                     <a
                       key={index}
                       href={link.url}
@@ -482,7 +359,7 @@ export function Profile() {
             </Card>
           )}
 
-          {mockUser.musicLinks.length === 0 && mockUser.socialLinks.length === 0 && (
+          {user.musicLinks.length === 0 && user.socialLinks.length === 0 && (
             <Card>
               <CardContent className="p-8 text-center">
                 <Music2 className="w-12 h-12 mx-auto mb-4 text-muted-foreground opacity-50" />
@@ -540,8 +417,7 @@ export function Profile() {
                 <div className="text-center py-6">
                   <Calendar className="w-8 h-8 mx-auto mb-2 text-muted-foreground opacity-50" />
                   <p className="text-muted-foreground">No jam session history yet</p>
-                  <p className="text-sm text-muted-foreground mt-1">
-                  </p>
+                  <p className="text-sm text-muted-foreground mt-1"></p>
                 </div>
               ) : (
                 <div className="space-y-3">
