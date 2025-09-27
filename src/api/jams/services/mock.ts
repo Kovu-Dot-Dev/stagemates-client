@@ -1,3 +1,5 @@
+import { mockMusicianProfiles } from '@/api/profiles/services/mock';
+
 import type { JamSession } from './types';
 
 export const mockJamSessions: JamSession[] = [
@@ -6,18 +8,7 @@ export const mockJamSessions: JamSession[] = [
     title: 'Sunday Jazz Jam',
     description:
       "Relaxed jazz session in downtown. All skill levels welcome! We'll have a piano and drum kit available.",
-    host: {
-      id: 'host1',
-      name: 'Marcus Williams',
-      bio: '',
-      location: 'Seattle, WA',
-      instruments: ['Piano', 'Keyboard'],
-      genres: ['Jazz'],
-      skillLevel: 'Advanced',
-      lookingFor: [],
-      image:
-        'https://images.unsplash.com/photo-1681070907979-33fb54f56c53?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHx5b3VuZyUyMG1hbiUyMG11c2ljaWFuJTIwcGlhbm98ZW58MXx8fHwxNzU4MDA3ODg1fDA&ixlib=rb-4.1.0&q=80&w=1080&utm_source=figma&utm_medium=referral',
-    },
+    host: mockMusicianProfiles[0],
     date: '2025-01-19',
     time: '14:00',
     location: 'Blue Note Cafe',
@@ -28,30 +19,8 @@ export const mockJamSessions: JamSession[] = [
     skillLevel: 'All Levels',
     type: 'open',
     participants: [
-      {
-        id: 'p1',
-        name: 'Emma Thompson',
-        bio: '',
-        location: 'Seattle, WA',
-        instruments: ['Saxophone'],
-        genres: ['Jazz'],
-        skillLevel: 'Intermediate',
-        lookingFor: [],
-        image:
-          'https://images.unsplash.com/photo-1755389176283-3cd924205df0?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHx5b3VuZyUyMHZpb2xpbmlzdCUyMG11c2ljaWFufGVufDF8fHx8MTc1ODAwODMyM3ww&ixlib=rb-4.1.0&q=80&w=1080&utm_source=figma&utm_medium=referral',
-      },
-      {
-        id: 'p2',
-        name: 'David Lee',
-        bio: '',
-        location: 'Seattle, WA',
-        instruments: ['Drums'],
-        genres: ['Jazz'],
-        skillLevel: 'Advanced',
-        lookingFor: [],
-        image:
-          'https://images.unsplash.com/photo-1719043108436-2ec4f31f1d3e?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHx5b3VuZyUyMGRydW1tZXIlMjBwZXJjdXNzaW9ufGVufDF8fHx8MTc1ODAwODIxMXww&ixlib=rb-4.1.0&q=80&w=1080&utm_source=figma&utm_medium=referral',
-      },
+      mockMusicianProfiles[1],
+      mockMusicianProfiles[2],
     ],
     setlist: [
       {
@@ -72,89 +41,20 @@ export const mockJamSessions: JamSession[] = [
         difficulty: 'Medium',
         duration: 6,
         key: 'Cm',
-        suggestedBy: 'Emma Thompson',
+        suggestedBy: 'Alice Johnson',
       },
     ],
     neededInstruments: ['Bass', 'Trumpet'],
     equipment: ['Piano', 'Drum Kit', 'PA System', 'Microphones'],
     price: 15,
-    discussion: [
-      {
-        id: 't1',
-        author: {
-          id: 'host1',
-          name: 'Marcus Williams',
-          bio: '',
-          location: 'Seattle, WA',
-          instruments: ['Piano', 'Keyboard'],
-          genres: ['Jazz'],
-          skillLevel: 'Advanced',
-          lookingFor: [],
-          image:
-            'https://images.unsplash.com/photo-1681070907979-33fb54f56c53?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHx5b3VuZyUyMG1hbiUyMG11c2ljaWFuJTIwcGlhbm98ZW58MXx8fHwxNzU4MDA3ODg1fDA&ixlib=rb-4.1.0&q=80&w=1080&utm_source=figma&utm_medium=referral',
-        },
-        content:
-          'Hey everyone! Really excited for this session. The venue has a beautiful Steinway grand piano, so we should be able to get some amazing sounds. Looking forward to seeing what everyone brings to the table!',
-        timestamp: '2025-01-18T10:30:00Z',
-        replies: [
-          {
-            id: 'r1',
-            author: {
-              id: 'p1',
-              name: 'Emma Thompson',
-              bio: '',
-              location: 'Seattle, WA',
-              instruments: ['Saxophone'],
-              genres: ['Jazz'],
-              skillLevel: 'Intermediate',
-              lookingFor: [],
-              image:
-                'https://images.unsplash.com/photo-1755389176283-3cd924205df0?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHx5b3VuZyUyMHZpb2xpbmlzdCUyMG11c2ljaWFufGVufDF8fHx8MTc1ODAwODMyM3ww&ixlib=rb-4.1.0&q=80&w=1080&utm_source=figma&utm_medium=referral',
-            },
-            content:
-              "That sounds fantastic! I'll bring my tenor sax. Should I prepare anything specific for Autumn Leaves?",
-            timestamp: '2025-01-18T11:15:00Z',
-          },
-        ],
-      },
-      {
-        id: 't2',
-        author: {
-          id: 'p2',
-          name: 'David Lee',
-          bio: '',
-          location: 'Seattle, WA',
-          instruments: ['Drums'],
-          genres: ['Jazz'],
-          skillLevel: 'Advanced',
-          lookingFor: [],
-          image:
-            'https://images.unsplash.com/photo-1719043108436-2ec4f31f1d3e?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHx5b3VuZyUyMGRydW1tZXIlMjBwZXJjdXNzaW9ufGVufDF8fHx8MTc1ODAwODIxMXww&ixlib=rb-4.1.0&q=80&w=1080&utm_source=figma&utm_medium=referral',
-        },
-        content:
-          'Quick question about parking - is there street parking available or should I look for a garage nearby?',
-        timestamp: '2025-01-18T14:20:00Z',
-        replies: [],
-      },
-    ],
+    discussion: [], // (could also map in mockMusicianProfiles if needed)
   },
   {
     id: '2',
     title: 'Rock Band Practice',
     description:
       'Looking for a bassist and drummer to complete our indie rock band. We have original songs ready to jam!',
-    host: {
-      id: 'host2',
-      name: 'Sarah Miller',
-      bio: '',
-      location: 'Austin, TX',
-      instruments: ['Guitar', 'Vocals'],
-      genres: ['Rock'],
-      skillLevel: 'Intermediate',
-      lookingFor: [],
-      image:
-        'https://images.unsplash.com/photo-1588374481268-6cf95436cde2?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHx5b3VuZSUyMHdvbWFuJTIwc2luZ2VyJTIwc29uZ3dyaXRlcnxlbnwxfHx8fDE3NTgwMDgyMDd8MA&ixlib=rb-4.1.0&q=80&w=1080&utm_source=figma&utm_medium=referral',
-    },
+    host: mockMusicianProfiles[1],
     date: '2025-01-20',
     time: '19:00',
     location: 'Rehearsal Space',
@@ -165,18 +65,8 @@ export const mockJamSessions: JamSession[] = [
     skillLevel: 'Intermediate',
     type: 'open',
     participants: [
-      {
-        id: 'p3',
-        name: 'Mike Johnson',
-        bio: '',
-        location: 'Austin, TX',
-        instruments: ['Guitar'],
-        genres: ['Rock'],
-        skillLevel: 'Intermediate',
-        lookingFor: [],
-        image:
-          'https://images.unsplash.com/photo-1594116558587-a9a952fe609a?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHx5b3VuZyUyMG11c2ljaWFuJTIwZ3VpdGFyaXN0fGVufDF8fHx8MTc1ODAwODIwNHww&ixlib=rb-4.1.0&q=80&w=1080&utm_source=figma&utm_medium=referral',
-      },
+      mockMusicianProfiles[0],
+      mockMusicianProfiles[2], 
     ],
     setlist: [
       {
@@ -194,45 +84,14 @@ export const mockJamSessions: JamSession[] = [
     equipment: ['Amplifiers', 'Microphones'],
     notes:
       'We have 3 original songs to work through. Looking for committed musicians for potential band formation.',
-    discussion: [
-      {
-        id: 't3',
-        author: {
-          id: 'host2',
-          name: 'Sarah Miller',
-          bio: '',
-          location: 'Austin, TX',
-          instruments: ['Guitar', 'Vocals'],
-          genres: ['Rock'],
-          skillLevel: 'Intermediate',
-          lookingFor: [],
-          image:
-            'https://images.unsplash.com/photo-1588374481268-6cf95436cde2?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHx5b3VuZSUyMHdvbWFuJTIwc2luZ2VyJTIwc29uZ3dyaXRlcnxlbnwxfHx8fDE3NTgwMDgyMDd8MA&ixlib=rb-4.1.0&q=80&w=1080&utm_source=figma&utm_medium=referral',
-        },
-        content:
-          "I can send chord charts and lyric sheets before the session if anyone's interested! Also, we're hoping to record a demo after a few practice sessions if the chemistry is right.",
-        timestamp: '2025-01-19T09:45:00Z',
-        replies: [],
-      },
-    ],
+    discussion: [],
   },
   {
     id: '3',
     title: 'Acoustic Songwriting Circle',
     description:
       "Bring your original songs or covers! We'll share, collaborate, and maybe create something new together.",
-    host: {
-      id: 'host3',
-      name: 'Jamie Foster',
-      bio: '',
-      location: 'Nashville, TN',
-      instruments: ['Guitar', 'Vocals'],
-      genres: ['Folk'],
-      skillLevel: 'Intermediate',
-      lookingFor: [],
-      image:
-        'https://images.unsplash.com/photo-1645162711239-f4a4925d3cdd?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHx5b3VuZyUyMG11c2ljaWFuJTIwa2V5Ym9hcmQlMjBwcm9kdWNlcnxlbnwxfHx8fDE3NTgwMDgyMTR8MA&ixlib=rb-4.1.0&q=80&w=1080&utm_source=figma&utm_medium=referral',
-    },
+    host:  mockMusicianProfiles[2], 
     date: '2025-01-21',
     time: '18:30',
     location: 'Community Center',
@@ -243,50 +102,8 @@ export const mockJamSessions: JamSession[] = [
     skillLevel: 'All Levels',
     type: 'open',
     participants: [
-      {
-        id: 'p4',
-        name: 'Alex Rivera',
-        bio: '',
-        location: 'Nashville, TN',
-        instruments: ['Mandolin'],
-        genres: ['Folk'],
-        skillLevel: 'Intermediate',
-        image: '',
-        lookingFor: [],
-      },
-      {
-        id: 'p5',
-        name: 'Kelly Smith',
-        bio: '',
-        location: 'Nashville, TN',
-        instruments: ['Violin'],
-        genres: ['Folk'],
-        skillLevel: 'Advanced',
-        image: '',
-        lookingFor: [],
-      },
-      {
-        id: 'p6',
-        name: 'Ryan Davis',
-        bio: '',
-        location: 'Nashville, TN',
-        instruments: ['Harmonica'],
-        genres: ['Folk'],
-        skillLevel: 'Beginner',
-        image: '',
-        lookingFor: [],
-      },
-      {
-        id: 'p7',
-        name: 'Taylor Wilson',
-        bio: '',
-        location: 'Nashville, TN',
-        instruments: ['Bass'],
-        genres: ['Folk'],
-        skillLevel: 'Intermediate',
-        image: '',
-        lookingFor: [],
-      },
+      mockMusicianProfiles[0],
+      mockMusicianProfiles[1],
     ],
     setlist: [],
     neededInstruments: ['Banjo', 'Cajon'],

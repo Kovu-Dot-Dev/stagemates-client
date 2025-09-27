@@ -29,12 +29,10 @@ import {
 import { Textarea } from '@/components/ui/Textarea';
 
 interface JamDiscoveryProps {
-  currentUser?: MusicianProfile;
   onCreateJam?: (jam: Omit<JamSession, 'id' | 'host' | 'participants'>) => void;
 }
 
 export function JamDiscovery({
-  currentUser = mockMusicianProfiles[0],
   onCreateJam = () => {},
 }: JamDiscoveryProps) {
   const [searchTerm, setSearchTerm] = useState('');

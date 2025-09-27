@@ -15,33 +15,13 @@ export type MusicianProfile = {
   songs: Song[];
   instruments: string[];
   genres: string[];
-  availability: {
-    days: string[];
-    timeOfDay: string[];
-    frequency: string;
-  };
   vibes?: Vibe[];
 
     soundCloudUrl?: string;
   youtubeUrl?: string;
   spotifyUrl?: string;
-};
 
-export type Vibe = {
-  question: string;
-  answer: string;
-};
-
-export type Song = {
-  title: string;
-  artist: string;
-  wantToPlay: boolean;
-  enjoy: boolean;
-  skill: 1 | 2 | 3 | 4 | 5;
-};
-
-export interface UserProfileData extends MusicianProfile {
-  primaryInstruments: string[];
+    primaryInstruments: string[];
   secondaryInstruments: string[];
   preferredGenres: string[];
   collaborationInterests: string[];
@@ -67,7 +47,20 @@ export interface UserProfileData extends MusicianProfile {
   musicalGoals: string;
   yearsExperience: number;
   isAvailableForCollab: boolean;
-}
+};
+
+export type Vibe = {
+  question: string;
+  answer: string;
+};
+
+export type Song = {
+  title: string;
+  artist: string;
+  wantToPlay: boolean;
+  enjoy: boolean;
+  skill: 1 | 2 | 3 | 4 | 5;
+};
 
 export interface JamHistoryItem {
   id: string;

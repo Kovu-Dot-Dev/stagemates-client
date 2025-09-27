@@ -1,6 +1,6 @@
-import type { UserProfileData } from './types';
+import type { MusicianProfile } from './types';
 
-export const mockMusicianProfiles: UserProfileData[] = [
+export const mockMusicianProfiles: MusicianProfile[] = [
   {
     id: 'u1',
     name: 'Alice Johnson',
@@ -11,20 +11,27 @@ export const mockMusicianProfiles: UserProfileData[] = [
       { title: 'Blackbird', artist: 'The Beatles', wantToPlay: false, enjoy: true, skill: 4 },
       { title: 'Fast Car', artist: 'Tracy Chapman', wantToPlay: true, enjoy: false, skill: 2 },
     ],
+    lookingFor: ['Recording Projects', 'Live Performances', 'Experimental Music'],
     instruments: ['Guitar', 'Ukulele'],
     genres: ['Indie', 'Folk', 'Rock'],
     bio: `I’m a self-taught guitarist with about 5 years of experience, and I love acoustic sessions and songwriting. 
       
 I started with simple campfire songs and grew into fingerstyle arrangements over time. I’m passionate about how music brings people together and I often experiment with open tunings. When I’m not jamming, I like writing my own songs and recording small demos with friends.`,
     availability: {
-      days: ["Tuesday", "Thursday", "Saturday", "Sunday"],
-      timeOfDay: ["Evening", "Weekend"],
-      frequency: "2-3 times per week"
+      days: ['Tuesday', 'Thursday', 'Saturday', 'Sunday'],
+      timeOfDay: ['Evening', 'Weekend'],
+      frequency: '2-3 times per week',
     },
     vibes: [
-      { question: 'Three artists I wish I could jam with:', answer: 'Joni Mitchell, Phoebe Bridgers, Ed Sheeran' },
+      {
+        question: 'Three artists I wish I could jam with:',
+        answer: 'Joni Mitchell, Phoebe Bridgers, Ed Sheeran',
+      },
       { question: 'My sound is a mix of...', answer: 'Indie folk and heartfelt acoustic pop.' },
-      { question: 'My ultimate musical dream-collab:', answer: 'A songwriting session with Taylor Swift.' },
+      {
+        question: 'My ultimate musical dream-collab:',
+        answer: 'A songwriting session with Taylor Swift.',
+      },
     ],
 
     // 🔽 Extra fields for UserProfileData
@@ -35,13 +42,18 @@ I started with simple campfire songs and grew into fingerstyle arrangements over
     preferredJamSettings: ['Acoustic', 'Small groups'],
     preferredDateTime: ['Weekends', 'Evenings'],
     musicLinks: [
-      { type: 'youtube', url: 'https://youtube.com/alicejohnson', title: 'Alice’s Covers' }
+      { type: 'youtube', url: 'https://youtube.com/alicejohnson', title: 'Alice’s Covers' },
     ],
-    socialLinks: [
-      { type: 'instagram', url: 'https://instagram.com/alicejohnson' }
-    ],
+    socialLinks: [{ type: 'instagram', url: 'https://instagram.com/alicejohnson' }],
     jamHistory: [
-      { id: 'j1', title: 'Indie Night Jam', date: '2025-01-12', type: 'past', role: 'participant', genre: 'Indie' }
+      {
+        id: 'j1',
+        title: 'Indie Night Jam',
+        date: '2025-01-12',
+        type: 'past',
+        role: 'participant',
+        genre: 'Indie',
+      },
     ],
     influences: 'Joni Mitchell, Phoebe Bridgers, Ed Sheeran',
     performanceStyle: 'Fingerstyle acoustic with storytelling',
@@ -58,20 +70,30 @@ I started with simple campfire songs and grew into fingerstyle arrangements over
       { title: 'So What', artist: 'Miles Davis', wantToPlay: false, enjoy: true, skill: 4 },
       { title: 'Spain', artist: 'Chick Corea', wantToPlay: true, enjoy: false, skill: 3 },
     ],
+    lookingFor: ['Recording Projects', 'Live Performances', 'Experimental Music'],
     instruments: ['Piano', 'Saxophone'],
     genres: ['Jazz', 'Blues'],
     bio: `I trained classically on piano for nearly a decade, but eventually fell in love with jazz and the freedom it gives me to improvise. These days I enjoy both structured playing and completely unplanned jam sessions. 
     
 I’m especially interested in modal improvisation and complex chord progressions. Outside of performing, I spend time teaching, and I run a small jazz club where we listen, analyze, and play together.`,
     availability: {
-      days: ["Tuesday", "Thursday", "Saturday", "Sunday"],
-      timeOfDay: ["Evening", "Weekend"],
-      frequency: "2-3 times per week"
+      days: ['Tuesday', 'Thursday', 'Saturday', 'Sunday'],
+      timeOfDay: ['Evening', 'Weekend'],
+      frequency: '2-3 times per week',
     },
     vibes: [
-      { question: 'Three artists I wish I could jam with:', answer: 'Herbie Hancock, Esperanza Spalding, John Coltrane' },
-      { question: 'My sound is a mix of...', answer: 'Modal jazz, blues, and improvisational freedom.' },
-      { question: 'My ultimate musical dream-collab:', answer: 'Trading solos with Chick Corea on stage.' },
+      {
+        question: 'Three artists I wish I could jam with:',
+        answer: 'Herbie Hancock, Esperanza Spalding, John Coltrane',
+      },
+      {
+        question: 'My sound is a mix of...',
+        answer: 'Modal jazz, blues, and improvisational freedom.',
+      },
+      {
+        question: 'My ultimate musical dream-collab:',
+        answer: 'Trading solos with Chick Corea on stage.',
+      },
     ],
 
     // 🔽 Extra fields
@@ -82,13 +104,18 @@ I’m especially interested in modal improvisation and complex chord progression
     preferredJamSettings: ['Live clubs', 'Studio sessions'],
     preferredDateTime: ['Weeknights', 'Weekends'],
     musicLinks: [
-      { type: 'spotify', url: 'https://spotify.com/marcuslee', title: 'Marcus Jazz Trio' }
+      { type: 'spotify', url: 'https://spotify.com/marcuslee', title: 'Marcus Jazz Trio' },
     ],
-    socialLinks: [
-      { type: 'twitter', url: 'https://twitter.com/marcuslee' }
-    ],
+    socialLinks: [{ type: 'twitter', url: 'https://twitter.com/marcuslee' }],
     jamHistory: [
-      { id: 'j2', title: 'Blue Note Jam', date: '2025-02-05', type: 'upcoming', role: 'host', genre: 'Jazz' }
+      {
+        id: 'j2',
+        title: 'Blue Note Jam',
+        date: '2025-02-05',
+        type: 'upcoming',
+        role: 'host',
+        genre: 'Jazz',
+      },
     ],
     influences: 'Bill Evans, Chick Corea, Thelonious Monk',
     performanceStyle: 'Modal jazz with improvisational flair',
@@ -105,18 +132,28 @@ I’m especially interested in modal improvisation and complex chord progression
       { title: 'Vivir Mi Vida', artist: 'Marc Anthony', wantToPlay: true, enjoy: true, skill: 5 },
       { title: 'La Cumparsita', artist: 'Carlos Gardel', wantToPlay: true, enjoy: false, skill: 2 },
     ],
+    lookingFor: ['Recording Projects', 'Live Performances', 'Experimental Music'],
     instruments: ['Vocals', 'Percussion'],
     genres: ['Latin', 'Pop', 'World'],
     bio: `I’m a singer with roots in Latin music. I love mixing traditional rhythms with modern pop and bringing that energy into every performance. Music has always been part of my family, and now I want to share that passion with others.`,
     availability: {
-      days: ["Tuesday", "Thursday", "Saturday", "Sunday"],
-      timeOfDay: ["Evening", "Weekend"],
-      frequency: "2-3 times per week"
+      days: ['Tuesday', 'Thursday', 'Saturday', 'Sunday'],
+      timeOfDay: ['Evening', 'Weekend'],
+      frequency: '2-3 times per week',
     },
     vibes: [
-      { question: 'Three artists I wish I could jam with:', answer: 'Shakira, Marc Anthony, Rosalía' },
-      { question: 'My sound is a mix of...', answer: 'Latin rhythms, pop melodies, and heartfelt vocals.' },
-      { question: 'My ultimate musical dream-collab:', answer: 'A salsa-pop fusion with Carlos Vives.' },
+      {
+        question: 'Three artists I wish I could jam with:',
+        answer: 'Shakira, Marc Anthony, Rosalía',
+      },
+      {
+        question: 'My sound is a mix of...',
+        answer: 'Latin rhythms, pop melodies, and heartfelt vocals.',
+      },
+      {
+        question: 'My ultimate musical dream-collab:',
+        answer: 'A salsa-pop fusion with Carlos Vives.',
+      },
     ],
 
     // 🔽 Extra fields
@@ -127,13 +164,22 @@ I’m especially interested in modal improvisation and complex chord progression
     preferredJamSettings: ['Festivals', 'Open-air stages'],
     preferredDateTime: ['Weekends'],
     musicLinks: [
-      { type: 'soundcloud', url: 'https://soundcloud.com/sofiaramirez', title: 'Sofia Live Sessions' }
+      {
+        type: 'soundcloud',
+        url: 'https://soundcloud.com/sofiaramirez',
+        title: 'Sofia Live Sessions',
+      },
     ],
-    socialLinks: [
-      { type: 'facebook', url: 'https://facebook.com/sofiaramirez' }
-    ],
+    socialLinks: [{ type: 'facebook', url: 'https://facebook.com/sofiaramirez' }],
     jamHistory: [
-      { id: 'j3', title: 'Latin Beats Jam', date: '2025-03-10', type: 'upcoming', role: 'participant', genre: 'Latin' }
+      {
+        id: 'j3',
+        title: 'Latin Beats Jam',
+        date: '2025-03-10',
+        type: 'upcoming',
+        role: 'participant',
+        genre: 'Latin',
+      },
     ],
     influences: 'Celia Cruz, Marc Anthony, Rosalía',
     performanceStyle: 'Energetic Latin pop fusion with strong vocals',
