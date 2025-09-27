@@ -60,6 +60,7 @@ I started with simple campfire songs and grew into fingerstyle arrangements over
     musicalGoals: 'Collaborate with more songwriters and perform original music',
     yearsExperience: 5,
     isAvailableForCollab: true,
+    skillLevel: 'Intermediate',
   },
   {
     id: 'u2',
@@ -122,6 +123,7 @@ I’m especially interested in modal improvisation and complex chord progression
     musicalGoals: 'Record a live album and expand jazz education initiatives',
     yearsExperience: 12,
     isAvailableForCollab: true,
+    skillLevel: 'Advanced',
   },
   {
     id: 'u3',
@@ -186,5 +188,6 @@ I’m especially interested in modal improvisation and complex chord progression
     musicalGoals: 'Bring Latin music to global stages and record a crossover album',
     yearsExperience: 8,
     isAvailableForCollab: true,
+    skillLevel: 'Advanced',
   },
 ] as const;
