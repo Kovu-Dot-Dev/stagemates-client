@@ -161,7 +161,7 @@ export function DiscoveryFeed({
           <Link to={`/profiles/${musician.id}`} key={musician.id} className="no-underline">
             <Card
               key={item.id}
-              className="hover:shadow-md transition-shadow relative"
+              className="hover:shadow-md transition-shadow pb-0"
               style={{
                 backgroundImage: `url(${musician.image || 'https://placehold.co/100x100'})`,
                 backgroundSize: 'cover',
@@ -175,8 +175,9 @@ export function DiscoveryFeed({
                     className="rounded-md justify-self-center-safe"
                   />
                 </Box>
+                {/* <Box style={{ minHeight: 120, background: 'transparent' }} /> */}
               </CardHeader>
-              <CardContent className="p-6 absolute bottom-0 bg-background/90">
+              <CardContent className="p-4 bottom-0 bg-background/90">
                 <div className="flex items-start space-x-4">
                   <div className="flex-1 min-w-0">
                     <div className="flex items-start justify-between">
@@ -189,7 +190,7 @@ export function DiscoveryFeed({
                         <p className="text-sm text-muted-foreground mb-2">{musician.location}</p>
                         {/* <p className="text-sm mb-3 line-clamp-2">{musician.bio}</p> */}
 
-                        <div className="flex flex-wrap gap-2 mb-3">
+                        <div className="flex flex-wrap gap-2">
                           {musician?.instruments?.slice(0, 3).map((instrument) => (
                             <Badge
                               key={instrument}
@@ -205,9 +206,7 @@ export function DiscoveryFeed({
                               +{musician.instruments.length - 3}
                             </Badge>
                           )}
-                        </div>
 
-                        <div className="flex flex-wrap gap-1 mb-3">
                           {musician?.genres?.slice(0, 4).map((genre) => (
                             <Badge
                               key={genre}
@@ -261,31 +260,32 @@ export function DiscoveryFeed({
         return (
           <Card
             key={item.id}
-            className="hover:shadow-md transition-shadow cursor-pointer"
-            onClick={() => onViewJam(jam)}>
-            <CardHeader className="pb-3">
-              <div className="flex items-start justify-between">
-                <div className="flex-1">
-                  <div className="flex items-center justify-between">
-                    <CardTitle className="text-lg">{jam.title}</CardTitle>
-                    {/* <ChevronRight className="w-5 h-5 text-muted-foreground" /> */}
-                  </div>
-                  <div className="flex items-center text-sm text-muted-foreground mt-1">
-                    Hosted by {jam.host.name}
-                    <ClickableAvatar
-                      route={`/profiles/${jam.host.id}`}
-                      src={jam.host.image}
-                      fallback={jam.host.name.charAt(0)}
-                      className="ms-2 w-6 h-6 mr-2"
-                    />
-                  </div>
-                </div>
-                {/* <div className="text-xs text-muted-foreground">{formatTimeAgo(item.timestamp)}</div> */}
-              </div>
+            className="hover:shadow-md transition-shadow pb-0 max-h-300 relative"
+            style={{
+              backgroundImage: `url(${jam?.image || 'https://placehold.co/300x300'})`,
+              backgroundSize: 'cover',
+              backgroundPosition: 'center',
+            }}>
+            <CardHeader>
+              <Box className="border border-background rounded">
+                <img
+                  src={jam?.image || 'https://placehold.co/300x300'}
+                  alt={jam.title}
+                  className="rounded-md border-background justify-self-center-safe object-cover"
+                />
+              </Box>
+              {/* <Box style={{ minHeight: 120, background: 'transparent' }} /> */}
             </CardHeader>
-            <CardContent className="space-y-4">
-              <p className="text-sm text-muted-foreground">{jam.description}</p>
 
+            <CardContent className="p-4 absolute bottom-0 bg-background/90">
+              <CardTitle className="flex items-center justify-between">
+                <span className="text-lg font-semibold">{jam.title}</span>
+                <Badge
+                  variant="secondary"
+                  className="text-xs bg-emerald-100 text-emerald-700 border-emerald-300">
+                  {jam.skillLevel}
+                </Badge>
+              </CardTitle>
               <div className="flex flex-wrap gap-4 text-sm text-muted-foreground">
                 <div className="flex items-center">
                   <Calendar className="w-4 h-4 mr-1" />
@@ -295,29 +295,35 @@ export function DiscoveryFeed({
                   <MapPin className="w-4 h-4 mr-1" />
                   {jam.location}
                 </div>
+                <div className="flex flex-wrap gap-1">
+                  {jam.genres.map((genre) => (
+                    <Badge
+                      key={genre}
+                      variant="outline"
+                      className="text-xs border-cyan-400 text-cyan-700 bg-cyan-50/80">
+                      {genre}
+                    </Badge>
+                  ))}
+                </div>
+              </div>
+              <div className="mt-2 flex justify-between items-center">
                 <div className="flex items-center">
                   <Users className="w-4 h-4 mr-1" />
                   {jam.currentParticipants}/{jam.maxParticipants} participants
                 </div>
+                <Button
+                  onClick={(e) => {
+                    e.stopPropagation();
+                    onJoinJam(jam);
+                  }}
+                  disabled={jam.currentParticipants >= jam.maxParticipants}
+                  size="sm">
+                  {jam.currentParticipants >= jam.maxParticipants ? 'Full' : 'Join'}
+                </Button>
               </div>
+              {/* <p className="text-sm text-muted-foreground">{jam.description}</p> */}
 
-              <div className="flex flex-wrap gap-1">
-                {jam.genres.map((genre) => (
-                  <Badge
-                    key={genre}
-                    variant="outline"
-                    className="text-xs border-cyan-400 text-cyan-700 bg-cyan-50/80">
-                    {genre}
-                  </Badge>
-                ))}
-                <Badge
-                  variant="secondary"
-                  className="text-xs bg-emerald-100 text-emerald-700 border-emerald-300">
-                  {jam.skillLevel}
-                </Badge>
-              </div>
-
-              <div className="flex justify-between items-center">
+              {/* <div className="flex justify-between items-center">
                 <div className="text-sm text-muted-foreground">
                   {jam.maxParticipants - jam.currentParticipants} spots left
                 </div>
@@ -330,7 +336,7 @@ export function DiscoveryFeed({
                   size="sm">
                   {jam.currentParticipants >= jam.maxParticipants ? 'Full' : 'Join'}
                 </Button>
-              </div>
+              </div> */}
             </CardContent>
           </Card>
         );
@@ -340,7 +346,7 @@ export function DiscoveryFeed({
   };
 
   return (
-    <div className="max-w-3xl mx-auto space-y-6">
+    <div className="max-w-5xl mx-auto space-y-6">
       {/* Header and Filters */}
       <div className="space-y-4">
         <div>
@@ -393,7 +399,7 @@ export function DiscoveryFeed({
       </div>
 
       {/* Feed */}
-      <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
         {filteredItems.length === 0 ? (
           <Card className="p-8 text-center">
             <Music className="w-12 h-12 mx-auto text-muted-foreground mb-4" />

@@ -89,7 +89,8 @@ const mockPosts: Post[] = [
 const mockJamSessions: JamSession[] = [
   {
     id: 'jam1',
-    title: 'Sunday Jazz Jam',
+    title: 'Wednesday Jazz Jam',
+    image: 'https://i.pinimg.com/736x/7e/70/a0/7e70a055856e7799e54213cba928cba3.jpg',
     description:
       "Relaxed jazz session in downtown. All skill levels welcome! We'll have a piano and drum kit available.",
     host: mockMusicianProfiles[1],

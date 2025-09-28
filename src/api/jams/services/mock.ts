@@ -6,6 +6,7 @@ export const mockJamSessions: JamSession[] = [
   {
     id: '1',
     title: 'Sunday Jazz Jam',
+    image: 'https://i.pinimg.com/736x/7e/70/a0/7e70a055856e7799e54213cba928cba3.jpg',
     description:
       "Relaxed jazz session in downtown. All skill levels welcome! We'll have a piano and drum kit available.",
     host: mockMusicianProfiles[0],
@@ -64,8 +65,7 @@ export const mockJamSessions: JamSession[] = [
       {
         id: 't2',
         author: mockMusicianProfiles[2],
-        content:
-          'Quick question: is there good parking around Blue Note Cafe?',
+        content: 'Quick question: is there good parking around Blue Note Cafe?',
         timestamp: '2025-01-18T14:20:00Z',
         replies: [],
       },
@@ -115,7 +115,7 @@ export const mockJamSessions: JamSession[] = [
             id: 'r2',
             author: mockMusicianProfiles[2],
             content:
-              "Got it! I’ll bring my guitar pedalboard so we can experiment with some new tones.",
+              'Got it! I’ll bring my guitar pedalboard so we can experiment with some new tones.',
             timestamp: '2025-01-19T17:00:00Z',
           },
         ],
@@ -123,8 +123,7 @@ export const mockJamSessions: JamSession[] = [
       {
         id: 't4',
         author: mockMusicianProfiles[0],
-        content:
-          'Do we need to bring our own mics, or will the rehearsal space provide them?',
+        content: 'Do we need to bring our own mics, or will the rehearsal space provide them?',
         timestamp: '2025-01-19T18:45:00Z',
         replies: [],
       },
@@ -149,8 +148,7 @@ export const mockJamSessions: JamSession[] = [
     setlist: [],
     neededInstruments: ['Banjo', 'Cajon'],
     equipment: ['Acoustic Amplifier', 'Microphones'],
-    notes:
-      "Bring your own acoustic instruments. We'll have coffee and snacks available.",
+    notes: "Bring your own acoustic instruments. We'll have coffee and snacks available.",
     discussion: [
       {
         id: 't5',
@@ -171,8 +169,7 @@ export const mockJamSessions: JamSession[] = [
       {
         id: 't6',
         author: mockMusicianProfiles[1],
-        content:
-          'Will there be a PA available for vocals, or should we stick to unplugged?',
+        content: 'Will there be a PA available for vocals, or should we stick to unplugged?',
         timestamp: '2025-01-20T14:45:00Z',
         replies: [],
       },

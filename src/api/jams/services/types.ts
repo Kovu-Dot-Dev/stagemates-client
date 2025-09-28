@@ -23,6 +23,7 @@ export type JamSession = {
   title: string;
   description: string;
   host: Partial<MusicianProfile>;
+  image?: string;
   date: string;
   time: string;
   location: string;
