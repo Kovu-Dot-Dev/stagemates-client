@@ -267,14 +267,14 @@ export function DiscoveryFeed({
               backgroundPosition: 'center',
             }}>
             <CardHeader>
-              <Box className="border border-background rounded">
+              {/* <Box className="border border-background rounded">
                 <img
                   src={jam?.image || 'https://placehold.co/300x300'}
                   alt={jam.title}
                   className="rounded-md border-background justify-self-center-safe object-cover"
                 />
-              </Box>
-              {/* <Box style={{ minHeight: 120, background: 'transparent' }} /> */}
+              </Box> */}
+              <Box className="min-h-100 bg-transparent"></Box>
             </CardHeader>
 
             <CardContent className="p-4 absolute bottom-0 bg-background/90">
@@ -302,6 +302,18 @@ export function DiscoveryFeed({
                       variant="outline"
                       className="text-xs border-cyan-400 text-cyan-700 bg-cyan-50/80">
                       {genre}
+                    </Badge>
+                  ))}
+                </div>
+                {/* add instruments jam is looking for */}
+                <div className="flex items-center gap-1">
+                  <span className="font-semibold text-xs text-blue-700 mr-1">Needs:</span>
+                  {jam.neededInstruments.map((instrument) => (
+                    <Badge
+                      key={instrument}
+                      variant="secondary"
+                      className="text-xs border-blue-600 text-blue-900 bg-blue-100 font-semibold px-2 py-1 shadow-sm">
+                      {instrumentWithIcon(instrument)}
                     </Badge>
                   ))}
                 </div>
