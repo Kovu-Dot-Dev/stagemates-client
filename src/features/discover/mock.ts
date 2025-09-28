@@ -125,18 +125,18 @@ export const createFeedItems = (): FeedItem[] => {
       data: jam,
       timestamp: new Date(Date.now() - Math.random() * 12 * 60 * 60 * 1000).toISOString(),
     })),
-    ...mockBands.map((band) => ({
-      id: `band-${band.id}`,
-      type: 'band' as const,
-      data: band,
-      timestamp: new Date(Date.now() - Math.random() * 6 * 60 * 60 * 1000).toISOString(),
-    })),
-    ...mockPosts.map((post) => ({
-      id: `post-${post.id}`,
-      type: 'post' as const,
-      data: post,
-      timestamp: post.timestamp,
-    })),
+    // ...mockBands.map((band) => ({
+    //   id: `band-${band.id}`,
+    //   type: 'band' as const,
+    //   data: band,
+    //   timestamp: new Date(Date.now() - Math.random() * 6 * 60 * 60 * 1000).toISOString(),
+    // })),
+    // ...mockPosts.map((post) => ({
+    //   id: `post-${post.id}`,
+    //   type: 'post' as const,
+    //   data: post,
+    //   timestamp: post.timestamp,
+    // })),
   ];
 
   return items.sort((a, b) => new Date(b.timestamp).getTime() - new Date(a.timestamp).getTime());
