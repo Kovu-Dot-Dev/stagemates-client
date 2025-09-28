@@ -263,89 +263,89 @@ export function DiscoveryFeed({
       case 'jam':
         const jam = item.data as JamSession;
         return (
-          <Card
-            key={item.id}
-            className="hover:shadow-md transition-shadow pb-0 h-120 relative"
-            style={{
-              backgroundImage: `url(${jam?.image || 'https://placehold.co/300x300'})`,
-              backgroundSize: 'cover',
-              backgroundPosition: 'center',
-            }}>
-            <CardHeader>
-              {/* <Box className="border border-background rounded">
+          <Link to={`/jams/${jam.id}`} key={item.id} className="no-underline">
+            <Card
+              className="hover:shadow-md transition-shadow pb-0 h-120 relative"
+              style={{
+                backgroundImage: `url(${jam?.image || 'https://placehold.co/300x300'})`,
+                backgroundSize: 'cover',
+                backgroundPosition: 'center',
+              }}>
+              <CardHeader>
+                {/* <Box className="border border-background rounded">
                 <img
                   src={jam?.image || 'https://placehold.co/300x300'}
                   alt={jam.title}
                   className="rounded-md border-background justify-self-center-safe object-cover"
                 />
               </Box> */}
-              <Box className="min-h-100 bg-transparent"></Box>
-            </CardHeader>
+                <Box className="min-h-100 bg-transparent"></Box>
+              </CardHeader>
 
-            <CardContent
-              className="p-4 absolute bottom-0 w-full min-h-50 rounded-b-[inherit]"
-              style={{
-                background:
-                  'linear-gradient(to top, rgba(255,255,255,0.95) 0%, rgba(255,255,255,0.80) 90%)',
-              }}>
-              <CardTitle className="flex items-center justify-between">
-                <span className="text-lg font-semibold">{jam.title}</span>
-                <Badge
-                  variant="secondary"
-                  className="text-xs bg-emerald-100 text-emerald-700 border-emerald-300">
-                  {jam.skillLevel}
-                </Badge>
-              </CardTitle>
-              <div className="flex flex-wrap gap-4 text-sm text-muted-foreground">
-                <div className="flex items-center">
-                  <Calendar className="w-4 h-4 mr-1" />
-                  {new Date(jam.date).toLocaleDateString()} at {jam.time}
+              <CardContent
+                className="p-4 absolute bottom-0 w-full min-h-50 rounded-b-[inherit]"
+                style={{
+                  background:
+                    'linear-gradient(to top, rgba(255,255,255,0.95) 0%, rgba(255,255,255,0.80) 90%)',
+                }}>
+                <CardTitle className="flex items-center justify-between">
+                  <span className="text-lg font-semibold">{jam.title}</span>
+                  <Badge
+                    variant="secondary"
+                    className="text-xs bg-emerald-100 text-emerald-700 border-emerald-300">
+                    {jam.skillLevel}
+                  </Badge>
+                </CardTitle>
+                <div className="flex flex-wrap gap-4 text-sm text-muted-foreground">
+                  <div className="flex items-center">
+                    <Calendar className="w-4 h-4 mr-1" />
+                    {new Date(jam.date).toLocaleDateString()} at {jam.time}
+                  </div>
+                  <div className="flex items-center">
+                    <MapPin className="w-4 h-4 mr-1" />
+                    {jam.location}
+                  </div>
+                  <div className="flex flex-wrap gap-1">
+                    {jam.genres.map((genre) => (
+                      <Badge
+                        key={genre}
+                        variant="outline"
+                        className="text-xs border-cyan-400 text-cyan-700 bg-cyan-50/80">
+                        {genre}
+                      </Badge>
+                    ))}
+                  </div>
+                  {/* add instruments jam is looking for */}
+                  <div className="flex items-center gap-1">
+                    <span className="font-semibold text-xs text-blue-700 mr-1">Needs:</span>
+                    {jam.neededInstruments.map((instrument) => (
+                      <Badge
+                        key={instrument}
+                        variant="secondary"
+                        className="text-xs border-blue-600 text-blue-900 bg-blue-100 font-semibold px-2 py-1 shadow-sm">
+                        {instrumentWithIcon(instrument)}
+                      </Badge>
+                    ))}
+                  </div>
                 </div>
-                <div className="flex items-center">
-                  <MapPin className="w-4 h-4 mr-1" />
-                  {jam.location}
+                <div className="mt-2 flex justify-between items-center">
+                  <div className="flex items-center">
+                    <Users className="w-4 h-4 mr-1" />
+                    {jam.currentParticipants}/{jam.maxParticipants} participants
+                  </div>
+                  <Button
+                    onClick={(e) => {
+                      e.stopPropagation();
+                      onJoinJam(jam);
+                    }}
+                    disabled={jam.currentParticipants >= jam.maxParticipants}
+                    size="sm">
+                    {jam.currentParticipants >= jam.maxParticipants ? 'Full' : 'Join'}
+                  </Button>
                 </div>
-                <div className="flex flex-wrap gap-1">
-                  {jam.genres.map((genre) => (
-                    <Badge
-                      key={genre}
-                      variant="outline"
-                      className="text-xs border-cyan-400 text-cyan-700 bg-cyan-50/80">
-                      {genre}
-                    </Badge>
-                  ))}
-                </div>
-                {/* add instruments jam is looking for */}
-                <div className="flex items-center gap-1">
-                  <span className="font-semibold text-xs text-blue-700 mr-1">Needs:</span>
-                  {jam.neededInstruments.map((instrument) => (
-                    <Badge
-                      key={instrument}
-                      variant="secondary"
-                      className="text-xs border-blue-600 text-blue-900 bg-blue-100 font-semibold px-2 py-1 shadow-sm">
-                      {instrumentWithIcon(instrument)}
-                    </Badge>
-                  ))}
-                </div>
-              </div>
-              <div className="mt-2 flex justify-between items-center">
-                <div className="flex items-center">
-                  <Users className="w-4 h-4 mr-1" />
-                  {jam.currentParticipants}/{jam.maxParticipants} participants
-                </div>
-                <Button
-                  onClick={(e) => {
-                    e.stopPropagation();
-                    onJoinJam(jam);
-                  }}
-                  disabled={jam.currentParticipants >= jam.maxParticipants}
-                  size="sm">
-                  {jam.currentParticipants >= jam.maxParticipants ? 'Full' : 'Join'}
-                </Button>
-              </div>
-              {/* <p className="text-sm text-muted-foreground">{jam.description}</p> */}
+                {/* <p className="text-sm text-muted-foreground">{jam.description}</p> */}
 
-              {/* <div className="flex justify-between items-center">
+                {/* <div className="flex justify-between items-center">
                 <div className="text-sm text-muted-foreground">
                   {jam.maxParticipants - jam.currentParticipants} spots left
                 </div>
@@ -359,8 +359,9 @@ export function DiscoveryFeed({
                   {jam.currentParticipants >= jam.maxParticipants ? 'Full' : 'Join'}
                 </Button>
               </div> */}
-            </CardContent>
-          </Card>
+              </CardContent>
+            </Card>
+          </Link>
         );
       default:
         return null;
