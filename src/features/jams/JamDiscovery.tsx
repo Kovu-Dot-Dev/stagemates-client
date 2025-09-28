@@ -85,7 +85,10 @@ export function JamDiscovery({ onCreateJam = () => {} }: JamDiscoveryProps) {
       {/* Header with Search and Create */}
       <div className="flex flex-col space-y-4">
         <div className="flex items-center justify-between">
-          <h1>Discover Jam Sessions</h1>
+          <div>
+            <h1 className="text-2xl mb-2">Jams</h1>
+            <p>Discover Jam Sessions</p>
+          </div>
           <Dialog open={isCreateDialogOpen} onOpenChange={setIsCreateDialogOpen}>
             <DialogTrigger asChild>
               <Button>

@@ -3,7 +3,9 @@ import { Search } from 'lucide-react';
 import { useState } from 'react';
 import { Link } from 'react-router';
 
+import type { JamSession } from '@/api/jams/services/types';
 import { useProfilesQuery } from '@/api/profiles/hooks/useProfilesQuery';
+import type { MusicianProfile } from '@/api/profiles/services/types';
 import { ClickableAvatar } from '@/components/block/ClickableAvater';
 import { Badge } from '@/components/ui/Badge';
 import { Button } from '@/components/ui/Button';
@@ -20,7 +22,6 @@ import {
 export const AllProfiles: React.FC = () => {
   const { data: profiles, isLoading } = useProfilesQuery();
   const [searchTerm, setSearchTerm] = useState('');
-  const [filterType, setFilterType] = useState<string>('all');
   const [filterGenre, setFilterGenre] = useState<string>('');
 
   if (isLoading) {
@@ -30,6 +31,14 @@ export const AllProfiles: React.FC = () => {
   if (!profiles || !profiles.length) {
     return 'No profiles found';
   }
+  const filteredMusicians = profiles.filter((musician) => {
+    const matchesSearch =
+      musician.name.toLowerCase().includes(searchTerm.toLowerCase()) ||
+      musician.bio.toLowerCase().includes(searchTerm.toLowerCase()) ||
+      musician.instruments.some((inst) => inst.toLowerCase().includes(searchTerm.toLowerCase()));
+    const matchesGenre = !filterGenre || musician.genres.includes(filterGenre);
+    return matchesSearch && matchesGenre;
+  });
   const instrumentWithIcon = (instrument: string) => {
     // Simple emoji mapping for common instruments
     const emojiMap: Record<string, string> = {
@@ -68,10 +77,8 @@ export const AllProfiles: React.FC = () => {
       {/* Header and Filters */}
       <div className="space-y-4">
         <div>
-          <h1 className="text-2xl mb-2">Discover</h1>
-          <p className="text-muted-foreground">
-            Find musicians, jam sessions, bands, and musical content
-          </p>
+          <h1 className="text-2xl mb-2">Jammers</h1>
+          <p className="text-muted-foreground">Find musicians</p>
         </div>
 
         {/* Search and Filters */}
@@ -86,18 +93,6 @@ export const AllProfiles: React.FC = () => {
             />
           </div>
           <div className="flex gap-2">
-            <Select value={filterType} onValueChange={setFilterType}>
-              <SelectTrigger className="w-[120px]">
-                <SelectValue placeholder="All" />
-              </SelectTrigger>
-              <SelectContent>
-                <SelectItem value="all">All</SelectItem>
-                <SelectItem value="musician">Musicians</SelectItem>
-                <SelectItem value="jam">Jams</SelectItem>
-                <SelectItem value="band">Bands</SelectItem>
-                <SelectItem value="post">Posts</SelectItem>
-              </SelectContent>
-            </Select>
             <Select value={filterGenre} onValueChange={setFilterGenre}>
               <SelectTrigger className="w-[130px]">
                 <SelectValue placeholder="All Genres" />
@@ -116,7 +111,7 @@ export const AllProfiles: React.FC = () => {
         </div>
       </div>
       <div className="space-y-4">
-        {profiles.map((profile) => (
+        {filteredMusicians.map((profile) => (
           <Card key={profile.id} className="hover:shadow-md transition-shadow">
             <Link to={`/profiles/${profile.id}`} key={profile.id} className="no-underline">
               <CardContent className="p-6">
@@ -133,10 +128,7 @@ export const AllProfiles: React.FC = () => {
                         <button className="text-left hover:text-primary transition-colors">
                           <h3 className="font-medium">{profile.name}</h3>
                         </button>
-                        <p className="text-sm text-muted-foreground mb-2">{profile.location}</p>
-                        <p className="text-sm mb-3 line-clamp-2">{profile.bio}</p>
-
-                        <div className="flex flex-wrap gap-2 mb-3">
+                        <div className="flex flex-wrap gap-2 my-3">
                           {profile?.instruments?.slice(0, 3).map((instrument) => (
                             <Badge key={instrument} variant="secondary" className="text-xs">
                               {instrumentWithIcon(instrument)}
@@ -147,15 +139,14 @@ export const AllProfiles: React.FC = () => {
                               +{profile.instruments.length - 3}
                             </Badge>
                           )}
-                        </div>
-
-                        <div className="flex flex-wrap gap-1 mb-3">
                           {profile?.genres?.slice(0, 4).map((genre) => (
                             <Badge key={genre} variant="outline" className="text-xs">
                               {genre}
                             </Badge>
                           ))}
                         </div>
+                        <p className="text-sm text-muted-foreground mb-2">{profile.location}</p>
+                        <p className="text-sm mb-3 line-clamp-3">{profile.bio}</p>
                       </div>
                       <div className="flex flex-col items-end space-y-2">
                         {/* <span className="text-xs text-muted-foreground">

@@ -83,21 +83,6 @@ export function DiscoveryFeed({
             return false;
           }
           break;
-        case 'band':
-          const band = item.data as Band;
-          if (
-            !band.name.toLowerCase().includes(searchLower) &&
-            !band.description.toLowerCase().includes(searchLower)
-          ) {
-            return false;
-          }
-          break;
-        case 'post':
-          const post = item.data as Post;
-          if (!post.content.toLowerCase().includes(searchLower)) {
-            return false;
-          }
-          break;
       }
     }
 
@@ -117,11 +102,6 @@ export function DiscoveryFeed({
         case 'jam': {
           const jam = item.data as JamSession;
           if (!jam.genres.find((g) => g.includes(filterGenre))) return false;
-          break;
-        }
-        case 'band': {
-          const band = item.data as Band;
-          if (!band.genre.find((g) => g.includes(filterGenre))) return false;
           break;
         }
       }
@@ -232,7 +212,7 @@ export function DiscoveryFeed({
                             <Badge
                               key={genre}
                               variant="outline"
-                              className="text-xs bg-green-100 text-green-800 border-green-300">
+                              className="text-xs text-blue-800 border-blue-300">
                               {genre}
                             </Badge>
                           ))}
@@ -291,21 +271,13 @@ export function DiscoveryFeed({
                     {/* <ChevronRight className="w-5 h-5 text-muted-foreground" /> */}
                   </div>
                   <div className="flex items-center text-sm text-muted-foreground mt-1">
+                    Hosted by {jam.host.name}
                     <ClickableAvatar
                       route={`/profiles/${jam.host.id}`}
                       src={jam.host.image}
                       fallback={jam.host.name.charAt(0)}
-                      className="w-6 h-6 mr-2"
+                      className="ms-2 w-6 h-6 mr-2"
                     />
-                    Hosted by{' '}
-                    <button
-                      onClick={(e) => {
-                        e.stopPropagation();
-                        onViewProfile(jam.host.id);
-                      }}
-                      className="text-foreground hover:text-primary transition-colors underline ml-1">
-                      {jam.host.name}
-                    </button>
                   </div>
                 </div>
                 {/* <div className="text-xs text-muted-foreground">{formatTimeAgo(item.timestamp)}</div> */}
