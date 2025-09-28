@@ -33,7 +33,7 @@ import {
 import { Text } from '@/components/ui/Text';
 
 import { createFeedItems } from './mock';
-import type { Band, FeedItem, Post } from './mock';
+import type { FeedItem } from './mock';
 
 interface DiscoveryFeedProps {
   currentUser?: MusicianProfile;
