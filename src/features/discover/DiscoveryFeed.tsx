@@ -161,23 +161,28 @@ export function DiscoveryFeed({
           <Link to={`/profiles/${musician.id}`} key={musician.id} className="no-underline">
             <Card
               key={item.id}
-              className="hover:shadow-md transition-shadow pb-0"
+              className="hover:shadow-md transition-shadow pb-0 h-120 relative"
               style={{
                 backgroundImage: `url(${musician.image || 'https://placehold.co/100x100'})`,
                 backgroundSize: 'cover',
                 backgroundPosition: 'center',
               }}>
               <CardHeader>
-                <Box className="border border-background rounded">
+                {/* <Box className="border border-background rounded">
                   <img
                     src={musician.image || 'https://placehold.co/100x100'}
                     alt={musician.name}
                     className="rounded-md justify-self-center-safe"
                   />
-                </Box>
+                </Box> */}
                 {/* <Box style={{ minHeight: 120, background: 'transparent' }} /> */}
               </CardHeader>
-              <CardContent className="p-4 bottom-0 bg-background/90">
+              <CardContent
+                className="p-4 absolute bottom-0 w-full min-h-50"
+                style={{
+                  background:
+                    'linear-gradient(to top, rgba(255,255,255,0.95) 0%, rgba(255,255,255,0.80) 90%)',
+                }}>
                 <div className="flex items-start space-x-4">
                   <div className="flex-1 min-w-0">
                     <div className="flex items-start justify-between">
@@ -260,7 +265,7 @@ export function DiscoveryFeed({
         return (
           <Card
             key={item.id}
-            className="hover:shadow-md transition-shadow pb-0 max-h-300 relative"
+            className="hover:shadow-md transition-shadow pb-0 h-120 relative"
             style={{
               backgroundImage: `url(${jam?.image || 'https://placehold.co/300x300'})`,
               backgroundSize: 'cover',
@@ -277,7 +282,12 @@ export function DiscoveryFeed({
               <Box className="min-h-100 bg-transparent"></Box>
             </CardHeader>
 
-            <CardContent className="p-4 absolute bottom-0 bg-background/90">
+            <CardContent
+              className="p-4 absolute bottom-0 w-full min-h-50"
+              style={{
+                background:
+                  'linear-gradient(to top, rgba(255,255,255,0.95) 0%, rgba(255,255,255,0.80) 90%)',
+              }}>
               <CardTitle className="flex items-center justify-between">
                 <span className="text-lg font-semibold">{jam.title}</span>
                 <Badge
