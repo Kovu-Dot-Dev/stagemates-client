@@ -12,7 +12,15 @@ export const AppLayout: React.FC = () => {
     { label: 'Jams', href: '/jams', active: currentPath.startsWith('/jams') },
   ];
   return (
-    <div className="min-h-screen bg-background">
+    <div
+      className="min-h-screen"
+      style={{
+        // background: 'linear-gradient(135deg, #f5f7fa 0%, #ace0f9 100%)',
+        // backgroundImage: 'linear-gradient(135deg, #a8edea 0%, #fed6e3 100%)',
+        // backgroundImage: 'linear-gradient(to top, #fff1eb 0%, #ace0f9 100%)',
+        backgroundImage: 'linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%)',
+        // backgroundImage: 'linear-gradient(-20deg, #e9defa 0%, #fbfcdb 100%)',
+      }}>
       <Navbar01
         brandName="Jammy"
         logo={
