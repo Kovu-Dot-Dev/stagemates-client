@@ -81,7 +81,7 @@ export function JamDiscovery({ onCreateJam = () => {} }: JamDiscoveryProps) {
   };
 
   return (
-    <div className="max-w-4xl mx-auto space-y-6">
+    <div className="max-w-5xl mx-auto space-y-6">
       {/* Header with Search and Create */}
       <div className="flex flex-col space-y-4">
         <div className="flex items-center justify-between">
