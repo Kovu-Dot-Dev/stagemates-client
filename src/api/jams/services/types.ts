@@ -32,7 +32,7 @@ export type JamSession = {
   currentParticipants: number;
   genres: string[];
   skillLevel: string;
-  type: 'open' | 'private';
+  type: 'open' | 'invite' | 'private';
   participants: Omit<MusicianProfile, 'songs'>[];
   setlist: SetListSong[];
   neededInstruments: string[];

@@ -38,54 +38,6 @@ export type FeedItem = {
   timestamp: string;
 };
 
-// Mock data for the unified feed
-const mockBands: Band[] = [
-  {
-    id: 'band1',
-    name: 'Midnight Echoes',
-    description:
-      'Indie rock band looking for a bassist to complete our sound. We practice twice a week and have upcoming gigs lined up.',
-    genre: ['Indie Rock', 'Alternative'],
-    members: [mockMusicianProfiles[1], mockMusicianProfiles[2]],
-    lookingFor: ['Bass', 'Keyboard'],
-    location: 'Seattle, WA',
-    image:
-      'https://images.unsplash.com/photo-1493225457124-a3eb161ffa5f?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHxpbmRpZSUyMHJvY2slMjBiYW5kfGVufDF8fHx8MTc1ODAwODM1NXww&ixlib=rb-4.1.0&q=80&w=1080&utm_source=figma&utm_medium=referral',
-    followers: 127,
-    upcomingShows: 3,
-  },
-];
-
-const mockPosts: Post[] = [
-  {
-    id: 'post1',
-    type: 'soundbite',
-    author: mockMusicianProfiles[0],
-    content:
-      "Just finished recording this acoustic version of my new song 'Whispered Dreams'. Would love feedback from fellow songwriters! 🎵",
-    timestamp: '2025-01-18T14:30:00Z',
-    likes: 23,
-    comments: 8,
-    media: {
-      type: 'audio',
-      url: 'https://example.com/audio.mp3',
-      title: 'Whispered Dreams (Acoustic)',
-    },
-    tags: ['original', 'acoustic', 'folk'],
-  },
-  {
-    id: 'post2',
-    type: 'collaboration',
-    author: mockMusicianProfiles[1],
-    content:
-      'Looking for a saxophonist to collaborate on a jazz fusion project. I have 5 original compositions ready to go. DM me if interested!',
-    timestamp: '2025-01-18T11:15:00Z',
-    likes: 15,
-    comments: 12,
-    tags: ['collaboration', 'jazz', 'fusion'],
-  },
-];
-
 const mockJamSessions: JamSession[] = [
   {
     id: 'jam1',
@@ -109,6 +61,74 @@ const mockJamSessions: JamSession[] = [
     equipment: ['Piano', 'Drum Kit', 'PA System'],
     price: 15,
   },
+  {
+    id: 'jam2',
+    title: 'Indie Rock Night',
+    image:
+      'https://images.unsplash.com/photo-1464983953574-0892a716854b?auto=format&fit=crop&w=800&q=80',
+    description:
+      'Bring your guitar and join us for a night of indie rock covers and originals. Open to all guitarists and singers!',
+    host: mockMusicianProfiles[2],
+    date: '2025-01-22',
+    time: '19:00',
+    location: 'Echo Studio',
+    address: '5678 Indie Ave, Seattle, WA 98102',
+    maxParticipants: 8,
+    currentParticipants: 5,
+    genres: ['Indie Rock', 'Alternative'],
+    skillLevel: 'Intermediate',
+    type: 'open',
+    participants: [],
+    setlist: [],
+    neededInstruments: ['Guitar', 'Vocals'],
+    equipment: ['Guitar Amps', 'Microphones', 'PA System'],
+    price: 10,
+  },
+  {
+    id: 'jam3',
+    title: 'Sunday Acoustic Circle',
+    image:
+      'https://images.unsplash.com/photo-1506744038136-46273834b3fb?auto=format&fit=crop&w=800&q=80',
+    description:
+      'Unplugged acoustic jam for singer-songwriters. Share your originals or play along with others.',
+    host: mockMusicianProfiles[0],
+    date: '2025-01-21',
+    time: '16:00',
+    location: 'Green Lake Park',
+    address: '9101 Park Lane, Seattle, WA 98103',
+    maxParticipants: 12,
+    currentParticipants: 7,
+    genres: ['Folk', 'Acoustic', 'Singer-Songwriter'],
+    skillLevel: 'All Levels',
+    type: 'open',
+    participants: [],
+    setlist: [],
+    neededInstruments: ['Acoustic Guitar', 'Cajon'],
+    equipment: ['None'],
+    price: 0,
+  },
+  {
+    id: 'jam4',
+    title: 'Funk Groove Session',
+    image: 'https://i.pinimg.com/1200x/70/5a/8e/705a8e344cdaf65ed88ec6ea802e8755.jpg',
+    description:
+      'Get your groove on with our monthly funk jam. Bassists and drummers especially welcome!',
+    host: mockMusicianProfiles[3] || mockMusicianProfiles[0],
+    date: '2025-01-25',
+    time: '20:00',
+    location: 'Groove Basement',
+    address: '2222 Funky St, Seattle, WA 98104',
+    maxParticipants: 10,
+    currentParticipants: 6,
+    genres: ['Funk', 'Soul'],
+    skillLevel: 'Advanced',
+    type: 'invite',
+    participants: [],
+    setlist: [],
+    neededInstruments: ['Bass', 'Drums', 'Keys'],
+    equipment: ['Bass Amp', 'Drum Kit', 'Keyboard'],
+    price: 20,
+  },
 ];
 
 // Create unified feed with mixed content
@@ -126,18 +146,6 @@ export const createFeedItems = (): FeedItem[] => {
       data: jam,
       timestamp: new Date(Date.now() - Math.random() * 12 * 60 * 60 * 1000).toISOString(),
     })),
-    // ...mockBands.map((band) => ({
-    //   id: `band-${band.id}`,
-    //   type: 'band' as const,
-    //   data: band,
-    //   timestamp: new Date(Date.now() - Math.random() * 6 * 60 * 60 * 1000).toISOString(),
-    // })),
-    // ...mockPosts.map((post) => ({
-    //   id: `post-${post.id}`,
-    //   type: 'post' as const,
-    //   data: post,
-    //   timestamp: post.timestamp,
-    // })),
   ];
 
   return items.sort((a, b) => new Date(b.timestamp).getTime() - new Date(a.timestamp).getTime());
