@@ -178,7 +178,7 @@ export function DiscoveryFeed({
                 {/* <Box style={{ minHeight: 120, background: 'transparent' }} /> */}
               </CardHeader>
               <CardContent
-                className="p-4 absolute bottom-0 w-full min-h-50"
+                className="p-4 absolute bottom-0 w-full min-h-50 rounded-b-[inherit]"
                 style={{
                   background:
                     'linear-gradient(to top, rgba(255,255,255,0.95) 0%, rgba(255,255,255,0.80) 90%)',
@@ -283,7 +283,7 @@ export function DiscoveryFeed({
             </CardHeader>
 
             <CardContent
-              className="p-4 absolute bottom-0 w-full min-h-50"
+              className="p-4 absolute bottom-0 w-full min-h-50 rounded-b-[inherit]"
               style={{
                 background:
                   'linear-gradient(to top, rgba(255,255,255,0.95) 0%, rgba(255,255,255,0.80) 90%)',
