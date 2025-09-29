@@ -5,11 +5,11 @@ import {
   Heart,
   MapPin,
   MessageCircle,
+  MessageSquarePlus,
   Music,
   Play,
   Search,
   Share2,
-  UserPlus,
   Users,
 } from 'lucide-react';
 import { useState } from 'react';
@@ -21,7 +21,8 @@ import { ClickableAvatar } from '@/components/block/ClickableAvater';
 import { Badge } from '@/components/ui/Badge';
 import { Box } from '@/components/ui/Box';
 import { Button } from '@/components/ui/Button';
-import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/Card';
+import { Card, CardContent, CardFooter, CardHeader, CardTitle } from '@/components/ui/Card';
+import { Flex } from '@/components/ui/Flex';
 import { Input } from '@/components/ui/Input';
 import {
   Select,
@@ -192,35 +193,8 @@ export function DiscoveryFeed({
                           className="text-left hover:text-primary transition-colors">
                           <h3 className="font-medium">{musician.name}</h3>
                         </button>
-                        <p className="text-sm text-muted-foreground mb-2">{musician.location}</p>
+                        {/* <p className="text-sm text-muted-foreground mb-2">{musician.location}</p> */}
                         {/* <p className="text-sm mb-3 line-clamp-2">{musician.bio}</p> */}
-
-                        <div className="flex flex-wrap gap-2">
-                          {musician?.instruments?.slice(0, 3).map((instrument) => (
-                            <Badge
-                              key={instrument}
-                              variant="secondary"
-                              className="text-xs bg-blue-100 text-blue-800 border-blue-300">
-                              {instrumentWithIcon(instrument)}
-                            </Badge>
-                          ))}
-                          {musician.instruments.length > 3 && (
-                            <Badge
-                              variant="outline"
-                              className="text-xs bg-blue-50 text-blue-700 border-blue-200">
-                              +{musician.instruments.length - 3}
-                            </Badge>
-                          )}
-
-                          {musician?.genres?.slice(0, 4).map((genre) => (
-                            <Badge
-                              key={genre}
-                              variant="outline"
-                              className="text-xs text-blue-800 border-blue-300">
-                              {genre}
-                            </Badge>
-                          ))}
-                        </div>
                       </div>
                       <div className="flex flex-col items-end space-y-2">
                         {/* <span className="text-xs text-muted-foreground">
@@ -242,20 +216,59 @@ export function DiscoveryFeed({
                         </Badge>
                       </div>
                     </div>
+                    <Flex className="flex-wrap gap-2 my-3">
+                      <div className="flex flex-wrap gap-2">
+                        {musician?.instruments?.slice(0, 3).map((instrument) => (
+                          <Badge
+                            key={instrument}
+                            variant="secondary"
+                            className="text-xs bg-blue-100 text-blue-800 border-blue-300">
+                            {instrumentWithIcon(instrument)}
+                          </Badge>
+                        ))}
+                        {musician.instruments.length > 3 && (
+                          <Badge
+                            variant="outline"
+                            className="text-xs bg-blue-50 text-blue-700 border-blue-200">
+                            +{musician.instruments.length - 3}
+                          </Badge>
+                        )}
 
-                    <div className="flex justify-between items-center mt-4">
-                      <div className="text-sm text-muted-foreground">
-                        Looking for: {musician?.lookingFor?.slice(0, 2).join(', ')}
-                        {musician.lookingFor.length > 2 && '...'}
+                        {musician?.genres?.slice(0, 4).map((genre) => (
+                          <Badge
+                            key={genre}
+                            variant="outline"
+                            className="text-xs text-blue-800 border-blue-300">
+                            {genre}
+                          </Badge>
+                        ))}
                       </div>
-                      {/* <Button size="sm" onClick={() => onConnect(musician.id)}>
-                        <UserPlus className="w-4 h-4 mr-2" />
-                        Connect
-                      </Button> */}
-                    </div>
+                    </Flex>
                   </div>
                 </div>
               </CardContent>
+              <CardFooter className="block absolute bottom-0 w-full p-4 pt-2 rounded-b-[inherit] bg-gradient-to-t from-white/90 to-transparent">
+                <div className="flex items-start space-x-4">
+                  <div className="flex-1 min-w-0">
+                    <span className="text-sm text-muted-foreground my-2">Open to:</span>
+                    <div className="flex justify-between items-center">
+                      <Flex className="flex-wrap gap-1 text-sm text-muted-foreground">
+                        {musician?.lookingFor?.slice(0, 3).map((item) => (
+                          <Badge key={item} variant="secondary" className="text-xs">
+                            {item}
+                          </Badge>
+                        ))}
+                        {musician.lookingFor.length > 3 && (
+                          <span className="text-xs text-muted-foreground">...</span>
+                        )}
+                      </Flex>
+                      <Button size="sm" onClick={() => onConnect(musician.id)}>
+                        <MessageSquarePlus className="w-4 h-4" />
+                      </Button>
+                    </div>
+                  </div>
+                </div>
+              </CardFooter>
             </Card>
           </Link>
         );
