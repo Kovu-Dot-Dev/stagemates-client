@@ -17,11 +17,11 @@ export type MusicianProfile = {
   genres: string[];
   vibes?: Vibe[];
 
-    soundCloudUrl?: string;
+  soundCloudUrl?: string;
   youtubeUrl?: string;
   spotifyUrl?: string;
 
-    primaryInstruments: string[];
+  primaryInstruments: string[];
   secondaryInstruments: string[];
   preferredGenres: string[];
   collaborationInterests: string[];
@@ -38,7 +38,7 @@ export type MusicianProfile = {
     title?: string;
   }[];
   socialLinks: {
-    type: 'instagram' | 'twitter' | 'facebook' | 'website';
+    type: 'instagram' | 'twitter' | 'facebook' | 'website' | 'tiktok' | 'linkedin';
     url: string;
   }[];
   jamHistory: JamHistoryItem[];

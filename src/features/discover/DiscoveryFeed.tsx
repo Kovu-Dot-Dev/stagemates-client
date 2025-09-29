@@ -5,22 +5,24 @@ import {
   Heart,
   MapPin,
   MessageCircle,
+  MessageSquarePlus,
   Music,
   Play,
   Search,
   Share2,
-  UserPlus,
   Users,
 } from 'lucide-react';
 import { useState } from 'react';
+import { Link } from 'react-router';
 
 import type { JamSession } from '@/api/jams/services/types';
 import type { MusicianProfile } from '@/api/profiles/services/types';
 import { ClickableAvatar } from '@/components/block/ClickableAvater';
-import { Avatar, AvatarFallback, AvatarImage } from '@/components/ui/Avatar';
 import { Badge } from '@/components/ui/Badge';
+import { Box } from '@/components/ui/Box';
 import { Button } from '@/components/ui/Button';
-import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/Card';
+import { Card, CardContent, CardFooter, CardHeader, CardTitle } from '@/components/ui/Card';
+import { Flex } from '@/components/ui/Flex';
 import { Input } from '@/components/ui/Input';
 import {
   Select,
@@ -29,9 +31,10 @@ import {
   SelectTrigger,
   SelectValue,
 } from '@/components/ui/Select';
+import { Text } from '@/components/ui/Text';
 
 import { createFeedItems } from './mock';
-import type { Band, FeedItem, Post } from './mock';
+import type { FeedItem } from './mock';
 
 interface DiscoveryFeedProps {
   currentUser?: MusicianProfile;
@@ -81,21 +84,6 @@ export function DiscoveryFeed({
             return false;
           }
           break;
-        case 'band':
-          const band = item.data as Band;
-          if (
-            !band.name.toLowerCase().includes(searchLower) &&
-            !band.description.toLowerCase().includes(searchLower)
-          ) {
-            return false;
-          }
-          break;
-        case 'post':
-          const post = item.data as Post;
-          if (!post.content.toLowerCase().includes(searchLower)) {
-            return false;
-          }
-          break;
       }
     }
 
@@ -117,11 +105,6 @@ export function DiscoveryFeed({
           if (!jam.genres.find((g) => g.includes(filterGenre))) return false;
           break;
         }
-        case 'band': {
-          const band = item.data as Band;
-          if (!band.genre.find((g) => g.includes(filterGenre))) return false;
-          break;
-        }
       }
     }
 
@@ -138,144 +121,244 @@ export function DiscoveryFeed({
     return `${Math.floor(diffInHours / 24)}d ago`;
   };
 
+  const instrumentWithIcon = (instrument: string) => {
+    // Simple emoji mapping for common instruments
+    const emojiMap: Record<string, string> = {
+      guitar: '🎸',
+      bass: '🎸',
+      drums: '🥁',
+      piano: '🎹',
+      keyboard: '🎹',
+      saxophone: '🎷',
+      trumpet: '🎺',
+      violin: '🎻',
+      cello: '🎻',
+      flute: '🎶',
+      vocals: '🎤',
+      singer: '🎤',
+      voice: '🎤',
+      synth: '🎹',
+      percussion: '🥁',
+      clarinet: '🎶',
+      trombone: '🎺',
+      ukulele: '🎸',
+      banjo: '🪕',
+      harp: '🎵',
+      accordion: '🪗',
+    };
+    // Try to match instrument name to emoji
+    const key = instrument.toLowerCase();
+    const emoji =
+      Object.keys(emojiMap).find((k) => key.includes(k)) &&
+      emojiMap[Object.keys(emojiMap).find((k) => key.includes(k)) as string];
+    return `${emoji ? emoji + ' ' : ''}${instrument}`;
+  };
+
   const renderFeedItem = (item: FeedItem) => {
     switch (item.type) {
       case 'musician':
         const musician = item.data as MusicianProfile;
         return (
-          <Card key={item.id} className="hover:shadow-md transition-shadow">
-            <CardContent className="p-6">
-              <div className="flex items-start space-x-4">
-                <ClickableAvatar
-                  route={`/profiles/${musician.id}`}
-                  src={musician.image}
-                  fallback={musician.name.charAt(0)}
-                  className="w-16 h-16"
-                  onClick={() => onViewProfile(musician.id)}
-                />
-                <div className="flex-1 min-w-0">
-                  <div className="flex items-start justify-between">
-                    <div className="flex-1">
-                      <button
-                        onClick={() => onViewProfile(musician.id)}
-                        className="text-left hover:text-primary transition-colors">
-                        <h3 className="font-medium">{musician.name}</h3>
-                      </button>
-                      <p className="text-sm text-muted-foreground mb-2">{musician.location}</p>
-                      <p className="text-sm mb-3 line-clamp-2">{musician.bio}</p>
-
-                      <div className="flex flex-wrap gap-2 mb-3">
+          <Link to={`/profiles/${musician.id}`} key={musician.id} className="no-underline">
+            <Card
+              key={item.id}
+              className="hover:shadow-md transition-shadow pb-0 h-120 relative"
+              style={{
+                backgroundImage: `url(${musician.image || 'https://placehold.co/100x100'})`,
+                backgroundSize: 'cover',
+                backgroundPosition: 'center',
+              }}>
+              <CardHeader>
+                {/* <Box className="border border-background rounded">
+                  <img
+                    src={musician.image || 'https://placehold.co/100x100'}
+                    alt={musician.name}
+                    className="rounded-md justify-self-center-safe"
+                  />
+                </Box> */}
+                {/* <Box style={{ minHeight: 120, background: 'transparent' }} /> */}
+              </CardHeader>
+              <CardContent
+                className="p-4 absolute bottom-0 w-full min-h-50 rounded-b-[inherit]"
+                style={{
+                  background:
+                    'linear-gradient(to top, rgba(255,255,255,0.95) 0%, rgba(255,255,255,0.80) 90%)',
+                }}>
+                <div className="flex items-start space-x-4">
+                  <div className="flex-1 min-w-0">
+                    <div className="flex items-start justify-between">
+                      <div className="flex-1">
+                        <button
+                          onClick={() => onViewProfile(musician.id)}
+                          className="text-left hover:text-primary transition-colors">
+                          <h3 className="font-medium">{musician.name}</h3>
+                        </button>
+                        {/* <p className="text-sm text-muted-foreground mb-2">{musician.location}</p> */}
+                        {/* <p className="text-sm mb-3 line-clamp-2">{musician.bio}</p> */}
+                      </div>
+                      <div className="flex flex-col items-end space-y-2">
+                        {/* <span className="text-xs text-muted-foreground">
+                        {formatTimeAgo(item.timestamp)}
+                      </span> */}
+                        <Badge
+                          variant="secondary"
+                          className="text-xs bg-muted-background border-accent-foreground">
+                          {(() => {
+                            const skillEmoji: Record<string, string> = {
+                              Beginner: '♩',
+                              Intermediate: '♪',
+                              Advanced: '♫',
+                              Expert: '♬',
+                              Professional: '🎼',
+                            };
+                            return `${skillEmoji[musician.skillLevel] || '🤷🏻'} ${musician.skillLevel}`;
+                          })()}
+                        </Badge>
+                      </div>
+                    </div>
+                    <Flex className="flex-wrap gap-2 my-3">
+                      <div className="flex flex-wrap gap-2">
                         {musician?.instruments?.slice(0, 3).map((instrument) => (
-                          <Badge key={instrument} variant="secondary" className="text-xs">
-                            {instrument}
+                          <Badge
+                            key={instrument}
+                            variant="secondary"
+                            className="text-xs bg-blue-100 text-blue-800 border-blue-300">
+                            {instrumentWithIcon(instrument)}
                           </Badge>
                         ))}
                         {musician.instruments.length > 3 && (
-                          <Badge variant="outline" className="text-xs">
+                          <Badge
+                            variant="outline"
+                            className="text-xs bg-blue-50 text-blue-700 border-blue-200">
                             +{musician.instruments.length - 3}
                           </Badge>
                         )}
-                      </div>
 
-                      <div className="flex flex-wrap gap-1 mb-3">
                         {musician?.genres?.slice(0, 4).map((genre) => (
-                          <Badge key={genre} variant="outline" className="text-xs">
+                          <Badge
+                            key={genre}
+                            variant="outline"
+                            className="text-xs text-blue-800 border-blue-300">
                             {genre}
                           </Badge>
                         ))}
                       </div>
-                    </div>
-                    <div className="flex flex-col items-end space-y-2">
-                      <span className="text-xs text-muted-foreground">
-                        {formatTimeAgo(item.timestamp)}
-                      </span>
-                      <Badge variant="secondary" className="text-xs">
-                        {musician.skillLevel}
-                      </Badge>
-                    </div>
-                  </div>
-
-                  <div className="flex justify-between items-center mt-4">
-                    <div className="text-sm text-muted-foreground">
-                      Looking for: {musician?.lookingFor?.slice(0, 2).join(', ')}
-                      {musician.lookingFor.length > 2 && '...'}
-                    </div>
-                    <Button size="sm" onClick={() => onConnect(musician.id)}>
-                      <UserPlus className="w-4 h-4 mr-2" />
-                      Connect
-                    </Button>
+                    </Flex>
                   </div>
                 </div>
-              </div>
-            </CardContent>
-          </Card>
+              </CardContent>
+              <CardFooter className="block absolute bottom-0 w-full p-4 pt-2 rounded-b-[inherit] bg-gradient-to-t from-white/90 to-transparent">
+                <div className="flex items-start space-x-4">
+                  <div className="flex-1 min-w-0">
+                    <span className="text-sm text-muted-foreground my-2">Open to:</span>
+                    <div className="flex justify-between items-center">
+                      <Flex className="flex-wrap gap-1 text-sm text-muted-foreground">
+                        {musician?.lookingFor?.slice(0, 3).map((item) => (
+                          <Badge key={item} variant="secondary" className="text-xs">
+                            {item}
+                          </Badge>
+                        ))}
+                        {musician.lookingFor.length > 3 && (
+                          <span className="text-xs text-muted-foreground">...</span>
+                        )}
+                      </Flex>
+                      <Button size="sm" onClick={() => onConnect(musician.id)}>
+                        <MessageSquarePlus className="w-4 h-4" />
+                      </Button>
+                    </div>
+                  </div>
+                </div>
+              </CardFooter>
+            </Card>
+          </Link>
         );
 
       case 'jam':
         const jam = item.data as JamSession;
         return (
-          <Card
-            key={item.id}
-            className="hover:shadow-md transition-shadow cursor-pointer"
-            onClick={() => onViewJam(jam)}>
-            <CardHeader className="pb-3">
-              <div className="flex items-start justify-between">
-                <div className="flex-1">
-                  <div className="flex items-center justify-between">
-                    <CardTitle className="text-lg">{jam.title}</CardTitle>
-                    <ChevronRight className="w-5 h-5 text-muted-foreground" />
-                  </div>
-                  <div className="flex items-center text-sm text-muted-foreground mt-1">
-                    <ClickableAvatar
-                      route={`/profiles/${jam.host.id}`}
-                      src={jam.host.image}
-                      fallback={jam.host.name.charAt(0)}
-                      className="w-6 h-6 mr-2"
-                    />
-                    Hosted by{' '}
-                    <button
-                      onClick={(e) => {
-                        e.stopPropagation();
-                        onViewProfile(jam.host.id);
-                      }}
-                      className="text-foreground hover:text-primary transition-colors underline ml-1">
-                      {jam.host.name}
-                    </button>
-                  </div>
-                </div>
-                <div className="text-xs text-muted-foreground">{formatTimeAgo(item.timestamp)}</div>
-              </div>
-            </CardHeader>
-            <CardContent className="space-y-4">
-              <p className="text-sm text-muted-foreground">{jam.description}</p>
+          <Link to={`/jams/${jam.id}`} key={item.id} className="no-underline">
+            <Card
+              className="hover:shadow-md transition-shadow pb-0 h-120 relative"
+              style={{
+                backgroundImage: `url(${jam?.image || 'https://placehold.co/300x300'})`,
+                backgroundSize: 'cover',
+                backgroundPosition: 'center',
+              }}>
+              <CardHeader>
+                {/* <Box className="border border-background rounded">
+                <img
+                  src={jam?.image || 'https://placehold.co/300x300'}
+                  alt={jam.title}
+                  className="rounded-md border-background justify-self-center-safe object-cover"
+                />
+              </Box> */}
+                <Box className="min-h-100 bg-transparent"></Box>
+              </CardHeader>
 
-              <div className="flex flex-wrap gap-4 text-sm text-muted-foreground">
-                <div className="flex items-center">
-                  <Calendar className="w-4 h-4 mr-1" />
-                  {new Date(jam.date).toLocaleDateString()} at {jam.time}
-                </div>
-                <div className="flex items-center">
-                  <MapPin className="w-4 h-4 mr-1" />
-                  {jam.location}
-                </div>
-                <div className="flex items-center">
-                  <Users className="w-4 h-4 mr-1" />
-                  {jam.currentParticipants}/{jam.maxParticipants} participants
-                </div>
-              </div>
-
-              <div className="flex flex-wrap gap-1">
-                {jam.genres.map((genre) => (
-                  <Badge key={genre} variant="outline" className="text-xs">
-                    {genre}
+              <CardContent
+                className="p-4 absolute bottom-0 w-full min-h-50 rounded-b-[inherit]"
+                style={{
+                  background:
+                    'linear-gradient(to top, rgba(255,255,255,0.95) 0%, rgba(255,255,255,0.80) 90%)',
+                }}>
+                <CardTitle className="flex items-center justify-between">
+                  <span className="text-lg font-semibold">{jam.title}</span>
+                  <Badge
+                    variant="secondary"
+                    className="text-xs bg-emerald-100 text-emerald-700 border-emerald-300">
+                    {jam.skillLevel}
                   </Badge>
-                ))}
-                <Badge variant="secondary" className="text-xs">
-                  {jam.skillLevel}
-                </Badge>
-              </div>
+                </CardTitle>
+                <div className="flex flex-wrap gap-4 text-sm text-muted-foreground">
+                  <div className="flex items-center">
+                    <Calendar className="w-4 h-4 mr-1" />
+                    {new Date(jam.date).toLocaleDateString()} at {jam.time}
+                  </div>
+                  <div className="flex items-center">
+                    <MapPin className="w-4 h-4 mr-1" />
+                    {jam.location}
+                  </div>
+                  <div className="flex flex-wrap gap-1">
+                    {jam.genres.map((genre) => (
+                      <Badge
+                        key={genre}
+                        variant="outline"
+                        className="text-xs border-cyan-400 text-cyan-700 bg-cyan-50/80">
+                        {genre}
+                      </Badge>
+                    ))}
+                  </div>
+                  {/* add instruments jam is looking for */}
+                  <div className="flex items-center gap-1">
+                    <span className="font-semibold text-xs text-blue-700 mr-1">Needs:</span>
+                    {jam.neededInstruments.map((instrument) => (
+                      <Badge
+                        key={instrument}
+                        variant="secondary"
+                        className="text-xs border-blue-600 text-blue-900 bg-blue-100 font-semibold px-2 py-1 shadow-sm">
+                        {instrumentWithIcon(instrument)}
+                      </Badge>
+                    ))}
+                  </div>
+                </div>
+                <div className="mt-2 flex justify-between items-center">
+                  <div className="flex items-center">
+                    <Users className="w-4 h-4 mr-1" />
+                    {jam.currentParticipants}/{jam.maxParticipants} participants
+                  </div>
+                  <Button
+                    onClick={(e) => {
+                      e.stopPropagation();
+                      onJoinJam(jam);
+                    }}
+                    disabled={jam.currentParticipants >= jam.maxParticipants}
+                    size="sm">
+                    {jam.currentParticipants >= jam.maxParticipants ? 'Full' : 'Join'}
+                  </Button>
+                </div>
+                {/* <p className="text-sm text-muted-foreground">{jam.description}</p> */}
 
-              <div className="flex justify-between items-center">
+                {/* <div className="flex justify-between items-center">
                 <div className="text-sm text-muted-foreground">
                   {jam.maxParticipants - jam.currentParticipants} spots left
                 </div>
@@ -288,168 +371,18 @@ export function DiscoveryFeed({
                   size="sm">
                   {jam.currentParticipants >= jam.maxParticipants ? 'Full' : 'Join'}
                 </Button>
-              </div>
-            </CardContent>
-          </Card>
+              </div> */}
+              </CardContent>
+            </Card>
+          </Link>
         );
-
-      case 'band':
-        const band = item.data as Band;
-        return (
-          <Card key={item.id} className="hover:shadow-md transition-shadow">
-            <CardContent className="p-6">
-              <div className="flex items-start space-x-4">
-                <div className="w-16 h-16 bg-gradient-to-br from-primary/20 to-primary/5 rounded-lg flex items-center justify-center">
-                  <Music className="w-8 h-8 text-primary" />
-                </div>
-                <div className="flex-1 min-w-0">
-                  <div className="flex items-start justify-between">
-                    <div className="flex-1">
-                      <h3 className="font-medium">{band.name}</h3>
-                      <p className="text-sm text-muted-foreground mb-2">{band.location}</p>
-                      <p className="text-sm mb-3 line-clamp-2">{band.description}</p>
-
-                      <div className="flex flex-wrap gap-1 mb-3">
-                        {band.genre.map((genre) => (
-                          <Badge key={genre} variant="outline" className="text-xs">
-                            {genre}
-                          </Badge>
-                        ))}
-                      </div>
-
-                      <div className="flex items-center space-x-4 text-sm text-muted-foreground mb-3">
-                        <span>{band.members.length} members</span>
-                        <span>{band.followers} followers</span>
-                        <span>{band.upcomingShows} upcoming shows</span>
-                      </div>
-
-                      <div className="flex -space-x-2 mb-3">
-                        {band?.members?.slice(0, 4).map((member, index) => (
-                          <ClickableAvatar
-                            route={`/profiles/${member.id}`}
-                            key={member.id}
-                            src={member.image}
-                            fallback={member.name.charAt(0)}
-                            className="w-8 h-8 border-2 border-background"
-                          />
-                        ))}
-                        {band.members.length > 4 && (
-                          <div className="w-8 h-8 rounded-full bg-muted border-2 border-background flex items-center justify-center">
-                            <span className="text-xs font-medium">+{band.members.length - 4}</span>
-                          </div>
-                        )}
-                      </div>
-                    </div>
-                    <div className="flex flex-col items-end space-y-2">
-                      <span className="text-xs text-muted-foreground">
-                        {formatTimeAgo(item.timestamp)}
-                      </span>
-                    </div>
-                  </div>
-
-                  <div className="flex justify-between items-center mt-4">
-                    <div className="text-sm text-muted-foreground">
-                      Looking for: {band.lookingFor.join(', ')}
-                    </div>
-                    <Button size="sm" variant="outline" onClick={() => onFollowBand(band.id)}>
-                      <Heart className="w-4 h-4 mr-2" />
-                      Follow
-                    </Button>
-                  </div>
-                </div>
-              </div>
-            </CardContent>
-          </Card>
-        );
-
-      case 'post':
-        const post = item.data as Post;
-        return (
-          <Card key={item.id} className="hover:shadow-md transition-shadow">
-            <CardContent className="p-6">
-              <div className="flex items-start space-x-4">
-                <ClickableAvatar
-                  route={`/profiles/${post.author.id}`}
-                  src={post.author.image}
-                  fallback={post.author.name.charAt(0)}
-                  className="w-12 h-12"
-                />
-                <div className="flex-1 min-w-0">
-                  <div className="flex items-start justify-between">
-                    <div className="flex-1">
-                      <div className="flex items-center space-x-2 mb-2">
-                        <button
-                          onClick={() => onViewProfile(post.author.id)}
-                          className="text-left hover:text-primary transition-colors font-medium">
-                          {post.author.name}
-                        </button>
-                        <span className="text-sm text-muted-foreground">•</span>
-                        <span className="text-sm text-muted-foreground">
-                          {post.author.location}
-                        </span>
-                        <Badge variant="secondary" className="text-xs">
-                          {post.type}
-                        </Badge>
-                      </div>
-
-                      <p className="text-sm mb-3">{post.content}</p>
-
-                      {post.media && (
-                        <div className="bg-muted/50 rounded-lg p-3 mb-3">
-                          <div className="flex items-center space-x-3">
-                            <div className="w-10 h-10 bg-primary/20 rounded-lg flex items-center justify-center">
-                              <Play className="w-5 h-5 text-primary" />
-                            </div>
-                            <div>
-                              <p className="text-sm font-medium">{post.media.title}</p>
-                              <p className="text-xs text-muted-foreground">{post.media.type}</p>
-                            </div>
-                          </div>
-                        </div>
-                      )}
-
-                      {post.tags && (
-                        <div className="flex flex-wrap gap-1 mb-3">
-                          {post.tags.map((tag) => (
-                            <Badge key={tag} variant="outline" className="text-xs">
-                              #{tag}
-                            </Badge>
-                          ))}
-                        </div>
-                      )}
-                    </div>
-                    <span className="text-xs text-muted-foreground">
-                      {formatTimeAgo(item.timestamp)}
-                    </span>
-                  </div>
-
-                  <div className="flex items-center space-x-4 pt-3 border-t">
-                    <Button variant="ghost" size="sm" onClick={() => onLikePost(post.id)}>
-                      <Heart className="w-4 h-4 mr-2" />
-                      {post.likes}
-                    </Button>
-                    <Button variant="ghost" size="sm">
-                      <MessageCircle className="w-4 h-4 mr-2" />
-                      {post.comments}
-                    </Button>
-                    <Button variant="ghost" size="sm">
-                      <Share2 className="w-4 h-4 mr-2" />
-                      Share
-                    </Button>
-                  </div>
-                </div>
-              </div>
-            </CardContent>
-          </Card>
-        );
-
       default:
         return null;
     }
   };
 
   return (
-    <div className="max-w-3xl mx-auto space-y-6">
+    <div className="max-w-5xl mx-auto space-y-6">
       {/* Header and Filters */}
       <div className="space-y-4">
         <div>
@@ -502,7 +435,7 @@ export function DiscoveryFeed({
       </div>
 
       {/* Feed */}
-      <div className="space-y-4">
+      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
         {filteredItems.length === 0 ? (
           <Card className="p-8 text-center">
             <Music className="w-12 h-12 mx-auto text-muted-foreground mb-4" />

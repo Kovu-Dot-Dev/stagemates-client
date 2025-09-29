@@ -145,7 +145,7 @@ export function JamDetails({
               <CardTitle className="text-2xl">{jam.title}</CardTitle>
               <div className="flex items-center space-x-2 text-muted-foreground">
                 <ClickableAvatar
-                  route={`/profiles/${jam.host.id}`}
+                  route={`/profiles/u1`} // hardcoded for now
                   src={jam.host.image}
                   fallback={jam.host.name.charAt(0)}
                   className="w-8 h-8"
@@ -252,7 +252,7 @@ export function JamDetails({
               className="flex items-center space-x-3 p-3 bg-primary/10 rounded-lg cursor-pointer hover:bg-primary/15 transition-colors"
               onClick={() => onViewProfile(jam.host.id)}>
               <ClickableAvatar
-                route={`/profiles/${jam.host.id}`}
+                route={`/profiles/${jam.host.id}`} // hardcoded for now
                 src={jam.host.image}
                 fallback={jam.host.name.charAt(0)}
                 className="w-10 h-10"
