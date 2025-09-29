@@ -3,6 +3,7 @@ import { useState } from 'react';
 
 import type { DiscussionThread } from '@/api/jams/services/types';
 import type { MusicianProfile } from '@/api/profiles/services/types';
+import { ClickableAvatar } from '@/components/block/ClickableAvater';
 import { Avatar, AvatarFallback, AvatarImage } from '@/components/ui/Avatar';
 import { Badge } from '@/components/ui/Badge';
 import { Button } from '@/components/ui/Button';
@@ -90,10 +91,12 @@ export function JamDiscussion({
         {canPost && (
           <div className="space-y-3 p-4 bg-muted/30 rounded-lg">
             <div className="flex items-center space-x-2">
-              <Avatar className="w-8 h-8">
-                <AvatarImage src={currentUser.image} />
-                <AvatarFallback>{currentUser.name.charAt(0)}</AvatarFallback>
-              </Avatar>
+              <ClickableAvatar
+                route={`/profiles/${currentUser.id}`}
+                src={currentUser.image}
+                fallback={currentUser.name.charAt(0)}
+                className="w-10 h-10"
+              />
               <span className="font-medium">{currentUser.name}</span>
               {isHost && (
                 <Badge variant="default" className="text-xs">
@@ -137,10 +140,12 @@ export function JamDiscussion({
               <div key={thread.id} className="space-y-3">
                 {/* Main Thread */}
                 <div className="flex space-x-3">
-                  <Avatar className="w-10 h-10">
-                    <AvatarImage src={thread.author.image} />
-                    <AvatarFallback>{thread.author.name.charAt(0)}</AvatarFallback>
-                  </Avatar>
+                  <ClickableAvatar
+                    route={`/profiles/${thread.author.id}`}
+                    src={thread.author.image}
+                    fallback={thread.author.name.charAt(0)}
+                    className="w-10 h-10"
+                  />
                   <div className="flex-1 space-y-2">
                     <div className="flex items-center space-x-2">
                       <span className="font-medium">{thread.author.name}</span>
@@ -183,10 +188,12 @@ export function JamDiscussion({
                   <div className="ml-13 space-y-3 border-l-2 border-muted pl-4">
                     {thread.replies.map((reply) => (
                       <div key={reply.id} className="flex space-x-3">
-                        <Avatar className="w-8 h-8">
-                          <AvatarImage src={reply.author.image} />
-                          <AvatarFallback>{reply.author.name.charAt(0)}</AvatarFallback>
-                        </Avatar>
+                        <ClickableAvatar
+                          route={`/profiles/${reply.author.id}`}
+                          src={reply.author.image}
+                          fallback={reply.author.name.charAt(0)}
+                          className="w-8 h-8"
+                        />
                         <div className="flex-1 space-y-2">
                           <div className="flex items-center space-x-2">
                             <span className="font-medium">{reply.author.name}</span>
@@ -212,10 +219,12 @@ export function JamDiscussion({
                 {showReplyFor === thread.id && canPost && (
                   <div className="ml-13 space-y-3 border-l-2 border-muted pl-4">
                     <div className="flex space-x-3">
-                      <Avatar className="w-8 h-8">
-                        <AvatarImage src={currentUser.image} />
-                        <AvatarFallback>{currentUser.name.charAt(0)}</AvatarFallback>
-                      </Avatar>
+                      <ClickableAvatar
+                        route={`/profiles/${currentUser.id}`}
+                        src={currentUser.image}
+                        fallback={currentUser.name.charAt(0)}
+                        className="w-10 h-10"
+                      />
                       <div className="flex-1 space-y-2">
                         <div className="flex items-center space-x-2">
                           <span className="font-medium">{currentUser.name}</span>

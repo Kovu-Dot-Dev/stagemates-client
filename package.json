@@ -9,8 +9,8 @@
     "build": "tsc -b && vite build --base=./",
     "lint": "eslint .",
     "preview": "vite preview",
-    "predeploy": "pnpm run build",
-    "deploy": "gh-pages -d dist"
+    "predeploy": "pnpm run build ",
+    "deploy": "gh-pages -d dist --cname stagemates.kovu.dev"
   },
   "dependencies": {
     "@emotion/react": "^11.14.0",
