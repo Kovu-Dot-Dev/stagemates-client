@@ -136,14 +136,7 @@ export const mockJamSessions: JamSession[] = [
     genres: ['Folk', 'Acoustic', 'Singer-Songwriter'],
     skillLevel: 'All Levels',
     type: 'open',
-    participants: [
-      mockMusicianProfiles[1],
-      mockMusicianProfiles[2],
-      mockMusicianProfiles[3],
-      mockMusicianProfiles[4],
-      mockMusicianProfiles[5],
-      mockMusicianProfiles[6],
-    ],
+    participants: [mockMusicianProfiles[1], mockMusicianProfiles[2], mockMusicianProfiles[3]],
     setlist: [
       {
         id: 'song5',
@@ -191,13 +184,7 @@ export const mockJamSessions: JamSession[] = [
     genres: ['Funk', 'Soul'],
     skillLevel: 'Advanced',
     type: 'invite',
-    participants: [
-      mockMusicianProfiles[0],
-      mockMusicianProfiles[1],
-      mockMusicianProfiles[2],
-      mockMusicianProfiles[4],
-      mockMusicianProfiles[5],
-    ],
+    participants: [mockMusicianProfiles[0], mockMusicianProfiles[1], mockMusicianProfiles[2]],
     setlist: [
       {
         id: 'song7',
